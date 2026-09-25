@@ -42,11 +42,15 @@ Fonte: mensagem da cliente (2026-09-25), fora do PDF.
 
 **Credencial em destaque (dado confirmado, p. 8):** Dermatologista, CRM/PR 26153, RQE 19939.
 
-**Texto resumido, SUGESTÃO (não consta literalmente no material) para aprovação.** Síntese das pp. 6 e 12, sem acrescentar formação, instituições, anos de experiência ou títulos:
+**Texto do Sobre, SUGESTÃO (não consta literalmente no material) para aprovação.** Resumo do propósito da p. 6 no tom de voz da marca (amigável, próxima sem intimidade, informal), focado em quem ela é. Não usa nada da p. 12 (ouvir, cuidar, atenção plena, entrega de tempo e carinho), que fica só em "Minha abordagem". Não acrescenta formação, instituições, anos de experiência ou títulos.
 
-> Acredito que a beleza vem de nos sentirmos confortáveis em ser quem somos. Gosto de deixar as pessoas melhores, através do ouvir, do cuidar e da atenção plena. Entrego meu tempo, carinho e conhecimento para realçar a beleza que existe em você, sempre com naturalidade. Meu coração é de aprendiz e minha vida é pautada em evoluir sempre.
+> Acredito que a beleza é nos sentirmos confortáveis em ser quem somos. Amo pessoas, boas histórias e aprender.
+>
+> Família para mim é a base e Deus é o guia. Gosto de ler, da inteligência e de conversas profundas, e valorizo o tempo comigo mesma. Não saio de casa se não for para sorrir.
+>
+> Meu coração é de aprendiz e minha vida é pautada em evoluir sempre.
 
-**Origem:** pp. 6 e 12.
+**Origem:** p. 6.
 
 **Espaço reservado para Formação:** ver seção "Formação". No HTML, deixar bloco comentado (`<!-- FORMAÇÃO: ativar quando a cliente enviar -->`) que encaixe no layout sem quebrar nada quando ativado.
 
@@ -162,6 +166,8 @@ Depoimentos, avaliações, números de pacientes, prêmios e resultados: **Ausen
 
 Destino do CTA: link do WhatsApp com mensagem pré-preenchida (ver "Contato"). Perto do CTA e do horário, incluir discretamente "Atendimento particular."
 
+**Implementação:** faixa em bordô `#762d2d` com texto `#e9e6e1` (7,7:1) e botão invertido (fundo `#e9e6e1`, texto bordô, 7,7:1). Título "Sua pele, sua história." em Cormorant, botão "Agende a sua consulta" e texto de apoio "Atendimento particular.".
+
 ## Localização
 **Título sugerido:** Como chegar
 
@@ -180,6 +186,8 @@ Destino do CTA: link do WhatsApp com mensagem pré-preenchida (ver "Contato"). P
 - WhatsApp/telefone (41) 99178-0320, com links `wa.me` e `tel:`
 - Instagram @marianazunino.dermato
 - Horário: segunda a sexta, 9h às 12h e 13h às 18h, com "Atendimento particular."
+
+**Linha final (pedido da equipe):** "© [ano atual automático] Mariana Zunino. Todos os direitos reservados." e crédito "Desenvolvido por Gabriel Vigo". A URL do crédito não foi informada: fica como texto com comentário no HTML até receber o link.
 
 **Ausente no material:** e-mail, URL de site, política de privacidade, CNPJ/razão social.
 
@@ -205,6 +213,7 @@ WhatsApp, mesmo link do CTA do hero (ver "Contato").
 - URL de site próprio.
 - Política de privacidade e CNPJ/razão social.
 - Depoimentos reais.
+- URL do link "Desenvolvido por Gabriel Vigo" no rodapé.
 
 **Item sugerido e dispensado:** CRM-PR e RQE já constam no material (CRM/PR 26153, RQE 19939), então a pendência não se aplica. Exibi-los junto ao anúncio da especialidade.
 

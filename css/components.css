@@ -86,9 +86,9 @@
   .site-nav__list { flex-direction: row; gap: 1.25rem; }
   .site-nav__list a {
     padding: var(--space-2) 0; font-size: var(--fs-small); font-weight: 500;
-    letter-spacing: 0.08em; white-space: nowrap; border-bottom: 1px solid transparent;
+    letter-spacing: 0.08em; white-space: nowrap; border-bottom: 0;
   }
-  .site-nav__list a:hover { border-bottom-color: var(--color-brand-burgundy); }
+  .site-nav__list a:hover { color: var(--color-text); }
   .site-nav__cta { width: auto; white-space: nowrap; }
 }
 
@@ -119,3 +119,58 @@
   text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.35em;
 }
 .link-cta:hover { text-decoration-thickness: 2px; }
+
+/* Sublinhado de 1px que cresce da esquerda para a direita (menu no desktop e rodapé). Só transform. */
+.hover-underline { position: relative; text-decoration: none; }
+.hover-underline::after, .site-nav__list a::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
+  background: currentColor; transform: scaleX(0); transform-origin: left center;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.site-nav__list a { position: relative; }
+@media (min-width: 64rem) {
+  .site-nav__list a { border-bottom: 0; }
+}
+@media (max-width: 63.99rem) {
+  .site-nav__list a::after { display: none; }
+}
+.hover-underline:hover::after, .hover-underline:focus-visible::after,
+.site-nav__list a:hover::after, .site-nav__list a:focus-visible::after { transform: scaleX(1); }
+
+/* Botão com efeito roll: o texto sobe e uma cópia idêntica entra por baixo (markup criado por js/animations.js) */
+.js-anim .btn__roll { display: inline-grid; overflow: hidden; vertical-align: top; padding-block: 0.1em; margin-block: -0.1em; }
+.js-anim .btn__roll-a, .js-anim .btn__roll-b { grid-area: 1 / 1; transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
+.js-anim .btn__roll-b { transform: translateY(110%); }
+@media (hover: hover) {
+  .js-anim .btn:hover .btn__roll-a, .js-anim .btn:focus-visible .btn__roll-a { transform: translateY(-110%); }
+  .js-anim .btn:hover .btn__roll-b, .js-anim .btn:focus-visible .btn__roll-b { transform: translateY(0); }
+}
+
+/* Linhas finas de 1px (animadas com scaleX) */
+.line { display: block; height: 1px; background: var(--color-border); transform-origin: left center; }
+
+/* Regras finas de bronze acima e abaixo de um texto (credencial): cada regra tem 2 metades que crescem das pontas para o centro */
+.rule { position: absolute; left: 0; right: 0; display: flex; }
+.rule i { flex: 1; height: 1px; background: var(--rule-color, var(--color-brand-bronze)); }
+.rule i:first-child { transform-origin: left center; }
+.rule i:last-child { transform-origin: right center; }
+.rule--top { top: 0; }
+.rule--bottom { bottom: 0; }
+[data-anim="cred"] { position: relative; padding-block: var(--space-4); }
+.cred__text { display: block; }
+
+/* Foto: moldura (clip-path), imagem interna com folga para o parallax e moldura de bronze desenhada por 4 linhas */
+.photo { position: relative; }
+.photo__clip { position: relative; aspect-ratio: var(--ratio, 3 / 4); overflow: hidden; }
+.photo__inner { position: absolute; left: 0; right: 0; top: -10%; height: 120%; }
+.photo__inner .photo-placeholder, .photo__inner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.photo__frame { position: absolute; inset: 1.25rem -1.25rem -1.25rem 1.25rem; pointer-events: none; }
+.photo__frame i { position: absolute; display: block; background: var(--color-brand-bronze); }
+.photo__frame .f-top { left: 0; top: 0; width: 100%; height: 1px; transform-origin: left center; }
+.photo__frame .f-right { right: 0; top: 0; width: 1px; height: 100%; transform-origin: center top; }
+.photo__frame .f-bottom { left: 0; bottom: 0; width: 100%; height: 1px; transform-origin: right center; }
+.photo__frame .f-left { left: 0; top: 0; width: 1px; height: 100%; transform-origin: center bottom; }
+
+/* Botão invertido (faixa bordô): fundo claro, texto bordô (7,7:1) */
+.btn--inverted { background: var(--color-brand-offwhite); color: var(--color-brand-burgundy); }
+.btn--inverted:hover { background: var(--color-white); }

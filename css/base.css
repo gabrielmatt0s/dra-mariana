@@ -40,12 +40,14 @@ p { max-width: 65ch; }
 .display-lg { font-family: var(--font-display); font-size: 1.5rem; line-height: 1.25; font-weight: var(--fw-headline); letter-spacing: 0; }
 
 .eyebrow {
+  display: flex; align-items: center; gap: var(--space-3);
   font-size: var(--fs-small);
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-brand-burgundy);
 }
+.eyebrow__line { flex: none; width: 3rem; height: 1px; background: var(--color-brand-bronze); transform-origin: left center; }
 
 /* Utilitários */
 .container { width: 100%; max-width: var(--container-max); margin-inline: auto; padding-inline: var(--gutter-mobile); }
@@ -71,14 +73,14 @@ p { max-width: 65ch; }
 .title-section { margin-bottom: var(--space-6); }
 .title-sub { margin-bottom: var(--space-3); }
 
-/* Fade-in no scroll (IntersectionObserver em js/main.js). Sem JS, o conteúdo aparece normalmente. */
-.js .reveal {
-  opacity: 0; transform: translateY(1rem);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-  transition-delay: calc(var(--i, 0) * 80ms);
-}
-.js .reveal.is-visible { opacity: 1; transform: none; }
-@media (prefers-reduced-motion: reduce) {
-  .js .reveal { opacity: 1; transform: none; transition: none; }
-}
+/* Animações (js/animations.js): a classe js-anim só existe se o GSAP carregou e o usuário não pediu movimento reduzido.
+   Sem ela, todo o conteúdo fica visível. Cada efeito revela o seu elemento depois de preparar os filhos. */
+.js-anim [data-anim], .js-anim [data-hero] { visibility: hidden; }
+/* Máscaras de linha do SplitText: folga para acentos e descendentes de Cormorant não serem cortados */
+.sl-mask { padding-block: 0.15em; margin-block: -0.15em; }
+/* margens negativas adjacentes colapsam: sem esta regra a entrelinha cresceria 0,15em */
+.sl-mask + .sl-mask { margin-top: -0.3em; }
 .section--sand { background: var(--color-brand-sand); color: var(--color-text); }
+.section--burgundy { background: var(--color-brand-burgundy); color: var(--color-brand-offwhite); }
+/* Fundos escuros: foco em areia/claro (o bordô do foco padrão some sobre bordô e grafite) */
+.section--burgundy :focus-visible, .site-footer :focus-visible { outline-color: var(--color-brand-offwhite); }

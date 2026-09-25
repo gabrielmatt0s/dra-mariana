@@ -24,6 +24,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <!-- Só os pesos usados: Cormorant Garamond 500 e 600 (display, a partir de 24px) e Poppins 400 e 500 -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Poppins:wght@400;500&display=swap">
   <link rel="stylesheet" href="css/base.css">
@@ -62,13 +63,13 @@
       <div class="hero__bg" aria-hidden="true"></div>
       <div class="container hero__inner">
         <div class="hero__text">
-          <p class="eyebrow">Dermatologista | Curitiba</p>
-          <h1 class="hero__title" id="hero-titulo">Cuido da sua pele honrando a sua essência.</h1>
-          <p class="hero__subtitle">Sua pele, sua história.</p>
-          <p class="hero__creds">CRM/PR 26153 <span aria-hidden="true">|</span> RQE 19939</p>
+          <p class="eyebrow" data-hero="eyebrow"><span class="eyebrow__line" aria-hidden="true"></span><span class="eyebrow__text">Dermatologista | Curitiba</span></p>
+          <h1 class="hero__title" id="hero-titulo" data-hero="title">Cuido da sua pele honrando a sua essência.</h1>
+          <p class="hero__subtitle" data-hero="subtitle">Sua pele, sua história.</p>
+          <p class="hero__creds" data-hero="creds">CRM/PR 26153 <span aria-hidden="true">|</span> RQE 19939</p>
           <div class="hero__actions">
-            <a class="btn btn--primary btn--lg" href="https://wa.me/5541991780320?text=Ol%C3%A1%2C%20Dra.%20Mariana!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener noreferrer">Agende a sua consulta<span class="visually-hidden"> (abre o WhatsApp em nova aba)</span></a>
-            <p class="hero__note">Atendimento particular. Segunda a sexta, das 9h às 12h e das 13h às 18h.</p>
+            <a class="btn btn--primary btn--lg" data-hero="cta" href="https://wa.me/5541991780320?text=Ol%C3%A1%2C%20Dra.%20Mariana!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener noreferrer">Agende a sua consulta<span class="visually-hidden"> (abre o WhatsApp em nova aba)</span></a>
+            <p class="hero__note" data-hero="note">Atendimento particular. Segunda a sexta, das 9h às 12h e das 13h às 18h.</p>
           </div>
         </div>
 
@@ -76,12 +77,18 @@
           FOTO DO HERO: retrato da Dra. Mariana, proporção 3:4 (vertical).
           Tamanho ideal do arquivo: 1200 x 1600 px, JPG ou WebP, até 250 KB.
           Fotografia natural, luz suave, pele com textura real (ver design-system.md, seção 6).
-          Trocar o <div class="photo-placeholder"> por:
+          Trocar o <div class="photo-placeholder"> (dentro de .photo__inner) por:
           <img src="assets/img/hero-mariana.webp" alt="Dra. Mariana Zunino, dermatologista" width="1200" height="1600" fetchpriority="high">
+          A revelação por clip-path, o zoom e o parallax funcionam igual com placeholder e com foto real.
         -->
-        <figure class="hero__photo">
-          <div class="photo-placeholder" role="img" aria-label="Espaço reservado para o retrato da Dra. Mariana">
-            <span class="photo-placeholder__label">FOTO: retrato da Dra. Mariana</span>
+        <figure class="photo hero__photo" data-anim="photo" data-hero="photo" style="--ratio: 3 / 4">
+          <span class="photo__frame" aria-hidden="true"><i class="f-top"></i><i class="f-right"></i><i class="f-bottom"></i><i class="f-left"></i></span>
+          <div class="photo__clip">
+            <div class="photo__inner">
+              <div class="photo-placeholder" role="img" aria-label="Espaço reservado para o retrato da Dra. Mariana">
+                <span class="photo-placeholder__label">FOTO: retrato da Dra. Mariana</span>
+              </div>
+            </div>
           </div>
         </figure>
       </div>
@@ -89,16 +96,22 @@
 
     <section class="section sobre" id="sobre" aria-labelledby="sobre-titulo">
       <div class="container sobre__inner">
-        <div class="sobre__text reveal">
-          <h2 class="title-section" id="sobre-titulo">Sobre a Dra. Mariana</h2>
-          <p class="sobre__cred display-lg">Dermatologista, CRM/PR 26153, RQE 19939</p>
-          <p>Acredito que a beleza vem de nos sentirmos confortáveis em ser quem somos. Gosto de deixar as pessoas melhores, através do ouvir, do cuidar e da atenção plena.</p>
-          <p>Entrego meu tempo, carinho e conhecimento para realçar a beleza que existe em você, sempre com naturalidade. Meu coração é de aprendiz e minha vida é pautada em evoluir sempre.</p>
+        <div class="sobre__text">
+          <h2 class="title-section" id="sobre-titulo" data-anim="title">Sobre a Dra. Mariana</h2>
+          <p class="sobre__cred display-lg" data-anim="cred">
+            <span class="rule rule--top" aria-hidden="true"><i></i><i></i></span>
+            <span class="cred__text">Dermatologista, CRM/PR 26153, RQE 19939</span>
+            <span class="rule rule--bottom" aria-hidden="true"><i></i><i></i></span>
+          </p>
+          <p data-anim="text">Acredito que a beleza é nos sentirmos confortáveis em ser quem somos. Amo pessoas, boas histórias e aprender.</p>
+          <p data-anim="text">Família para mim é a base e Deus é o guia. Gosto de ler, da inteligência e de conversas profundas, e valorizo o tempo comigo mesma. Não saio de casa se não for para sorrir.</p>
+          <p data-anim="text">Meu coração é de aprendiz e minha vida é pautada em evoluir sempre.</p>
 
           <!-- FORMAÇÃO: ativar quando a cliente enviar
           Remover as marcas de comentário e trocar os itens pelos dados reais. O bloco já está estilizado
           (.sobre__formacao) e entra abaixo do texto sem quebrar o layout. Não inventar instituições, anos ou títulos.
-          <div class="sobre__formacao">
+          Para animar, manter data-anim="fade" no bloco.
+          <div class="sobre__formacao" data-anim="fade">
             <h3 class="title-sub">Formação</h3>
             <ul class="sobre__lista">
               <li>Item da formação</li>
@@ -111,12 +124,16 @@
         <!--
           FOTO DA SEÇÃO SOBRE: retrato da Dra. Mariana, proporção 4:5 (vertical).
           Tamanho ideal do arquivo: 1200 x 1500 px, JPG ou WebP, até 250 KB.
-          Trocar o <div class="photo-placeholder"> por:
+          Trocar o <div class="photo-placeholder"> (dentro de .photo__inner) por:
           <img src="assets/img/sobre-mariana.webp" alt="Dra. Mariana Zunino, dermatologista" width="1200" height="1500" loading="lazy">
         -->
-        <figure class="sobre__photo reveal">
-          <div class="photo-placeholder" role="img" aria-label="Espaço reservado para o retrato da Dra. Mariana">
-            <span class="photo-placeholder__label">FOTO: retrato da Dra. Mariana</span>
+        <figure class="photo sobre__photo" data-anim="photo" style="--ratio: 4 / 5">
+          <div class="photo__clip">
+            <div class="photo__inner">
+              <div class="photo-placeholder" role="img" aria-label="Espaço reservado para o retrato da Dra. Mariana">
+                <span class="photo-placeholder__label">FOTO: retrato da Dra. Mariana</span>
+              </div>
+            </div>
           </div>
         </figure>
       </div>
@@ -124,47 +141,53 @@
 
     <section class="section section--soft tratamentos" id="tratamentos" aria-labelledby="tratamentos-titulo">
       <div class="container">
-        <h2 class="title-section reveal" id="tratamentos-titulo">Tratamentos</h2>
+        <h2 class="title-section" id="tratamentos-titulo" data-anim="title">Tratamentos</h2>
 
         <!--
           Cada card aceita imagem no futuro sem refazer o componente: dentro do <li>, antes de .card__body,
           incluir <figure class="card__media"><img src="assets/img/tratamento-xx.webp" alt="" width="800" height="1000" loading="lazy"></figure>
           e adicionar a classe card--media ao <li>. Proporção 4:5.
         -->
-        <ol class="cards">
-          <li class="card reveal" style="--i:0">
+        <ol class="cards" data-anim="cards">
+          <li class="card">
             <div class="card__body">
               <span class="card__num">01</span>
+              <span class="card__line line" aria-hidden="true"></span>
               <h3 class="card__title">Rejuvenescimento</h3>
             </div>
           </li>
-          <li class="card reveal" style="--i:1">
+          <li class="card">
             <div class="card__body">
               <span class="card__num">02</span>
+              <span class="card__line line" aria-hidden="true"></span>
               <h3 class="card__title">Melasma</h3>
             </div>
           </li>
-          <li class="card reveal" style="--i:2">
+          <li class="card">
             <div class="card__body">
               <span class="card__num">03</span>
+              <span class="card__line line" aria-hidden="true"></span>
               <h3 class="card__title">Acne</h3>
             </div>
           </li>
-          <li class="card reveal" style="--i:3">
+          <li class="card">
             <div class="card__body">
               <span class="card__num">04</span>
+              <span class="card__line line" aria-hidden="true"></span>
               <h3 class="card__title">Rosácea</h3>
             </div>
           </li>
-          <li class="card reveal" style="--i:4">
+          <li class="card">
             <div class="card__body">
               <span class="card__num">05</span>
+              <span class="card__line line" aria-hidden="true"></span>
               <h3 class="card__title">Queda de cabelo</h3>
             </div>
           </li>
-          <li class="card reveal" style="--i:5">
+          <li class="card">
             <div class="card__body">
               <span class="card__num">06</span>
+              <span class="card__line line" aria-hidden="true"></span>
               <h3 class="card__title">Outras doenças de pele</h3>
             </div>
           </li>
@@ -174,25 +197,25 @@
 
     <section class="section procedimentos" id="procedimentos" aria-labelledby="procedimentos-titulo">
       <div class="container">
-        <header class="procedimentos__head reveal">
-          <p class="eyebrow">Procedimentos</p>
-          <h2 class="title-section" id="procedimentos-titulo">Dermatologia estética e clínica</h2>
+        <header class="procedimentos__head">
+          <p class="eyebrow" data-anim="eyebrow"><span class="eyebrow__line" aria-hidden="true"></span><span class="eyebrow__text">Procedimentos</span></p>
+          <h2 class="title-section" id="procedimentos-titulo" data-anim="title">Dermatologia estética e clínica</h2>
         </header>
 
-        <ul class="lista">
-          <li class="reveal">Toxina botulínica</li>
-          <li class="reveal">Preenchimento com ácido hialurônico</li>
-          <li class="reveal">Bioestimulador de colágeno (Sculptra e Radiesse)</li>
-          <li class="reveal">Hidratação injetável com ácido hialurônico (Skinbooster)</li>
-          <li class="reveal">Biorremodelador tecidual (Profhilo)</li>
-          <li class="reveal">Ultrassom microfocado</li>
-          <li class="reveal">Peeling químico</li>
-          <li class="reveal">Microagulhamento IPCA (indução percutânea de colágeno por agulhas)</li>
-          <li class="reveal">Luz intensa pulsada</li>
-          <li class="reveal">Laser</li>
+        <ul class="lista" data-anim="list">
+          <li><span class="line line--top" aria-hidden="true"></span><span class="li__text">Toxina botulínica</span></li>
+          <li><span class="line line--top" aria-hidden="true"></span><span class="li__text">Preenchimento com ácido hialurônico</span></li>
+          <li><span class="line line--top" aria-hidden="true"></span><span class="li__text">Bioestimulador de colágeno (Sculptra e Radiesse)</span></li>
+          <li><span class="line line--top" aria-hidden="true"></span><span class="li__text">Hidratação injetável com ácido hialurônico (Skinbooster)</span></li>
+          <li><span class="line line--top" aria-hidden="true"></span><span class="li__text">Biorremodelador tecidual (Profhilo)</span></li>
+          <li><span class="line line--top" aria-hidden="true"></span><span class="li__text">Ultrassom microfocado</span></li>
+          <li><span class="line line--top" aria-hidden="true"></span><span class="li__text">Peeling químico</span></li>
+          <li><span class="line line--top" aria-hidden="true"></span><span class="li__text">Microagulhamento IPCA (indução percutânea de colágeno por agulhas)</span></li>
+          <li class="li--end-desktop"><span class="line line--top" aria-hidden="true"></span><span class="li__text">Luz intensa pulsada</span><span class="line line--bottom" aria-hidden="true"></span></li>
+          <li class="li--end"><span class="line line--top" aria-hidden="true"></span><span class="li__text">Laser</span><span class="line line--bottom" aria-hidden="true"></span></li>
         </ul>
 
-        <p class="procedimentos__cta reveal">
+        <p class="procedimentos__cta" data-anim="fade">
           <a class="link-cta" href="https://wa.me/5541991780320?text=Ol%C3%A1%2C%20Dra.%20Mariana!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener noreferrer">Tire suas dúvidas pelo WhatsApp<span class="visually-hidden"> (abre em nova aba)</span></a>
         </p>
       </div>
@@ -200,20 +223,20 @@
 
     <section class="section section--sand abordagem" id="abordagem" aria-labelledby="abordagem-titulo">
       <!-- Grafismo do manual (p. 9): losangos empilhados de linhas finas. Decorativo, vaza pela borda direita. -->
-      <svg class="abordagem__losangos" viewBox="0 0 320 480" aria-hidden="true" focusable="false">
+      <svg class="abordagem__losangos" data-anim="draw" viewBox="0 0 320 480" aria-hidden="true" focusable="false">
         <path d="M160 0 320 160 160 320 0 160Z"/>
         <path d="M160 80 320 240 160 400 0 240Z"/>
         <path d="M160 160 320 320 160 480 0 320Z"/>
       </svg>
 
       <div class="container abordagem__inner">
-        <h2 class="title-section reveal" id="abordagem-titulo">Minha abordagem</h2>
+        <h2 class="title-section" id="abordagem-titulo" data-anim="title">Minha abordagem</h2>
 
-        <p class="abordagem__frase reveal">A beleza é quando você se sente confortável na sua própria pele.</p>
+        <p class="abordagem__frase" data-anim="quote">A beleza é quando você se sente confortável na sua própria pele.</p>
 
-        <div class="valores reveal">
-          <h3 class="valores__titulo">Valores que orientam o cuidado</h3>
-          <ul class="valores__lista">
+        <div class="valores">
+          <h3 class="valores__titulo" data-anim="title">Valores que orientam o cuidado</h3>
+          <ul class="valores__lista" data-anim="valores">
             <li class="valor"><svg class="valor__icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 1 23 12 12 23 1 12Z"/></svg><span>Saúde</span></li>
             <li class="valor"><svg class="valor__icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 1 23 12 12 23 1 12Z"/></svg><span>Empatia</span></li>
             <li class="valor"><svg class="valor__icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 1 23 12 12 23 1 12Z"/></svg><span>Família</span></li>
@@ -222,18 +245,138 @@
           </ul>
         </div>
 
-        <div class="abordagem__texto reveal">
-          <p>Gosto de deixar as pessoas melhores, através do ouvir, do cuidar e da atenção plena, por isso, entrego meu tempo, carinho e conhecimento para realçar a beleza que existe em você, valorizando sua essência e trazendo sempre a naturalidade.</p>
-          <p class="abordagem__proposta display-lg">Conhecimento + atendimento 360°</p>
+        <div class="abordagem__texto">
+          <p data-anim="text">Gosto de deixar as pessoas melhores, através do ouvir, do cuidar e da atenção plena, por isso, entrego meu tempo, carinho e conhecimento para realçar a beleza que existe em você, valorizando sua essência e trazendo sempre a naturalidade.</p>
+          <p class="abordagem__proposta display-lg" data-anim="cred" style="--rule-color: rgb(65 64 66 / 50%)">
+            <span class="rule rule--top" aria-hidden="true"><i></i><i></i></span>
+            <span class="cred__text">Conhecimento + atendimento 360°</span>
+            <span class="rule rule--bottom" aria-hidden="true"><i></i><i></i></span>
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="section section--burgundy cta" aria-labelledby="cta-titulo">
+      <div class="container cta__inner">
+        <h2 class="cta__title" id="cta-titulo" data-anim="title">Sua pele, sua história.</h2>
+        <div class="cta__actions" data-anim="fade">
+          <a class="btn btn--inverted btn--lg" href="https://wa.me/5541991780320?text=Ol%C3%A1%2C%20Dra.%20Mariana!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener noreferrer">Agende a sua consulta<span class="visually-hidden"> (abre o WhatsApp em nova aba)</span></a>
+          <p class="cta__note">Atendimento particular.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contato" id="contato" aria-labelledby="contato-titulo">
+      <div class="container contato__inner">
+        <div class="contato__dados">
+          <h2 class="title-section" id="contato-titulo" data-anim="title">Contato e localização</h2>
+
+          <ul class="dados" data-anim="list">
+            <li>
+              <span class="line line--top" aria-hidden="true"></span>
+              <span class="li__text">
+                <svg class="dados__icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>
+                <span class="dados__corpo">
+                  <span class="dados__rotulo">Endereço</span>
+                  <address>Avenida Sete de Setembro, 4214, Edifício Business Offices, sala 1304, Batel, Curitiba/PR, CEP 80250-085</address>
+                </span>
+              </span>
+            </li>
+            <li>
+              <span class="line line--top" aria-hidden="true"></span>
+              <span class="li__text">
+                <svg class="dados__icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.5 20.5 5 16A8.5 8.5 0 1 1 8 19l-4.5 1.5Z"/><path d="M9.2 8.8c0 3 2.2 5.4 5.4 6.2l1.2-1.4-2-1-.9.8a4.5 4.5 0 0 1-1.9-1.9l.8-.9-1-2-1.6 1.2Z"/></svg>
+                <span class="dados__corpo">
+                  <span class="dados__rotulo">WhatsApp</span>
+                  <span><a href="https://wa.me/5541991780320?text=Ol%C3%A1%2C%20Dra.%20Mariana!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener noreferrer">(41) 99178-0320<span class="visually-hidden"> (abre o WhatsApp em nova aba)</span></a> <span aria-hidden="true">|</span> <a href="tel:+5541991780320">Ligar</a></span>
+                </span>
+              </span>
+            </li>
+            <li>
+              <span class="line line--top" aria-hidden="true"></span>
+              <span class="li__text">
+                <svg class="dados__icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.6"/></svg>
+                <span class="dados__corpo">
+                  <span class="dados__rotulo">Instagram</span>
+                  <span><a href="https://www.instagram.com/marianazunino.dermato/" target="_blank" rel="noopener noreferrer">@marianazunino.dermato<span class="visually-hidden"> (abre em nova aba)</span></a></span>
+                </span>
+              </span>
+            </li>
+            <li>
+              <span class="line line--top" aria-hidden="true"></span>
+              <span class="li__text">
+                <svg class="dados__icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
+                <span class="dados__corpo">
+                  <span class="dados__rotulo">Horário</span>
+                  <span>Segunda a sexta, das 9h às 12h e das 13h às 18h</span>
+                  <span class="dados__nota">Atendimento particular.</span>
+                </span>
+              </span>
+              <span class="line line--bottom" aria-hidden="true"></span>
+            </li>
+          </ul>
+
+          <div class="contato__botoes" data-anim="fade">
+            <a class="btn btn--primary" href="https://share.google/QfASNc8XAbYm8oX8z" target="_blank" rel="noopener noreferrer">Como chegar<span class="visually-hidden"> (abre o perfil no Google em nova aba)</span></a>
+            <a class="btn btn--secondary" href="https://share.google/QfASNc8XAbYm8oX8z" target="_blank" rel="noopener noreferrer">Ver avaliações no Google<span class="visually-hidden"> (abre em nova aba)</span></a>
+          </div>
+        </div>
+
+        <!-- Mapa gerado a partir do endereço completo (o link share.google não funciona em iframe). -->
+        <div class="mapa" data-anim="fade">
+          <iframe
+            title="Mapa com a localização do consultório da Dra. Mariana Zunino: Avenida Sete de Setembro, 4214, sala 1304, Batel, Curitiba"
+            src="https://www.google.com/maps?q=Avenida%20Sete%20de%20Setembro%2C%204214%2C%20Edif%C3%ADcio%20Business%20Offices%2C%20sala%201304%2C%20Batel%2C%20Curitiba%2FPR%2C%20CEP%2080250-085&amp;output=embed"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
         </div>
       </div>
     </section>
   </main>
 
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <div class="site-footer__top" data-anim="fade">
+        <a class="site-footer__logo" href="#topo" aria-label="Mariana Zunino. Ir para o topo">
+          <img src="assets/logo/logo-horizontal-original-claro.svg" alt="Mariana Zunino" width="3092" height="413" loading="lazy">
+        </a>
+        <p class="site-footer__id">Dra. Mariana Zunino, Dermatologista, CRM/PR 26153, RQE 19939</p>
+      </div>
+
+      <div class="site-footer__cols" data-anim="fade">
+        <ul class="site-footer__contato">
+          <li>Av. Sete de Setembro, 4214, sala 1304, Batel, Curitiba/PR</li>
+          <li><a class="hover-underline" href="https://wa.me/5541991780320?text=Ol%C3%A1%2C%20Dra.%20Mariana!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener noreferrer">WhatsApp (41) 99178-0320<span class="visually-hidden"> (abre em nova aba)</span></a></li>
+          <li><a class="hover-underline" href="https://www.instagram.com/marianazunino.dermato/" target="_blank" rel="noopener noreferrer">Instagram @marianazunino.dermato<span class="visually-hidden"> (abre em nova aba)</span></a></li>
+        </ul>
+
+        <nav class="site-footer__nav" aria-label="Rodapé">
+          <ul>
+            <li><a class="hover-underline" href="#sobre">Sobre</a></li>
+            <li><a class="hover-underline" href="#tratamentos">Tratamentos</a></li>
+            <li><a class="hover-underline" href="#procedimentos">Procedimentos</a></li>
+            <li><a class="hover-underline" href="#abordagem">Minha abordagem</a></li>
+            <li><a class="hover-underline" href="#contato">Contato</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="site-footer__bottom">
+        <p>&copy; <span data-year>2026</span> Mariana Zunino. Todos os direitos reservados.</p>
+        <!-- LINK: informar a URL de Gabriel Vigo e transformar em <a class="hover-underline" href="URL" target="_blank" rel="noopener noreferrer"> -->
+        <p class="site-footer__credit">Desenvolvido por Gabriel Vigo</p>
+      </div>
+    </div>
+  </footer>
+
   <a class="whatsapp-float" href="https://wa.me/5541991780320?text=Ol%C3%A1%2C%20Dra.%20Mariana!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener noreferrer" aria-label="Agendar pelo WhatsApp (abre em nova aba)">
     <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" focusable="false"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
 
+  <!-- GSAP 3.15 (SplitText e DrawSVGPlugin são gratuitos). Se a CDN falhar, o conteúdo continua visível. -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/DrawSVGPlugin.min.js" defer></script>
   <script src="js/main.js" defer></script>
+  <script src="js/animations.js" defer></script>
 </body>
 </html>

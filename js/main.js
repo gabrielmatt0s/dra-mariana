@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  /* Menu mobile */
+  /* Menu mobile. As animações ficam em js/animations.js. */
   var toggle = document.querySelector('.menu-toggle');
   var nav = document.getElementById('menu-principal');
 
@@ -51,25 +51,7 @@
     syncInert();
   }
 
-  /* Fade-in no scroll. Com prefers-reduced-motion, ou sem IntersectionObserver, tudo aparece de imediato. */
-  var items = document.querySelectorAll('.reveal');
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (!items.length) return;
-
-  if (reduce || !('IntersectionObserver' in window)) {
-    items.forEach(function (el) { el.classList.add('is-visible'); });
-    return;
-  }
-
-  var observer = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15, rootMargin: '0px 0px -5% 0px' });
-
-  items.forEach(function (el) { observer.observe(el); });
+  /* Ano do rodapé automático */
+  var year = String(new Date().getFullYear());
+  document.querySelectorAll('[data-year]').forEach(function (el) { el.textContent = year; });
 })();
