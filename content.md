@@ -23,8 +23,8 @@ Fonte: mensagem da cliente (2026-09-25), fora do PDF.
 - **Instagram:** @marianazunino.dermato, `https://www.instagram.com/marianazunino.dermato/`
 - **Horário:** segunda a sexta, das 9h às 12h e das 13h às 18h.
 - **Atendimento:** particular (não atende convênios). Comunicar de forma discreta, perto do horário ou do CTA de contato, sem tom de barreira. Ex.: "Atendimento particular." em texto de apoio, sem destaque e sem a palavra "não".
-- **Perfil no Google:** `https://share.google/QfASNc8XAbYm8oX8z`. Usar nos botões "Como chegar" e "Ver avaliações no Google". Não exibir notas, contagens ou trechos de avaliações (não fornecidos).
-- **Mapa embutido:** iframe com `https://www.google.com/maps?q=ENDERECO&output=embed`, onde ENDERECO é o endereço completo acima codificado na URL. O link share.google não funciona em iframe.
+- **Perfil no Google:** `https://share.google/SD7QJqkNnq5ACpZ09`. Usar nos botões "Como chegar" e "Ver avaliações no Google". Não exibir notas, contagens ou trechos de avaliações (não fornecidos).
+- **Mapa embutido:** iframe do perfil oficial no Google Maps: `https://www.google.com/maps?cid=11232544285409833721&output=embed`. O `cid` vem do perfil (place ID `0x94dce3403684883b:0x9be20383d7b272f9`, coordenadas `-25.4426827,-49.2794436`, nome "Dra. Mariana Zunino - dermatologista Curitiba"). O painel "Incorporar um mapa" do Google não exibiu o código, então o src foi montado a partir da URL final do Google Maps. O link share.google não funciona em iframe.
 - **Preços:** **Ausente no material**.
 - **E-mail:** **Ausente no material**.
 - **URL de site próprio:** **Ausente no material**.
