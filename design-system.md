@@ -106,24 +106,37 @@ Fontes **EXTRAÍDAS** da p. 19 do PDF.
 | EXTRAÍDO | Collection New Style | assinatura/script | Não é Google Fonts. Evidência externa indica uso pessoal gratuito e licença comercial necessária. | Reservar para acentos curtos após licenciamento |
 | EXTRAÍDO | Poppins | sans serif | Google Fonts | corpo, UI, botões, labels |
 
-Importação permitida para Poppins: `https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap`.
+Importação usada no site (só os pesos em uso, com preconnect e `display=swap`, via `<link>` no `index.html`): `https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Poppins:wght@400;500&display=swap`.
 
 ### Regra de fontes enquanto não houver licença webfont confirmada
-- **Display (no lugar de SALVAGER): Tenor Sans**, via Google Fonts. **SUGESTÃO (não consta no material)**, para aprovação. Importação: `https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap`.
+- **Display: Cormorant Garamond, SUBSTITUTA da SALVAGER** (**SUGESTÃO, decisão da equipe**, não consta no material). Google Fonts.
+  - Use só a partir de 24px. Abaixo disso (eyebrow, labels, botões, credenciais, links do menu) use Poppins.
+  - Peso 500 na headline e 600 nos títulos em caixa alta. Nunca 300.
+  - Caixa alta com letter-spacing de 0.08em a 0.12em. Headline em caixa normal, com letter-spacing 0.
 - **Corpo: Poppins.**
 - **Assinatura cursiva (Collection New Style): somente via logo SVG.** Não carregar arquivo de fonte nem usar `font-family` script.
-- Ao receber a licença webfont de SALVAGER, ela substitui Tenor Sans.
+- Ao receber a licença webfont de SALVAGER, ela substitui Cormorant Garamond.
+
+### Contraste AA das combinações com Cormorant (texto ≥24px conta como texto grande, mínimo 3:1; todas abaixo passam também em 4.5:1)
+| Uso | Texto | Fundo | Razão |
+|---|---|---|---|
+| Headline do hero | `#414042` | `#e9e6e1` | 8.28:1 |
+| Títulos de seção | `#414042` | `#ffffff` | 10.31:1 |
+| Títulos sobre superfície areia | `#414042` | `#d0baa0` | 5.51:1 |
+| Destaque em bordô | `#762d2d` | `#ffffff` / `#e9e6e1` | 9.62:1 / 7.73:1 |
+| Título sobre rodapé | `#ffffff` | `#414042` | 10.31:1 |
+| Detalhe/título grande em bronze | `#a0815c` | `#ffffff` | 3.6:1, só em títulos acima de 24px |
 
 ### Escala web
 A hierarquia e tamanhos exatos não constam no manual. A escala abaixo é **SUGESTÃO (não consta no material)**, baseada no contraste editorial visto nas pp. 16-26.
 
 | Papel | Desktop | Mobile | Peso | Line-height | Família |
 |---|---:|---:|---:|---:|---|
-| display/hero | 4.5rem | 2.75rem | 400 | 1.00 | SALVAGER se licenciada; senão Tenor Sans (SUGESTÃO) |
-| h1 | 3.5rem | 2.375rem | 400 | 1.08 | display |
-| h2 | 2.5rem | 2rem | 400 | 1.15 | display |
-| h3 | 1.5rem | 1.375rem | 500 | 1.25 | Poppins |
-| lead | 1.25rem | 1.125rem | 300 | 1.65 | Poppins |
+| hero (headline) | clamp(2.25rem, 8vw + 0.5rem, 4rem) | idem | 500 | 1.15 | Cormorant Garamond, caixa normal, letter-spacing 0 |
+| h1 | 3.5rem | 2.375rem | 500 | 1.08 | Cormorant Garamond |
+| h2 (caixa alta) | 2.5rem | 2rem | 600 | 1.15 | Cormorant Garamond, letter-spacing 0.08em a 0.12em |
+| h3 (caixa alta) | 1.5rem | 1.5rem | 600 | 1.25 | Cormorant Garamond, letter-spacing 0.08em a 0.12em |
+| lead | 1.25rem | 1.125rem | 400 | 1.65 | Poppins |
 | body | 1rem | 1rem | 400 | 1.70 | Poppins |
 | small | 0.875rem | 0.875rem | 400 | 1.55 | Poppins |
 | button | 0.9375rem | 0.9375rem | 500 | 1.20 | Poppins |

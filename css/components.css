@@ -1,0 +1,113 @@
+/* Botões */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 3rem; padding: 0 var(--space-6);
+  font-family: var(--font-body); font-size: var(--fs-button); font-weight: 500; line-height: 1.2;
+  text-align: center; text-decoration: none;
+  border: 1px solid transparent; border-radius: 0;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.btn--primary { background: var(--color-brand-burgundy); color: var(--color-white); }
+.btn--primary:hover { background: #6a2929; }
+.btn--lg { min-height: 3.25rem; padding-inline: var(--space-8); }
+.btn--secondary { background: transparent; color: var(--color-text); border-color: var(--color-text); }
+.btn--secondary:hover { background: var(--color-text); color: var(--color-white); }
+.btn:focus-visible { outline-color: var(--color-brand-sand); }
+
+/* Header */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+}
+.site-header__bar {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-2);
+  padding-block: 0.5rem;
+}
+/* Padding lateral menor no mobile para a logo não encolher */
+@media (max-width: 47.99rem) { .site-header .container { padding-inline: 1rem; } }
+.site-header__logo { display: block; flex: none; }
+/* Logo horizontal: altura da maiúscula do nome = largura x 0,0563. Mínimo 216 px = 12,2 px (360 px de tela); 232 px = 13,1 px */
+.site-header__logo img { width: clamp(216px, 60vw, 232px); height: auto; }
+
+/* Botão do menu (mobile): ícone hamburguer 44x44 */
+.menu-toggle {
+  display: inline-grid; place-items: center; flex: none;
+  width: 2.75rem; height: 2.75rem; margin-inline-end: -0.5rem;
+}
+.menu-toggle__icon, .menu-toggle__icon::before, .menu-toggle__icon::after {
+  display: block; width: 1.5rem; height: 1px; background: currentColor;
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+.menu-toggle__icon { position: relative; }
+.menu-toggle__icon::before, .menu-toggle__icon::after { content: ""; position: absolute; left: 0; }
+.menu-toggle__icon::before { top: -7px; }
+.menu-toggle__icon::after { top: 7px; }
+.menu-toggle[aria-expanded="true"] .menu-toggle__icon { background: transparent; }
+.menu-toggle[aria-expanded="true"] .menu-toggle__icon::before { transform: translateY(7px) rotate(45deg); }
+.menu-toggle[aria-expanded="true"] .menu-toggle__icon::after { transform: translateY(-7px) rotate(-45deg); }
+.no-js .menu-toggle { display: none; }
+
+/* Navegação: painel no mobile */
+.site-nav {
+  display: flex; flex-direction: column; gap: var(--space-8);
+  width: 100%; padding: var(--space-6) var(--gutter-mobile) var(--space-8);
+  background: var(--color-white);
+}
+.site-nav__list { display: flex; flex-direction: column; }
+.site-nav__list a {
+  display: block; padding: var(--space-4) 0;
+  font-family: var(--font-body); font-size: 1rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+  text-decoration: none; color: var(--color-text);
+  border-bottom: 1px solid var(--color-border);
+}
+.site-nav__list a:hover { color: var(--color-brand-burgundy); }
+.site-nav__cta { width: 100%; }
+
+/* Com JS o painel abre por cima do conteúdo */
+.js .site-nav {
+  position: absolute; left: 0; top: 100%;
+  max-height: calc(100vh - 4.5rem); overflow-y: auto;
+  border-bottom: 1px solid var(--color-border);
+  visibility: hidden; opacity: 0; transform: translateY(-0.5rem);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0.25s;
+}
+.js .site-nav.is-open { visibility: visible; opacity: 1; transform: none; transition-delay: 0s; }
+
+@media (min-width: 64rem) {
+  .site-header__bar { padding-block: 1rem; gap: var(--space-8); }
+  .site-header__logo img { width: 280px; }
+  .menu-toggle { display: none; }
+  .site-nav, .js .site-nav {
+    position: static; visibility: visible; opacity: 1; transform: none; max-height: none; overflow: visible;
+    flex-direction: row; align-items: center; justify-content: flex-end; gap: var(--space-8);
+    width: auto; padding: 0; border: 0; background: transparent;
+  }
+  .site-nav__list { flex-direction: row; gap: 1.25rem; }
+  .site-nav__list a {
+    padding: var(--space-2) 0; font-size: var(--fs-small); font-weight: 500;
+    letter-spacing: 0.08em; white-space: nowrap; border-bottom: 1px solid transparent;
+  }
+  .site-nav__list a:hover { border-bottom-color: var(--color-brand-burgundy); }
+  .site-nav__cta { width: auto; white-space: nowrap; }
+}
+
+/* Botão flutuante do WhatsApp: único elemento circular do site */
+.whatsapp-float {
+  position: fixed; right: var(--space-4); bottom: var(--space-4); z-index: 60;
+  display: grid; place-items: center; width: 3.5rem; height: 3.5rem;
+  background: var(--color-brand-burgundy); color: var(--color-white);
+  border-radius: 50%; text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.whatsapp-float:hover { background: #6a2929; transform: scale(1.06); }
+.whatsapp-float:focus-visible { outline-color: var(--color-brand-sand); }
+
+/* Placeholder de foto */
+.photo-placeholder {
+  display: grid; place-items: center; width: 100%;
+  background: var(--color-brand-sand); color: var(--color-text);
+  border: 1px solid rgb(65 64 66 / 25%);
+  text-align: center; padding: var(--space-6);
+}
+.photo-placeholder__label { font-size: var(--fs-small); font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; }
