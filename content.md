@@ -11,23 +11,31 @@
 - Formação acadêmica detalhada: **Ausente no material**.
 - Especialidades/subespecialidades além de Dermatologia: **Ausente no material**.
 - Lista de procedimentos/serviços: **Ausente no material**. A p. 25 mostra um destaque chamado "Botox" e a p. 22 mostra uma peça "Melasma", mas isso não é suficiente para declarar uma lista clínica de serviços oferecidos.
-- Endereço: **Ausente no material**.
-- Telefone/WhatsApp: **Ausente no material**.
-- E-mail: **Ausente no material**.
-- Instagram/URL oficial da médica: **Ausente no material**.
-- Horários: **Ausente no material**.
-- Convênios/preços: **Ausente no material**.
 - Depoimentos reais: **Ausente no material**.
+
+## Contato (informado pela cliente)
+Fonte: mensagem da cliente (2026-09-25), fora do PDF.
+
+- **Endereço:** Avenida Sete de Setembro, 4214, Edifício Business Offices, sala 1304, Batel, Curitiba/PR, CEP 80250-085.
+- **WhatsApp / telefone (exibição):** (41) 99178-0320.
+- **Link WhatsApp (CTA do hero, botão flutuante e contato):** `https://wa.me/5541991780320?text=Ol%C3%A1%2C%20Dra.%20Mariana!%20Gostaria%20de%20agendar%20uma%20consulta.`
+- **Link telefone:** `tel:+5541991780320`
+- **Instagram:** @marianazunino.dermato, `https://www.instagram.com/marianazunino.dermato/`
+- **Horário:** segunda a sexta, das 9h às 12h e das 13h às 18h.
+- **Atendimento:** particular (não atende convênios). Comunicar de forma discreta, perto do horário ou do CTA de contato, sem tom de barreira. Ex.: "Atendimento particular." em texto de apoio, sem destaque e sem a palavra "não".
+- **Perfil no Google:** `https://share.google/QfASNc8XAbYm8oX8z`. Usar nos botões "Como chegar" e "Ver avaliações no Google". Não exibir notas, contagens ou trechos de avaliações (não fornecidos).
+- **Mapa embutido:** iframe com `https://www.google.com/maps?q=ENDERECO&output=embed`, onde ENDERECO é o endereço completo acima codificado na URL. O link share.google não funciona em iframe.
+- **Preços:** **Ausente no material**.
+- **E-mail:** **Ausente no material**.
+- **URL de site próprio:** **Ausente no material**.
 
 ## Hero
 **Eyebrow:** Dermatologista | Curitiba  
 **Título:** Cuido da sua pele honrando a sua essência.  
 **Subtítulo:** Sua pele, sua história.  
 **Credenciais:** CRM/PR 26153 | RQE 19939  
-**CTA:** "Agende a sua consulta" aparece como intenção no material, mas o link/destino é **Ausente no material**.  
-**Origem:** `MarianaZunino.pdf`, p. 8.
-
-**Nota de implementação:** não ativar CTA para URL inventada. Usar placeholder técnico até o destino real ser fornecido.
+**CTA:** "Agende a sua consulta", destino: link do WhatsApp com mensagem pré-preenchida (ver "Contato").  
+**Origem:** `MarianaZunino.pdf`, p. 8 (texto); destino informado pela cliente.
 
 ## Sobre / Propósito
 **Título sugerido de seção:** Propósito
@@ -129,7 +137,14 @@ Depoimentos, avaliações, números de pacientes, prêmios e resultados: **Ausen
 **Credenciais:** CRM/PR 26153 | RQE 19939.  
 **Origem:** p. 8.
 
-Destino do CTA: **Ausente no material**.
+Destino do CTA: link do WhatsApp com mensagem pré-preenchida (ver "Contato"). Perto do CTA e do horário, incluir discretamente "Atendimento particular."
+
+## Localização
+**Título sugerido:** Como chegar
+
+- Endereço completo, horário e "Atendimento particular." (texto de apoio discreto).
+- Mapa embutido (ver "Contato").
+- Botões: "Como chegar" e "Ver avaliações no Google" (ambos para o perfil do Google), "Agendar pelo WhatsApp".
 
 ## Rodapé
 **Conteúdo confirmado:**
@@ -138,8 +153,34 @@ Destino do CTA: **Ausente no material**.
 - CRM/PR 26153
 - RQE 19939
 - Curitiba
+- Endereço completo (ver "Contato")
+- WhatsApp/telefone (41) 99178-0320, com links `wa.me` e `tel:`
+- Instagram @marianazunino.dermato
+- Horário: segunda a sexta, 9h às 12h e 13h às 18h, com "Atendimento particular."
 
-**Ausente no material:** endereço, telefone, e-mail, URL, redes sociais, política de privacidade, CNPJ/razão social e horário.
+**Ausente no material:** e-mail, URL de site, política de privacidade, CNPJ/razão social.
+
+## Botão flutuante
+WhatsApp, mesmo link do CTA do hero (ver "Contato").
+
+## Lacunas e Pendências
+**Resolvidas (informadas pela cliente em 2026-09-25):**
+- [resolvida] Endereço.
+- [resolvida] Telefone/WhatsApp e destino do CTA de agendamento.
+- [resolvida] Instagram.
+- [resolvida] Horários.
+- [resolvida] Convênios: atendimento particular.
+
+**Em aberto:**
+- E-mail.
+- Preços.
+- URL de site próprio.
+- Política de privacidade e CNPJ/razão social.
+- Depoimentos reais.
+- Lista de procedimentos/serviços.
+- Formação acadêmica detalhada.
+
+**Item sugerido e dispensado:** CRM-PR e RQE já constam no material (CRM/PR 26153, RQE 19939), então a pendência não se aplica. Exibi-los junto ao anúncio da especialidade.
 
 ## Tom de voz para todos os textos
 **Extraído da p. 13:** amigável, próxima sem intimidade; embasada sem prolixidade; bem humorada de forma leve; informal, explicando termos técnicos quando usados.
