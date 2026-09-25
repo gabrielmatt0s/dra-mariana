@@ -73,12 +73,13 @@
   .li--end-desktop .line--bottom { display: block; }
 }
 
-/* Minha abordagem: faixa areia, texto em grafite (5,5:1) */
-.abordagem { position: relative; overflow: hidden; }
+/* Minha abordagem: off-white como o resto do site, com losangos e linhas finas de bronze (#a0815c, só decorativo) e linha de bronze de 1px separando das seções vizinhas. Texto #414042 sobre #e9e6e1 = 8,3:1. */
+.abordagem { position: relative; overflow: hidden; border-block: 1px solid var(--color-brand-bronze); }
 .abordagem__losangos {
-  position: absolute; right: -8rem; top: 50%; width: 16rem; height: auto; transform: translateY(-50%);
-  fill: none; stroke: var(--color-text); stroke-width: 1; opacity: 0.35; pointer-events: none;
+  position: absolute; right: -9rem; top: 26%; width: 20rem; height: auto; transform: translateY(-50%);
+  fill: none; stroke: var(--color-brand-bronze); stroke-width: 1; opacity: 0.75; pointer-events: none;
 }
+.abordagem__losangos--left { right: auto; left: -9rem; }
 .abordagem__losangos path { vector-effect: non-scaling-stroke; }
 .abordagem__inner { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-8); }
 .abordagem__inner .title-section { margin-bottom: 0; }
@@ -91,11 +92,12 @@
 .valores__lista { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-4) var(--space-12); padding: 0; }
 .valor { display: flex; align-items: center; gap: var(--space-3); }
 .valor span { font-family: var(--font-display); font-size: 1.5rem; font-weight: var(--fw-title); line-height: 1.25; text-transform: uppercase; letter-spacing: var(--ls-caps); }
-.valor__icone { flex: none; width: 1.5rem; height: 1.5rem; fill: none; stroke: currentColor; stroke-width: 1; }
+.valor__icone { flex: none; width: 1.5rem; height: 1.5rem; fill: none; stroke: var(--color-brand-bronze); stroke-width: 1; }
 .abordagem__texto { display: flex; flex-direction: column; align-items: center; gap: var(--space-6); max-width: 44rem; }
 .abordagem__proposta { font-size: 1.75rem; line-height: 1.2; }
 @media (min-width: 64rem) {
-  .abordagem__losangos { right: -8rem; width: 20rem; }
+  .abordagem__losangos { right: -11rem; top: 30%; width: 28rem; }
+  .abordagem__losangos--left { right: auto; left: -11rem; }
 }
 
 /* Faixa CTA: bordô com texto claro (#e9e6e1 sobre #762d2d = 7,7:1) e botão invertido */
