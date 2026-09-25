@@ -74,14 +74,30 @@
 }
 
 /* Minha abordagem: off-white como o resto do site, com losangos e linhas finas de bronze (#a0815c, só decorativo) e linha de bronze de 1px separando das seções vizinhas. Texto #414042 sobre #e9e6e1 = 8,3:1. */
-.abordagem { position: relative; overflow: hidden; border-block: 1px solid var(--color-brand-bronze); }
+.abordagem { --col: 44rem; --lados: 1.5rem; position: relative; overflow: hidden; border-block: 1px solid var(--color-brand-bronze); }
+@media (min-width: 64rem) { .abordagem { --col: 64rem; } }
+
+/* Ornamento do mobile: um losango pequeno e fino em bronze acima do título. Some a partir de 768 px. */
+.abordagem__ornamento { display: block; width: 44px; height: 60px; fill: none; stroke: var(--color-brand-bronze); stroke-width: 1; }
+.abordagem__ornamento path { vector-effect: non-scaling-stroke; }
+
+/* Grafismo lateral (tablet e desktop): só ocupa a folga entre a coluna de texto (--col) e a borda da seção, com
+   1,5rem de respiro. A parte visível é metade da largura do SVG (a outra metade vaza pela borda), então nunca invade o texto. */
 .abordagem__losangos {
-  position: absolute; right: -9rem; top: 26%; width: 20rem; height: auto; transform: translateY(-50%);
+  display: none;
+  position: absolute; top: 30%; height: auto; transform: translateY(-50%);
+  width: max(0px, calc(100% - var(--col) - 2 * var(--lados)));
+  right: calc((100% - var(--col) - 2 * var(--lados)) / -2);
   fill: none; stroke: var(--color-brand-bronze); stroke-width: 1; opacity: 0.75; pointer-events: none;
 }
-.abordagem__losangos--left { right: auto; left: -9rem; }
+.abordagem__losangos--left { right: auto; left: calc((100% - var(--col) - 2 * var(--lados)) / -2); }
 .abordagem__losangos path { vector-effect: non-scaling-stroke; }
-.abordagem__inner { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-8); }
+
+/* Coluna de texto: largura máxima --col, centralizada, com 24 px de lado no mobile */
+.abordagem__inner.container {
+  position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-8);
+  max-width: none; width: min(var(--col), calc(100% - 3rem)); padding-inline: 0;
+}
 .abordagem__inner .title-section { margin-bottom: 0; }
 .abordagem__frase {
   max-width: 20ch; font-family: var(--font-display); font-weight: var(--fw-headline);
@@ -89,15 +105,21 @@
 }
 .valores { width: 100%; }
 .valores__titulo { margin-bottom: var(--space-6); }
-.valores__lista { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-4) var(--space-12); padding: 0; }
+/* Mobile: lista vertical centralizada, um valor por linha, losango à esquerda, espaçamento igual */
+.valores__lista { list-style: none; display: flex; flex-direction: column; align-items: flex-start; width: fit-content; margin-inline: auto; gap: var(--space-4); padding: 0; }
 .valor { display: flex; align-items: center; gap: var(--space-3); }
 .valor span { font-family: var(--font-display); font-size: 1.5rem; font-weight: var(--fw-title); line-height: 1.25; text-transform: uppercase; letter-spacing: var(--ls-caps); }
 .valor__icone { flex: none; width: 1.5rem; height: 1.5rem; fill: none; stroke: var(--color-brand-bronze); stroke-width: 1; }
 .abordagem__texto { display: flex; flex-direction: column; align-items: center; gap: var(--space-6); max-width: 44rem; }
 .abordagem__proposta { font-size: 1.75rem; line-height: 1.2; }
-@media (min-width: 64rem) {
-  .abordagem__losangos { right: -11rem; top: 30%; width: 28rem; }
-  .abordagem__losangos--left { right: auto; left: -11rem; }
+@media (min-width: 48rem) {
+  .abordagem__ornamento { display: none; }
+  .abordagem__losangos { display: block; }
+  .abordagem__inner.container { width: min(var(--col), calc(100% - 3rem)); }
+  .valores__lista { flex-direction: row; flex-wrap: wrap; justify-content: center; align-items: center; width: auto; gap: var(--space-4) var(--space-12); }
+}
+@media (min-width: 80rem) {
+  .valores__lista { flex-wrap: nowrap; }
 }
 
 /* Faixa CTA: bordô com texto claro (#e9e6e1 sobre #762d2d = 7,7:1) e botão invertido */
