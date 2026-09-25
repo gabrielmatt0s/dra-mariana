@@ -81,3 +81,4 @@ p { max-width: 65ch; }
 @media (prefers-reduced-motion: reduce) {
   .js .reveal { opacity: 1; transform: none; transition: none; }
 }
+.section--sand { background: var(--color-brand-sand); color: var(--color-text); }

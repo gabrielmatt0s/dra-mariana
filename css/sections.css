@@ -68,3 +68,44 @@
 .card__media img { width: 100%; height: 100%; object-fit: cover; }
 @media (min-width: 48rem) { .cards { grid-template-columns: repeat(2, 1fr); gap: var(--space-6); } }
 @media (min-width: 64rem) { .cards { grid-template-columns: repeat(3, 1fr); } .card__body { padding: var(--space-8); min-height: 12rem; } }
+
+/* Procedimentos: lista compacta com divisores de 1px */
+.procedimentos__head { margin-bottom: var(--space-8); }
+.procedimentos__head .eyebrow { margin-bottom: var(--space-2); }
+.procedimentos__head .title-section { margin-bottom: 0; }
+.lista { list-style: none; display: grid; grid-template-columns: 1fr; padding: 0; column-gap: var(--space-16); }
+.lista li { padding-block: var(--space-4); border-bottom: 1px solid rgb(65 64 66 / 25%); }
+.lista li:first-child { border-top: 1px solid rgb(65 64 66 / 25%); }
+.procedimentos__cta { margin-top: var(--space-8); }
+@media (min-width: 48rem) {
+  .lista { grid-template-columns: repeat(2, 1fr); }
+  .lista li:nth-child(2) { border-top: 1px solid rgb(65 64 66 / 25%); }
+}
+
+/* Minha abordagem: faixa areia, texto em grafite (5,5:1) */
+.abordagem { position: relative; overflow: hidden; }
+.abordagem__losangos {
+  position: absolute; right: -8rem; top: 50%; width: 16rem; height: auto; transform: translateY(-50%);
+  fill: none; stroke: var(--color-text); stroke-width: 1; opacity: 0.35; pointer-events: none;
+}
+.abordagem__losangos path { vector-effect: non-scaling-stroke; }
+.abordagem__inner { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-8); }
+.abordagem__inner .title-section { margin-bottom: 0; }
+.abordagem__frase {
+  max-width: 20ch; font-family: var(--font-display); font-weight: var(--fw-headline);
+  font-size: clamp(2rem, 5vw + 1rem, 3.5rem); line-height: 1.15; letter-spacing: 0;
+}
+.valores { width: 100%; }
+.valores__titulo { margin-bottom: var(--space-6); }
+.valores__lista { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-4) var(--space-12); padding: 0; }
+.valor { display: flex; align-items: center; gap: var(--space-3); }
+.valor span { font-family: var(--font-display); font-size: 1.5rem; font-weight: var(--fw-title); line-height: 1.25; text-transform: uppercase; letter-spacing: var(--ls-caps); }
+.valor__icone { flex: none; width: 1.5rem; height: 1.5rem; fill: none; stroke: currentColor; stroke-width: 1; }
+.abordagem__texto { display: flex; flex-direction: column; align-items: center; gap: var(--space-6); max-width: 44rem; }
+.abordagem__proposta {
+  padding-block: var(--space-4); border-block: 1px solid rgb(65 64 66 / 50%);
+  font-size: 1.75rem; line-height: 1.2;
+}
+@media (min-width: 64rem) {
+  .abordagem__losangos { right: -6rem; width: 26rem; }
+}
