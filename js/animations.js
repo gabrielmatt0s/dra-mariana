@@ -107,15 +107,19 @@
          Número, linha e nome entram em sequência dentro de cada card. */
       cards: function (list) {
         var cards = $$('.card', list);
+        // Adiciona o tween só se o card tiver o elemento (evita avisos do GSAP para alvos vazios)
+        function part(tl, sel, card, from, to, pos) {
+          var els = $$(sel, card);
+          if (els.length) tl.fromTo(els, from, to, pos);
+        }
         cards.forEach(function (card, i) {
           var col = desktop ? i % 3 : 0;               // colunas seguintes começam um pouco depois
           var tl = gsap.timeline({ scrollTrigger: st(card, { start: 'clamp(top ' + (88 - col * 4) + '%)', end: 'clamp(top ' + (52 - col * 4) + '%)' }) });
           tl.fromTo(card, { opacity: 0, y: dyBig }, { opacity: 1, y: 0, ease: 'none', duration: 1 }, 0);
-          tl.fromTo($$('.card__num', card), { opacity: 0, y: 12 * m }, { opacity: 1, y: 0, ease: 'none', duration: 0.6 }, 0.25);
-          tl.fromTo($$('.line', card), { scaleX: 0 }, { scaleX: 1, ease: 'none', duration: 0.6 }, 0.5);
-          tl.fromTo($$('.card__title', card), { opacity: 0, y: 14 * m }, { opacity: 1, y: 0, ease: 'none', duration: 0.6 }, 0.7);
-          var media = $$('.card__media', card);
-          if (media.length) tl.fromTo(media, { opacity: 0 }, { opacity: 1, ease: 'none', duration: 0.8 }, 0.2);
+          part(tl, '.card__num', card, { opacity: 0, y: 12 * m }, { opacity: 1, y: 0, ease: 'none', duration: 0.6 }, 0.25);
+          part(tl, '.line', card, { scaleX: 0 }, { scaleX: 1, ease: 'none', duration: 0.6 }, 0.5);
+          part(tl, '.card__title', card, { opacity: 0, y: 14 * m }, { opacity: 1, y: 0, ease: 'none', duration: 0.6 }, 0.7);
+          part(tl, '.card__media', card, { opacity: 0 }, { opacity: 1, ease: 'none', duration: 0.8 }, 0.2);
         });
         show(list);
       },

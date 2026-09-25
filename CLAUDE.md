@@ -25,6 +25,7 @@ Construir uma landing page responsiva para **Dra. Mariana Zunino, Dermatologista
 - Poppins pode ser carregada via Google Fonts. Enquanto SALVAGER não tiver licença webfont, usar Cormorant Garamond (SUBSTITUTA, SUGESTÃO) no display: só a partir de 24px, peso 500 na headline e 600 nos títulos em caixa alta, nunca 300. Abaixo de 24px, Poppins. Assinatura cursiva somente via logo SVG.
 - Nunca usar no site: a pesquisa de valores da p. 10 do PDF, a foto de família da p. 21 e as imagens de banco da p. 20.
 - Formação acadêmica: AGUARDANDO CLIENTE. Construir sem ela, com bloco comentado no HTML.
+- Avaliações do Google só entram se forem sóbrias: sem superlativos ("a melhor", "excelente", "impecável"), sem promessa ou descrição de resultado, sem elogio à técnica ou ao resultado de procedimentos e sem detalhe de saúde do paciente (Resolução CFM 2.336/2023). No máximo um corte por texto, marcado com reticências, e nunca alterar palavras, nem corrigir erros de digitação. Sem data no card. O registro dos textos e links fica em `content.md`.
 - Não usar em-dash nos textos do projeto.
 - `_originais/` contém os arquivos-fonte da marca (PSD, EPS, PDF). Consulte se precisar, mas o site usa somente os arquivos de `assets/`.
 
@@ -65,7 +66,7 @@ O hero usa `data-hero` (`eyebrow`, `title`, `subtitle`, `creds`, `cta`, `note`, 
 **Hover e header:** links do menu e do rodapé usam sublinhado de 1px que cresce da esquerda (`.hover-underline` no rodapé). Botões `.btn` ganham efeito roll (texto duplicado com `aria-hidden`, criado pelo JS). O header esconde ao rolar para baixo e volta ao rolar para cima.
 
 ## Texto em Unicode NFC
-Todo texto do projeto (HTML, MD, CSS, JS, JSON) deve estar em NFC (letra acentuada em um único code point, ex.: `ê` = U+00EA). Texto copiado de PDF pode vir em NFD (letra + acento combinante U+0300 a U+036F), que desloca os acentos em algumas fontes. Antes de commitar, conferir com: `python -c "import re,sys;print(len(re.findall('[̀-ͯ]',open(sys.argv[1],encoding='utf8').read())))" arquivo` (deve dar 0) e normalizar com `unicodedata.normalize('NFC', texto)`.
+Todo texto do projeto (HTML, MD, CSS, JS, JSON) deve estar em NFC (letra acentuada em um único code point, ex.: `ê` = U+00EA). Texto copiado de PDF pode vir em NFD (letra + acento combinante U+0300 a U+036F), que desloca os acentos em algumas fontes. Antes de commitar, conferir com: `python -c "import re,sys;print(len(re.findall('[\u0300-\u036f]',open(sys.argv[1],encoding='utf8').read())))" arquivo` (deve dar 0) e normalizar com `unicodedata.normalize('NFC', texto)`.
 
 ## Estrutura recomendada do projeto
 ```text

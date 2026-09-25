@@ -214,8 +214,31 @@ WhatsApp, mesmo link do CTA do hero (ver "Contato").
 - Política de privacidade e CNPJ/razão social.
 - Depoimentos reais.
 - URL do link "Desenvolvido por Gabriel Vigo" no rodapé.
+- Links diretos das 6 avaliações do Google (cada card usa hoje o link do perfil como reserva).
 
 **Item sugerido e dispensado:** CRM-PR e RQE já constam no material (CRM/PR 26153, RQE 19939), então a pendência não se aplica. Exibi-los junto ao anúncio da especialidade.
+
+## Avaliações do Google
+**Fonte:** perfil "Dra. Mariana Zunino - dermatologista Curitiba" no Google (`https://share.google/SD7QJqkNnq5ACpZ09`). **Data de coleta: 25/09/2026.**
+- **Nota média exibida:** 5,0.
+- **Total exibido:** 61 avaliações.
+- Todas as avaliações lidas são de 5 estrelas.
+
+**Título da seção:** Avaliações (neutro, porque há pacientes homens). Fica entre "Minha abordagem" e a faixa CTA.
+
+**Curadoria aprovada (6 textos, sem alterar nenhuma palavra, inclusive erros de digitação; cortes só com reticências):**
+1. Céline B.: "A Dra. é uma querida, calma e possui um consultório bem organizado para receber os clientes... Foi uma indicação e estou gostando bastante do atendimento."
+2. Marcia F.: "A Dra Mariana, é realmente muito atenciosa, explica tudo com muita calma e esclarecendo as dúvidas!!"
+3. Alisson R.: "Atendimento muito bom da dra Mariana, super atenciosa, instruções extremamente claras sobre o diagnóstico durante a consulta, além de ser muito simpatica e ter boa conversa. Recomendo muito a visita."
+4. Vanessa U.: "Sou paciente da Dra Mariana há alguns anos… Ela é sempre pontual, atenciosa e toda a equipe me recebe com muito carinho"
+5. Ana Claudia B.: "…Desde o agendamento, o atendimento na recepção e a consulta. Fui tratada com muita atenção e cuidado."
+6. Mirian G.: "A dra Mariana é sempre muito pontual e atenciosa… É minha dermatologista há muito tempo."
+
+**Links individuais:** os 6 cards usam o link do perfil (`https://share.google/SD7QJqkNnq5ACpZ09`) como reserva, porque o link direto de cada avaliação ("Compartilhar" na avaliação) não pôde ser obtido (ver "Lacunas e Pendências"). Trocar o `href` de cada card quando os links chegarem.
+
+**Reserva (não entra agora):** Val F.: "Dra. Mariana é uma profissional extremamente dedicada e gentil. Seu trabalho inspira confiança, atributo que, para mim, é fundamental!"
+
+**Regras de uso:** sem data no card; nome no formato primeiro nome e inicial; menção "Avaliação no Google"; ver a regra de avaliações no `CLAUDE.md`.
 
 ## Tom de voz para todos os textos
 **Extraído da p. 13:** amigável, próxima sem intimidade; embasada sem prolixidade; bem humorada de forma leve; informal, explicando termos técnicos quando usados.

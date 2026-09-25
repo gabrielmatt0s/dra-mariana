@@ -74,7 +74,7 @@
 }
 .js .site-nav.is-open { visibility: visible; opacity: 1; transform: none; transition-delay: 0s; }
 
-@media (min-width: 64rem) {
+@media (min-width: 80rem) {
   .site-header__bar { padding-block: 1rem; gap: var(--space-8); }
   .site-header__logo img { width: 280px; }
   .menu-toggle { display: none; }
@@ -128,10 +128,10 @@
   transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .site-nav__list a { position: relative; }
-@media (min-width: 64rem) {
+@media (min-width: 80rem) {
   .site-nav__list a { border-bottom: 0; }
 }
-@media (max-width: 63.99rem) {
+@media (max-width: 79.99rem) {
   .site-nav__list a::after { display: none; }
 }
 .hover-underline:hover::after, .hover-underline:focus-visible::after,

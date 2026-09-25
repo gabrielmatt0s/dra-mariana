@@ -30,14 +30,14 @@ a { color: inherit; }
 /* Tipografia. Cantos retos em todo o site (radius 0). */
 /* Cormorant Garamond (substituta da Salvager): só a partir de 24px, pesos 500 e 600, nunca 300.
    Abaixo de 24px o texto usa Poppins. */
-h1, h2, h3 { font-family: var(--font-display); }
+h1, h2, h3 { font-family: var(--font-display); font-variant-numeric: lining-nums; }
 h1 { font-size: var(--fs-hero); line-height: 1.15; font-weight: var(--fw-headline); letter-spacing: 0; }
 h2 { font-size: var(--fs-h2); line-height: var(--lh-h2); font-weight: var(--fw-title); text-transform: uppercase; letter-spacing: var(--ls-caps); }
 h3 { font-size: var(--fs-h3); line-height: var(--lh-h3); font-weight: var(--fw-title); text-transform: uppercase; letter-spacing: var(--ls-caps); }
 p { max-width: 65ch; }
 
 /* Destaque em Cormorant (24px ou mais), caixa normal */
-.display-lg { font-family: var(--font-display); font-size: 1.5rem; line-height: 1.25; font-weight: var(--fw-headline); letter-spacing: 0; }
+.display-lg { font-variant-numeric: lining-nums; font-family: var(--font-display); font-size: 1.5rem; line-height: 1.25; font-weight: var(--fw-headline); letter-spacing: 0; }
 
 .eyebrow {
   display: flex; align-items: center; gap: var(--space-3);

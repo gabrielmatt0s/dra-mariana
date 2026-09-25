@@ -6,7 +6,7 @@
   var nav = document.getElementById('menu-principal');
 
   if (toggle && nav) {
-    var desktop = window.matchMedia('(min-width: 64rem)');
+    var desktop = window.matchMedia('(min-width: 80rem)');
 
     var isOpen = function () {
       return toggle.getAttribute('aria-expanded') === 'true';
