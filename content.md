@@ -8,9 +8,9 @@
 - **Cidade:** Curitiba. Fonte: p. 8.
 - **CRM/PR:** 26153. Fonte: p. 8.
 - **RQE:** 19939. Fonte: p. 8.
-- Formação acadêmica detalhada: **Ausente no material**.
+- Formação acadêmica detalhada: **AGUARDANDO CLIENTE** (ver seção "Formação"). Não consta no PDF.
 - Especialidades/subespecialidades além de Dermatologia: **Ausente no material**.
-- Lista de procedimentos/serviços: **Ausente no material**. A p. 25 mostra um destaque chamado "Botox" e a p. 22 mostra uma peça "Melasma", mas isso não é suficiente para declarar uma lista clínica de serviços oferecidos.
+- Lista de procedimentos e tratamentos: confirmada pela cliente (ver seção "Dermatologia / Serviços").
 - Depoimentos reais: **Ausente no material**.
 
 ## Contato (informado pela cliente)
@@ -37,7 +37,20 @@ Fonte: mensagem da cliente (2026-09-25), fora do PDF.
 **CTA:** "Agende a sua consulta", destino: link do WhatsApp com mensagem pré-preenchida (ver "Contato").  
 **Origem:** `MarianaZunino.pdf`, p. 8 (texto); destino informado pela cliente.
 
-## Sobre / Propósito
+## Sobre
+**Título sugerido de seção:** Sobre a Dra. Mariana
+
+**Credencial em destaque (dado confirmado, p. 8):** Dermatologista, CRM/PR 26153, RQE 19939.
+
+**Texto resumido, SUGESTÃO (não consta literalmente no material) para aprovação.** Síntese das pp. 6 e 12, sem acrescentar formação, instituições, anos de experiência ou títulos:
+
+> Acredito que a beleza vem de nos sentirmos confortáveis em ser quem somos. Gosto de deixar as pessoas melhores, através do ouvir, do cuidar e da atenção plena. Entrego meu tempo, carinho e conhecimento para realçar a beleza que existe em você, sempre com naturalidade. Meu coração é de aprendiz e minha vida é pautada em evoluir sempre.
+
+**Origem:** pp. 6 e 12.
+
+**Espaço reservado para Formação:** ver seção "Formação". No HTML, deixar bloco comentado (`<!-- FORMAÇÃO: ativar quando a cliente enviar -->`) que encaixe no layout sem quebrar nada quando ativado.
+
+## Propósito (texto integral)
 **Título sugerido de seção:** Propósito
 
 **Texto extraído, com apenas ajustes mínimos de quebra de linha:**
@@ -103,13 +116,23 @@ Fonte: mensagem da cliente (2026-09-25), fora do PDF.
 
 **Nota editorial:** manter o sentido e revisar ortografia final com a cliente antes de publicar, especialmente "Re-significamos", que aparece assim no material.
 
+## Formação
+**Status: AGUARDANDO CLIENTE.** A formação acadêmica não consta no `MarianaZunino.pdf`. A cliente vai enviar depois. Até lá, a landing é construída sem ela: não inventar instituições, residência, anos, títulos ou sociedades.
+
 ## Dermatologia / Serviços
-**Título:** Dermatologia
+**Fonte:** lista oficial enviada pela cliente. Texto transcrito sem reescrita.
 
-**Conteúdo confirmado:** a cliente se apresenta como Dermatologista.  
-**Lista de consultas, doenças, procedimentos e tecnologias:** **Ausente no material**.
+> Dermatologia estética e clínica
+>
+> Procedimentos: Toxina botulínica; Preenchimento com ácido hialurônico; Bioestimulador de colágeno (Sculptra e Radiesse); Hidratação injetável com ácido hialurônico (Skinbooster); Biorremodelador tecidual (Profhilo); Ultrassom microfocado; Peeling químico; Microagulhamento IPCA (indução percutânea de colágeno por agulhas); Luz intensa pulsada; Laser.
+>
+> Tratamentos: Rejuvenescimento; Melasma; Acne; Rosácea; Queda de cabelo; Outras doenças de pele.
 
-**SUGESTÃO (não consta no material):** até receber a lista real, não criar cards de procedimentos. Usar uma seção institucional curta sobre consulta dermatológica e um CTA de agendamento sem prometer escopo específico.
+**Uso na landing:**
+- "Tratamentos": cards (6 itens da lista acima).
+- "Procedimentos": lista compacta (10 itens da lista acima).
+- Não inventar descrições médicas. Se um card precisar de texto de apoio, usar no máximo uma linha neutra, marcada como SUGESTÃO para aprovação. Nenhum texto de apoio foi proposto até agora.
+- Citação das marcas comerciais (Sculptra, Radiesse, Profhilo): aguardando confirmação da cliente (ver "Lacunas e Pendências").
 
 ## Diferenciais
 **Título:** Conhecimento, cuidado e atenção plena
@@ -170,15 +193,18 @@ WhatsApp, mesmo link do CTA do hero (ver "Contato").
 - [resolvida] Instagram.
 - [resolvida] Horários.
 - [resolvida] Convênios: atendimento particular.
+- [resolvida] Lista de procedimentos e tratamentos.
 
 **Em aberto:**
+- Formação acadêmica: AGUARDANDO CLIENTE (a landing é construída sem ela).
+- Fotos originais em alta resolução, com autorização de uso web.
+- Licença webfont de SALVAGER e Collection New Style.
+- Confirmação da cliente sobre citar marcas comerciais (Sculptra, Radiesse, Profhilo).
 - E-mail.
 - Preços.
 - URL de site próprio.
 - Política de privacidade e CNPJ/razão social.
 - Depoimentos reais.
-- Lista de procedimentos/serviços.
-- Formação acadêmica detalhada.
 
 **Item sugerido e dispensado:** CRM-PR e RQE já constam no material (CRM/PR 26153, RQE 19939), então a pendência não se aplica. Exibi-los junto ao anúncio da especialidade.
 
@@ -186,7 +212,12 @@ WhatsApp, mesmo link do CTA do hero (ver "Contato").
 **Extraído da p. 13:** amigável, próxima sem intimidade; embasada sem prolixidade; bem humorada de forma leve; informal, explicando termos técnicos quando usados.
 
 ## Conteúdo visual relevante
-- p. 20: referência de feed com pele, produto, café, retrato e mensagem "repair".
-- p. 21: mistura de retrato P&B, conteúdo educativo, pele e família.
-- p. 22: referências de vídeo incluindo "Melasma", "Dermatologia Estética" e "rituais". Não converter esses rótulos automaticamente em serviços clínicos.
-- p. 25: destaques "Sobre mim", "Consulta", "Botox", "Congressos". "Botox" indica tema de destaque, mas não substitui confirmação formal de serviço para a landing page.
+- p. 20: referência de feed com pele, produto, café, retrato e mensagem "repair". **NUNCA usar no site** (imagens de banco).
+- p. 21: mistura de retrato P&B, conteúdo educativo, pele e família. **NUNCA usar a foto de família no site.**
+- p. 22: referências de vídeo incluindo "Melasma", "Dermatologia Estética" e "rituais". Serviços vêm somente da lista oficial da cliente, não destes rótulos.
+- p. 25: destaques "Sobre mim", "Consulta", "Botox", "Congressos". Serviços vêm somente da lista oficial da cliente.
+
+## Nunca usar no site
+- A pesquisa de valores da p. 10.
+- A foto de família da p. 21.
+- As imagens de banco da p. 20.

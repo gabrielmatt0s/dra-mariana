@@ -90,6 +90,12 @@ CMYK/Pantone: **Ausente no material**.
 
 **SUGESTÃO (não consta no material):** para corpo de texto, limitar combinações às aprovadas acima. Bronze e areia devem atuar principalmente como superfície, borda, ícone ou detalhe, pois não atingem AA como texto pequeno sobre branco.
 
+### Regras de cor (decisão da cliente/equipe)
+- Texto corrido em `#414042`.
+- CTA principal com fundo `#762d2d` e texto branco.
+- `#a0815c` somente em títulos acima de 24px e em detalhes (linhas, ícones, bordas).
+- Nunca texto branco sobre `#d0baa0`. Sobre `#d0baa0`, usar texto `#414042`.
+
 ## 4. Tipografia
 
 Fontes **EXTRAÍDAS** da p. 19 do PDF.
@@ -102,12 +108,18 @@ Fontes **EXTRAÍDAS** da p. 19 do PDF.
 
 Importação permitida para Poppins: `https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap`.
 
+### Regra de fontes enquanto não houver licença webfont confirmada
+- **Display (no lugar de SALVAGER): Tenor Sans**, via Google Fonts. **SUGESTÃO (não consta no material)**, para aprovação. Importação: `https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap`.
+- **Corpo: Poppins.**
+- **Assinatura cursiva (Collection New Style): somente via logo SVG.** Não carregar arquivo de fonte nem usar `font-family` script.
+- Ao receber a licença webfont de SALVAGER, ela substitui Tenor Sans.
+
 ### Escala web
 A hierarquia e tamanhos exatos não constam no manual. A escala abaixo é **SUGESTÃO (não consta no material)**, baseada no contraste editorial visto nas pp. 16-26.
 
 | Papel | Desktop | Mobile | Peso | Line-height | Família |
 |---|---:|---:|---:|---:|---|
-| display/hero | 4.5rem | 2.75rem | 400 | 1.00 | SALVAGER se licenciada; fallback Georgia |
+| display/hero | 4.5rem | 2.75rem | 400 | 1.00 | SALVAGER se licenciada; senão Tenor Sans (SUGESTÃO) |
 | h1 | 3.5rem | 2.375rem | 400 | 1.08 | display |
 | h2 | 2.5rem | 2rem | 400 | 1.15 | display |
 | h3 | 1.5rem | 1.375rem | 500 | 1.25 | Poppins |
@@ -185,7 +197,7 @@ Todos os valores abaixo são **SUGESTÃO (não consta no material)**, pois o PDF
 - Link textual: `#762d2d`, underline no hover/focus; nunca depender só de cor para estado.
 
 ### Cards
-Fundo branco ou off-white, border 1px com grafite a 12% de opacidade, radius 8px, sem sombra por padrão. Cards de serviço devem ter título, texto curto e link, mas serviços reais estão ausentes.
+Fundo branco ou off-white, border 1px com grafite a 12% de opacidade, radius 8px, sem sombra por padrão. Cards de "Tratamentos" levam apenas o título da lista oficial. Texto de apoio, se necessário, no máximo uma linha neutra marcada como SUGESTÃO para aprovação. "Procedimentos" ficam em lista compacta, sem cards.
 
 ### Formulário de contato
 Campos 48-52px, label persistente, border 1px `#414042` a 35%, focus 2px `#762d2d`, mensagens de erro textuais. Campos sugeridos: nome, telefone/e-mail, mensagem e consentimento. Destino e política de privacidade: Ausente no material.

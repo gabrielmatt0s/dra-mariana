@@ -22,7 +22,9 @@ Construir uma landing page responsiva para **Dra. Mariana Zunino, Dermatologista
 - Para texto corrido, priorizar contraste WCAG AA. Não usar `#a0815c` ou `#d0baa0` como texto pequeno sobre branco.
 - A fonte Collection New Style exige licença comercial/web apropriada antes de uso em site. Até a licença ser fornecida, não carregar arquivo de fonte não licenciado.
 - SALVAGER consta no manual, mas arquivo/licença não foram fornecidos. Não presumir direito de uso web.
-- Poppins pode ser carregada via Google Fonts.
+- Poppins pode ser carregada via Google Fonts. Enquanto SALVAGER não tiver licença webfont, usar Tenor Sans (SUGESTÃO) no display. Assinatura cursiva somente via logo SVG.
+- Nunca usar no site: a pesquisa de valores da p. 10 do PDF, a foto de família da p. 21 e as imagens de banco da p. 20.
+- Formação acadêmica: AGUARDANDO CLIENTE. Construir sem ela, com bloco comentado no HTML.
 - Não usar em-dash nos textos do projeto.
 - `_originais/` contém os arquivos-fonte da marca (PSD, EPS, PDF). Consulte se precisar, mas o site usa somente os arquivos de `assets/`.
 
