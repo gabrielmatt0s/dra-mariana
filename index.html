@@ -27,6 +27,7 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <!-- Só os pesos usados: Cormorant Garamond 500 e 600 (display, a partir de 24px) e Poppins 400 e 500 -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Poppins:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@14.2.0/swiper-bundle.min.css" integrity="sha384-AR6M/55P6iB8bej/EgONjLv4RiBc7Ln04qqPLrEvIcFP0aq6I4rJHd88m8xP0d4E" crossorigin="anonymous">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/sections.css">
@@ -140,58 +141,115 @@
     </section>
 
     <section class="section section--soft tratamentos" id="tratamentos" aria-labelledby="tratamentos-titulo">
-      <div class="container">
-        <h2 class="title-section" id="tratamentos-titulo" data-anim="title">Tratamentos</h2>
+      <div class="container trat__wrap">
+        <h2 class="title-section trat__titulo" id="tratamentos-titulo" data-anim="title">Tratamentos</h2>
 
-        <!--
-          Cada card aceita imagem no futuro sem refazer o componente: dentro do <li>, antes de .card__body,
-          incluir <figure class="card__media"><img src="assets/img/tratamento-xx.webp" alt="" width="800" height="1000" loading="lazy"></figure>
-          e adicionar a classe card--media ao <li>. Proporção 4:5.
-        -->
-        <ol class="cards" data-anim="cards">
-          <li class="card">
-            <div class="card__body">
-              <span class="card__num">01</span>
-              <span class="card__line line" aria-hidden="true"></span>
-              <h3 class="card__title">Rejuvenescimento</h3>
+        <!-- Sem JavaScript (ou sem a CDN do Swiper) os 6 cards aparecem em grade normal; os controles ficam ocultos. -->
+        <div class="swiper trat" role="region" aria-roledescription="carrossel" aria-label="Tratamentos" tabindex="0" data-anim="cards">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide card card--trat" role="group" aria-roledescription="slide" aria-label="Tratamento 1 de 6">
+              <figure class="card__media">
+                <!-- FOTO: Rejuvenescimento. Proporção 4:5, 800x1000 px, WebP, até 120 KB. Tons quentes e neutros, luz natural.
+                     Sem lesões, acne visível, pele doente, antes e depois, agulhas, seringas ou procedimento em execução (regras do CFM).
+                     Trocar o <div class="photo-placeholder"> por: <img src="assets/img/tratamento-01.webp" alt="" width="800" height="1000" loading="lazy"> -->
+                <div class="photo-placeholder" role="img" aria-label="Espaço reservado para a foto do tratamento Rejuvenescimento">
+                  <span class="photo-placeholder__label">FOTO: Rejuvenescimento</span>
+                </div>
+              </figure>
+              <div class="card__body">
+                <span class="card__num">01</span>
+                <span class="card__line line" aria-hidden="true"></span>
+                <h3 class="card__title">Rejuvenes&shy;cimento</h3>
+              </div>
             </div>
-          </li>
-          <li class="card">
-            <div class="card__body">
-              <span class="card__num">02</span>
-              <span class="card__line line" aria-hidden="true"></span>
-              <h3 class="card__title">Melasma</h3>
+            <div class="swiper-slide card card--trat" role="group" aria-roledescription="slide" aria-label="Tratamento 2 de 6">
+              <figure class="card__media">
+                <!-- FOTO: Melasma. Proporção 4:5, 800x1000 px, WebP, até 120 KB. Tons quentes e neutros, luz natural.
+                     Sem lesões, acne visível, pele doente, antes e depois, agulhas, seringas ou procedimento em execução (regras do CFM).
+                     Trocar o <div class="photo-placeholder"> por: <img src="assets/img/tratamento-02.webp" alt="" width="800" height="1000" loading="lazy"> -->
+                <div class="photo-placeholder" role="img" aria-label="Espaço reservado para a foto do tratamento Melasma">
+                  <span class="photo-placeholder__label">FOTO: Melasma</span>
+                </div>
+              </figure>
+              <div class="card__body">
+                <span class="card__num">02</span>
+                <span class="card__line line" aria-hidden="true"></span>
+                <h3 class="card__title">Melasma</h3>
+              </div>
             </div>
-          </li>
-          <li class="card">
-            <div class="card__body">
-              <span class="card__num">03</span>
-              <span class="card__line line" aria-hidden="true"></span>
-              <h3 class="card__title">Acne</h3>
+            <div class="swiper-slide card card--trat" role="group" aria-roledescription="slide" aria-label="Tratamento 3 de 6">
+              <figure class="card__media">
+                <!-- FOTO: Acne. Proporção 4:5, 800x1000 px, WebP, até 120 KB. Tons quentes e neutros, luz natural.
+                     Sem lesões, acne visível, pele doente, antes e depois, agulhas, seringas ou procedimento em execução (regras do CFM).
+                     Trocar o <div class="photo-placeholder"> por: <img src="assets/img/tratamento-03.webp" alt="" width="800" height="1000" loading="lazy"> -->
+                <div class="photo-placeholder" role="img" aria-label="Espaço reservado para a foto do tratamento Acne">
+                  <span class="photo-placeholder__label">FOTO: Acne</span>
+                </div>
+              </figure>
+              <div class="card__body">
+                <span class="card__num">03</span>
+                <span class="card__line line" aria-hidden="true"></span>
+                <h3 class="card__title">Acne</h3>
+              </div>
             </div>
-          </li>
-          <li class="card">
-            <div class="card__body">
-              <span class="card__num">04</span>
-              <span class="card__line line" aria-hidden="true"></span>
-              <h3 class="card__title">Rosácea</h3>
+            <div class="swiper-slide card card--trat" role="group" aria-roledescription="slide" aria-label="Tratamento 4 de 6">
+              <figure class="card__media">
+                <!-- FOTO: Rosácea. Proporção 4:5, 800x1000 px, WebP, até 120 KB. Tons quentes e neutros, luz natural.
+                     Sem lesões, acne visível, pele doente, antes e depois, agulhas, seringas ou procedimento em execução (regras do CFM).
+                     Trocar o <div class="photo-placeholder"> por: <img src="assets/img/tratamento-04.webp" alt="" width="800" height="1000" loading="lazy"> -->
+                <div class="photo-placeholder" role="img" aria-label="Espaço reservado para a foto do tratamento Rosácea">
+                  <span class="photo-placeholder__label">FOTO: Rosácea</span>
+                </div>
+              </figure>
+              <div class="card__body">
+                <span class="card__num">04</span>
+                <span class="card__line line" aria-hidden="true"></span>
+                <h3 class="card__title">Rosácea</h3>
+              </div>
             </div>
-          </li>
-          <li class="card">
-            <div class="card__body">
-              <span class="card__num">05</span>
-              <span class="card__line line" aria-hidden="true"></span>
-              <h3 class="card__title">Queda de cabelo</h3>
+            <div class="swiper-slide card card--trat" role="group" aria-roledescription="slide" aria-label="Tratamento 5 de 6">
+              <figure class="card__media">
+                <!-- FOTO: Queda de cabelo. Proporção 4:5, 800x1000 px, WebP, até 120 KB. Tons quentes e neutros, luz natural.
+                     Sem lesões, acne visível, pele doente, antes e depois, agulhas, seringas ou procedimento em execução (regras do CFM).
+                     Trocar o <div class="photo-placeholder"> por: <img src="assets/img/tratamento-05.webp" alt="" width="800" height="1000" loading="lazy"> -->
+                <div class="photo-placeholder" role="img" aria-label="Espaço reservado para a foto do tratamento Queda de cabelo">
+                  <span class="photo-placeholder__label">FOTO: Queda de cabelo</span>
+                </div>
+              </figure>
+              <div class="card__body">
+                <span class="card__num">05</span>
+                <span class="card__line line" aria-hidden="true"></span>
+                <h3 class="card__title">Queda de cabelo</h3>
+              </div>
             </div>
-          </li>
-          <li class="card">
-            <div class="card__body">
-              <span class="card__num">06</span>
-              <span class="card__line line" aria-hidden="true"></span>
-              <h3 class="card__title">Outras doenças de pele</h3>
+            <div class="swiper-slide card card--trat" role="group" aria-roledescription="slide" aria-label="Tratamento 6 de 6">
+              <figure class="card__media">
+                <!-- FOTO: Outras doenças de pele. Proporção 4:5, 800x1000 px, WebP, até 120 KB. Tons quentes e neutros, luz natural.
+                     Sem lesões, acne visível, pele doente, antes e depois, agulhas, seringas ou procedimento em execução (regras do CFM).
+                     Trocar o <div class="photo-placeholder"> por: <img src="assets/img/tratamento-06.webp" alt="" width="800" height="1000" loading="lazy"> -->
+                <div class="photo-placeholder" role="img" aria-label="Espaço reservado para a foto do tratamento Outras doenças de pele">
+                  <span class="photo-placeholder__label">FOTO: Outras doenças de pele</span>
+                </div>
+              </figure>
+              <div class="card__body">
+                <span class="card__num">06</span>
+                <span class="card__line line" aria-hidden="true"></span>
+                <h3 class="card__title">Outras doenças de pele</h3>
+              </div>
             </div>
-          </li>
-        </ol>
+          </div>
+        </div>
+
+        <p class="trat__dica" aria-hidden="true">Deslize para ver mais<svg viewBox="0 0 24 24" focusable="false"><path d="M4 12h15M14 7l5 5-5 5"/></svg></p>
+
+        <div class="trat__controles">
+          <div class="trat__progresso" aria-hidden="true"></div>
+          <p class="trat__contador" aria-hidden="true"><span class="trat__atual">01</span> / <span class="trat__total">06</span></p>
+          <div class="trat__setas">
+            <button class="trat__seta trat__seta--ant" type="button" aria-label="Tratamento anterior"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 5 8 12l7 7"/></svg></button>
+            <button class="trat__seta trat__seta--prox" type="button" aria-label="Próximo tratamento"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg></button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -479,7 +537,10 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js" integrity="sha384-wl5TeDVvOWt30Pbf8aSo2ZrzsOjddu3avOBvHe+p+OhJt9gP6w9YXmDkN5DK2/dF" crossorigin="anonymous" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js" integrity="sha384-SWJ0lLVRoipvHh59xj0pL7uC7Ih51F+5smaFtrG+2nr+TlDZU5SYJHmxfolbeNTr" crossorigin="anonymous" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/DrawSVGPlugin.min.js" integrity="sha384-pfZbCpJUiv0Y8664JafRbiKcx2uJmjNjVCoPXGwaxvTSbO11M0htzeEeTC6KSaqa" crossorigin="anonymous" defer></script>
+  <!-- Swiper 14.2 (>= 11) para o carrossel de Tratamentos. Sem a CDN, os cards ficam em grade. -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@14.2.0/swiper-bundle.min.js" integrity="sha384-/RHqZ3SjkuPxoYsTTu11J3Ox7DmtTwPr2AJVTYqdoD7k+mRDlf6LhNkm1kP7pQpn" crossorigin="anonymous" defer></script>
   <script src="js/main.js" defer></script>
+  <script src="js/carrossel.js" defer></script>
   <script src="js/animations.js" defer></script>
 </body>
 </html>
