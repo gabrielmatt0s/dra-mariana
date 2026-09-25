@@ -1,12 +1,10 @@
 /*
- * Camada de animações guiadas pela rolagem (GSAP + ScrollTrigger + SplitText + DrawSVGPlugin).
+ * Camada de animações (GSAP + ScrollTrigger + SplitText + DrawSVGPlugin).
  * Sistema orientado por atributos: cada seção nova só precisa dos data-attributes (ver CLAUDE.md, "Padrões de animação").
  *
- * - Toda entrada usa scrub: o efeito acompanha a rolagem e volta junto quando a pessoa rola para cima.
- *   Padrão: scrub 1, início com o elemento a 85% da altura da tela, fim a 50% (clamp() garante que termine mesmo no fim da página).
- * - Exceção: o hero anima ao carregar (não depende de rolagem).
  * - Sem GSAP (CDN fora do ar) ou com prefers-reduced-motion: a classe js-anim nunca existe e todo o conteúdo fica visível.
- * - Só transform, opacity e clip-path.
+ * - Só transform, opacity, clip-path e visibility (via autoAlpha). Exceção pedida: letter-spacing dos títulos em caixa alta.
+ * - Entradas com once: true. Só parallax e scrub reagem ao rolar de volta.
  */
 (function () {
   'use strict';
@@ -23,152 +21,195 @@
   }
 
   function init(desktop) {
-    var m = desktop ? 1 : 0.5;     // mobile: metade dos deslocamentos em y
-    var k = desktop ? 1 : 0.75;    // mobile: hero mais curto
-    var dy = 20 * m;               // deslocamento padrão de texto
-    var dyBig = 40 * m;            // cards e itens de lista
+    var k = desktop ? 1 : 0.75;    // mobile: durações mais curtas
+    var dy = desktop ? 20 : 14;    // mobile: deslocamentos menores
     var undo = [];
 
-    // ScrollTrigger padrão: scrub 1, começa a 85% da tela e termina a 50%. clamp() evita que o fim fique além do fim da página.
-    function st(trigger, o) {
-      return Object.assign({ trigger: trigger, start: 'clamp(top 85%)', end: 'clamp(top 50%)', scrub: 1 }, o || {});
-    }
-    // Revela o elemento depois de preparar os filhos (o CSS o esconde sob .js-anim). Só visibility: opacity fica com cada efeito.
-    function show(el) { gsap.set(el, { visibility: 'visible' }); }
+    /* ---------- Efeitos por atributo ---------- */
 
     var EFFECTS = {
-      /* Títulos: linhas sobem de dentro de uma máscara */
+      /* 2. Títulos de seção: linhas sobem de uma máscara; em caixa alta o letter-spacing abre levemente */
       title: function (el) {
+        var cs = getComputedStyle(el);
+        var finalLs = parseFloat(cs.letterSpacing) || 0;
+        var startLs = 0.02 * parseFloat(cs.fontSize);
+        var caps = cs.textTransform === 'uppercase' && finalLs > 0;
         SplitText.create(el, {
           type: 'lines', mask: 'lines', linesClass: 'sl', autoSplit: true,
           onSplit: function (self) {
-            var tween = gsap.fromTo(self.lines, { yPercent: 110 }, {
-              yPercent: 0, ease: 'none', stagger: 0.2, scrollTrigger: st(el)
-            });
-            show(el);
-            return tween;
-          }
-        });
-      },
-
-      /* Eyebrows: a linha fina cresce e depois o texto entra pela esquerda */
-      eyebrow: function (el) {
-        var line = el.querySelector('.eyebrow__line'), text = el.querySelector('.eyebrow__text');
-        var tl = gsap.timeline({ scrollTrigger: st(el) });
-        tl.fromTo(line, { scaleX: 0 }, { scaleX: 1, ease: 'none', duration: 1 });
-        tl.fromTo(text, { opacity: 0, x: -14 }, { opacity: 1, x: 0, ease: 'none', duration: 1 }, 0.5);
-        show(el);
-      },
-
-      /* Parágrafos: linhas de opacity 0 para 1 e y 20 para 0. No mobile, parágrafo longo anima como bloco. */
-      text: function (el) {
-        if (!desktop && el.textContent.length > 160) {
-          gsap.fromTo(el, { opacity: 0, y: dy }, { opacity: 1, y: 0, ease: 'none', scrollTrigger: st(el) });
-          show(el);
-          return;
-        }
-        SplitText.create(el, {
-          type: 'lines', linesClass: 'sl', autoSplit: true,
-          onSplit: function (self) {
-            var tween = gsap.fromTo(self.lines, { opacity: 0, y: dy }, {
-              opacity: 1, y: 0, ease: 'none', stagger: 0.25, scrollTrigger: st(el)
-            });
-            show(el);
-            return tween;
-          }
-        });
-      },
-
-      /* Frase de destaque: PALAVRAS (nunca caracteres, para não separar acentos) de opacity 0.15 para 1 em sequência,
-         com cada linha subindo de leve (y 20 para 0). Início a 80% da tela, fim a 40%. */
-      quote: function (el) {
-        SplitText.create(el, {
-          type: 'lines,words', linesClass: 'sl', wordsClass: 'sw', autoSplit: true,
-          onSplit: function (self) {
-            var tl = gsap.timeline({ scrollTrigger: st(el, { start: 'clamp(top 80%)', end: 'clamp(top 40%)' }) });
-            tl.fromTo(self.words, { opacity: 0.15 }, { opacity: 1, ease: 'none', stagger: 0.1, duration: 0.6 }, 0);
-            tl.fromTo(self.lines, { y: dy }, { y: 0, ease: 'none', stagger: { amount: 0.7 }, duration: 0.5 }, 0);
-            show(el);
+            var tl = gsap.timeline({ scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
+            tl.from(self.lines, { yPercent: 110, duration: 1.2 * k, stagger: 0.12, ease: EASE });
+            if (caps) {
+              tl.fromTo(self.lines, { letterSpacing: startLs + 'px' }, { letterSpacing: finalLs + 'px', duration: 1.4 * k, stagger: 0.12, ease: 'power3.out' }, 0);
+            }
+            gsap.set(el, { autoAlpha: 1 });
             return tl;
           }
         });
       },
 
-      /* Credencial/proposta: linhas de bronze crescem das pontas para o centro, o texto aparece depois */
+      /* 3. Eyebrows: a linha fina cresce primeiro, depois o texto entra com fade e deslocamento lateral */
+      eyebrow: function (el) {
+        var tl = gsap.timeline({ scrollTrigger: { trigger: el, start: 'top 90%', once: true } });
+        eyebrowTweens(el, tl, 0);
+      },
+
+      /* 4. Parágrafos: linhas com fade e y 20 para 0. Parágrafo longo no mobile anima como bloco único. */
+      text: function (el) {
+        if (!desktop && el.textContent.length > 160) {
+          gsap.fromTo(el, { autoAlpha: 0, y: dy }, {
+            autoAlpha: 1, y: 0, duration: 0.9 * k, ease: EASE,
+            scrollTrigger: { trigger: el, start: 'top 90%', once: true }
+          });
+          return;
+        }
+        SplitText.create(el, {
+          type: 'lines', linesClass: 'sl', autoSplit: true,
+          onSplit: function (self) {
+            var tween = gsap.fromTo(self.lines, { autoAlpha: 0, y: dy }, {
+              autoAlpha: 1, y: 0, duration: 0.9 * k, stagger: 0.06, ease: EASE,
+              scrollTrigger: { trigger: el, start: 'top 90%', once: true }
+            });
+            gsap.set(el, { autoAlpha: 1 });
+            return tween;
+          }
+        });
+      },
+
+      /* 5. Frase de destaque: palavras de opacity 0.15 para 1 conforme o scroll (scrub) */
+      quote: function (el) {
+        SplitText.create(el, {
+          type: 'words', wordsClass: 'sw', autoSplit: true,
+          onSplit: function (self) {
+            gsap.set(el, { autoAlpha: 1 });
+            return gsap.fromTo(self.words, { opacity: 0.15 }, {
+              opacity: 1, ease: 'none', stagger: 0.1,
+              scrollTrigger: { trigger: el, start: 'clamp(top 80%)', end: 'clamp(bottom 55%)', scrub: true }
+            });
+          }
+        });
+      },
+
+      /* 6. Credencial: linhas de bronze crescem das pontas para o centro, o texto aparece depois */
       cred: function (el) {
         var halves = $$('.rule i', el), text = el.querySelector('.cred__text');
-        var tl = gsap.timeline({ scrollTrigger: st(el) });
-        tl.fromTo(halves, { scaleX: 0 }, { scaleX: 1, ease: 'none', duration: 1 });
-        tl.fromTo(text, { opacity: 0, y: dy / 2 }, { opacity: 1, y: 0, ease: 'none', duration: 0.7 }, 0.5);
-        show(el);
+        gsap.set(halves, { scaleX: 0 });
+        gsap.set(text, { autoAlpha: 0, y: 10 });
+        gsap.set(el, { autoAlpha: 1 });
+        gsap.timeline({ scrollTrigger: { trigger: el, start: 'top 88%', once: true } })
+          .to(halves, { scaleX: 1, duration: 1.2 * k, ease: EASE })
+          .to(text, { autoAlpha: 1, y: 0, duration: 0.9 * k, ease: EASE }, '-=0.5');
       },
 
-      /* Cards: entrada escalonada (y 40 para 0, opacity 0 para 1), um após o outro conforme a rolagem.
-         Número, linha e nome entram em sequência dentro de cada card. */
+      /* 7 e 15. Cards: entram em stagger; o número vem antes do nome, com leve deslocamento vertical */
       cards: function (list) {
         var cards = $$('.card', list);
-        // Adiciona o tween só se o card tiver o elemento (evita avisos do GSAP para alvos vazios)
-        function part(tl, sel, card, from, to, pos) {
-          var els = $$(sel, card);
-          if (els.length) tl.fromTo(els, from, to, pos);
-        }
-        cards.forEach(function (card, i) {
-          var col = desktop ? i % 3 : 0;               // colunas seguintes começam um pouco depois
-          var tl = gsap.timeline({ scrollTrigger: st(card, { start: 'clamp(top ' + (88 - col * 4) + '%)', end: 'clamp(top ' + (52 - col * 4) + '%)' }) });
-          tl.fromTo(card, { opacity: 0, y: dyBig }, { opacity: 1, y: 0, ease: 'none', duration: 1 }, 0);
-          part(tl, '.card__num', card, { opacity: 0, y: 12 * m }, { opacity: 1, y: 0, ease: 'none', duration: 0.6 }, 0.25);
-          part(tl, '.line', card, { scaleX: 0 }, { scaleX: 1, ease: 'none', duration: 0.6 }, 0.5);
-          part(tl, '.card__title', card, { opacity: 0, y: 14 * m }, { opacity: 1, y: 0, ease: 'none', duration: 0.6 }, 0.7);
-          part(tl, '.card__media', card, { opacity: 0 }, { opacity: 1, ease: 'none', duration: 0.8 }, 0.2);
+        // Só cria o tween quando o card tem o elemento (os cards de avaliação não têm número, título nem mídia)
+        function setIf(sel, card, vars) { var els = $$(sel, card); if (els.length) gsap.set(els, vars); }
+        function toIf(tl, sel, card, vars, pos) { var els = $$(sel, card); if (els.length) tl.to(els, vars, pos); }
+        cards.forEach(function (card) {
+          gsap.set(card, { autoAlpha: 0, y: 40 });
+          setIf('.card__num', card, { autoAlpha: 0, y: 12 });
+          setIf('.card__line', card, { scaleX: 0 });
+          setIf('.review__linha', card, { scaleX: 0 });
+          setIf('.card__title', card, { autoAlpha: 0, y: 14 });
+          setIf('.card__media', card, { autoAlpha: 0 });
         });
-        show(list);
+        gsap.set(list, { autoAlpha: 1 });
+        ScrollTrigger.batch(cards, {
+          start: 'top 90%', once: true,
+          onEnter: function (batch) {
+            var tl = gsap.timeline();
+            batch.forEach(function (card, i) {
+              var at = i * 0.12;
+              tl.to(card, { autoAlpha: 1, y: 0, duration: 1 * k, ease: EASE }, at);
+              toIf(tl, '.card__media', card, { autoAlpha: 1, duration: 0.9 * k, ease: EASE }, at + 0.1);
+              toIf(tl, '.card__num', card, { autoAlpha: 1, y: 0, duration: 0.8 * k, ease: EASE }, at + 0.15);
+              toIf(tl, '.card__line', card, { scaleX: 1, duration: 0.9 * k, ease: EASE }, at + 0.3);
+              toIf(tl, '.review__linha', card, { scaleX: 1, duration: 0.9 * k, ease: EASE }, at + 0.3);
+              toIf(tl, '.card__title', card, { autoAlpha: 1, y: 0, duration: 0.9 * k, ease: EASE }, at + 0.4);
+            });
+          }
+        });
       },
 
-      /* Listas (procedimentos, contatos): cada item entra conforme a rolagem; o divisor de 1px cresce antes do texto */
+      /* 8. Listas (procedimentos, contatos): itens em stagger de 0.05s; o divisor de 1px cresce antes do texto */
       list: function (ul) {
         var items = $$(':scope > li', ul);
-        var twoCols = desktop && getComputedStyle(ul).gridTemplateColumns.split(' ').length > 1;
-        items.forEach(function (li, i) {
-          var col = twoCols ? i % 2 : 0;
-          var tl = gsap.timeline({ scrollTrigger: st(li, { start: 'clamp(top ' + (90 - col * 4) + '%)', end: 'clamp(top ' + (54 - col * 4) + '%)' }) });
-          tl.fromTo($$('.line', li), { scaleX: 0 }, { scaleX: 1, ease: 'none', duration: 0.7 }, 0);
-          tl.fromTo($$('.li__text', li), { opacity: 0, y: dyBig }, { opacity: 1, y: 0, ease: 'none', duration: 0.9 }, 0.3);
+        items.forEach(function (li) {
+          gsap.set($$('.line', li), { scaleX: 0 });
+          gsap.set($$('.li__text', li), { autoAlpha: 0, y: 10 });
         });
-        show(ul);
+        gsap.set(ul, { autoAlpha: 1 });
+        ScrollTrigger.batch(items, {
+          start: 'top 92%', once: true,
+          onEnter: function (batch) {
+            var tl = gsap.timeline();
+            batch.forEach(function (li, i) {
+              var at = i * (desktop ? 0.05 : 0.04);
+              tl.to($$('.line', li), { scaleX: 1, duration: 0.9 * k, ease: EASE }, at);
+              tl.to($$('.li__text', li), { autoAlpha: 1, y: 0, duration: 0.8 * k, ease: EASE }, at + 0.18);
+            });
+          }
+        });
       },
 
-      /* Valores: o losango é desenhado (DrawSVG) e só depois a palavra aparece */
+      /* 9 e 16. Valores: o losango é desenhado (DrawSVG) e só depois a palavra aparece */
       valores: function (ul) {
         var items = $$(':scope > li', ul);
-        var tl = gsap.timeline({ scrollTrigger: st(ul, { start: 'clamp(top 88%)', end: 'clamp(top 45%)' }) });
+        items.forEach(function (li) {
+          gsap.set($$('.valor__icone path', li), { drawSVG: '0%' });
+          gsap.set($$('span', li), { autoAlpha: 0, y: 10 });
+        });
+        gsap.set(ul, { autoAlpha: 1 });
+        var tl = gsap.timeline({ scrollTrigger: { trigger: ul, start: 'top 88%', once: true } });
         items.forEach(function (li, i) {
-          var at = i * 0.18;
-          tl.fromTo($$('.valor__icone path', li), { drawSVG: '0%' }, { drawSVG: '100%', ease: 'none', duration: 1 }, at);
-          tl.fromTo($$('span', li), { opacity: 0, y: 10 * m }, { opacity: 1, y: 0, ease: 'none', duration: 0.6 }, at + 1);
+          var at = i * 0.18, draw = 1.1 * k;
+          tl.to($$('.valor__icone path', li), { drawSVG: '100%', duration: draw, ease: 'power3.inOut' }, at);
+          tl.to($$('span', li), { autoAlpha: 1, y: 0, duration: 0.9 * k, ease: EASE }, at + draw);
         });
-        show(ul);
       },
 
-      /* Grafismo de losangos (SVG decorativo): contorno desenhado com DrawSVG */
+      /* 16. Grafismo de losangos (SVG decorativo): contorno desenhado com DrawSVG */
       draw: function (svg) {
-        gsap.fromTo($$('path', svg), { drawSVG: '0%' }, {
-          drawSVG: '100%', ease: 'none', stagger: 0.3,
-          scrollTrigger: st(svg, { start: 'clamp(top 85%)', end: 'clamp(top 40%)' })
+        var paths = $$('path', svg);
+        gsap.set(paths, { drawSVG: '0%' });
+        gsap.set(svg, { autoAlpha: 1 });
+        gsap.to(paths, {
+          drawSVG: '100%', duration: 1.6 * k, stagger: 0.25, ease: 'power2.inOut',
+          scrollTrigger: { trigger: svg, start: 'top 85%', once: true }
         });
-        show(svg);
       },
 
-      /* Fotos e placeholders: clip-path de baixo para cima com zoom 1.15 para 1 e parallax sutil no desktop.
-         O hero faz a revelação ao carregar (ver hero()) e aqui só ganha o parallax. */
+      /* 12 e 13. Fotos: revelação por clip-path (de baixo para cima), zoom 1.15 para 1 e parallax no desktop */
       photo: function (fig) {
         var isHero = fig.hasAttribute('data-hero');
         var clip = fig.querySelector('.photo__clip'), inner = fig.querySelector('.photo__inner');
-        if (!isHero) {
-          var tl = gsap.timeline({ scrollTrigger: st(fig, { start: 'clamp(top 85%)', end: 'clamp(top 45%)' }) });
-          tl.fromTo(clip, { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none', duration: 1 }, 0);
-          tl.fromTo(inner, { scale: 1.15 }, { scale: 1, ease: 'none', duration: 1 }, 0);
+        var top = fig.querySelector('.f-top'), right = fig.querySelector('.f-right');
+        var bottom = fig.querySelector('.f-bottom'), left = fig.querySelector('.f-left');
+        gsap.set(clip, { clipPath: 'inset(100% 0% 0% 0%)' });
+        gsap.set(inner, { scale: 1.15 });
+
+        var tl = gsap.timeline({
+          delay: isHero ? 0.2 : 0,
+          scrollTrigger: { trigger: fig, start: 'top 90%', once: true }
+        });
+        tl.to(clip, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.3 * k, ease: 'power3.inOut' }, 0);
+        tl.to(inner, { scale: 1, duration: 1.8 * k, ease: EASE }, 0);
+
+        if (top) {
+          // Moldura de bronze desenhada depois da foto, no sentido horário
+          gsap.set([top, bottom], { scaleX: 0 });
+          gsap.set([right, left], { scaleY: 0 });
+          var t0 = 1.0 * k, d = 0.6 * k;
+          tl.to(top, { scaleX: 1, duration: d, ease: 'power2.out' }, t0);
+          tl.to(right, { scaleY: 1, duration: d, ease: 'power2.out' }, t0 + d * 0.7);
+          tl.to(bottom, { scaleX: 1, duration: d, ease: 'power2.out' }, t0 + d * 1.4);
+          tl.to(left, { scaleY: 1, duration: d, ease: 'power2.out' }, t0 + d * 2.1);
         }
-        show(fig);
+        gsap.set(fig, { autoAlpha: 1 });
+
+        // Parallax sutil na imagem interna (yPercent de -8 a 8), só no desktop. Funciona igual com placeholder e foto real.
         if (desktop) {
           gsap.fromTo(inner, { yPercent: -8 }, {
             yPercent: 8, ease: 'none',
@@ -177,39 +218,43 @@
         }
       },
 
-      /* Bloco simples: opacity 0 para 1 e y 20 para 0 */
+      /* Bloco simples: fade com y 20 para 0 */
       fade: function (el) {
-        gsap.fromTo(el, { opacity: 0, y: dy }, { opacity: 1, y: 0, ease: 'none', scrollTrigger: st(el) });
-        show(el);
+        gsap.fromTo(el, { autoAlpha: 0, y: dy }, {
+          autoAlpha: 1, y: 0, duration: 0.9 * k, ease: EASE,
+          scrollTrigger: { trigger: el, start: 'top 92%', once: true }
+        });
       },
 
-      /* Linha fina isolada: scaleX de 0 para 1, transform-origin left */
+      /* 14. Linha fina isolada: scaleX 0 para 1, transform-origin left */
       line: function (el) {
-        gsap.fromTo(el, { scaleX: 0 }, { scaleX: 1, ease: 'none', scrollTrigger: st(el) });
-        show(el);
+        gsap.fromTo(el, { scaleX: 0 }, {
+          scaleX: 1, duration: 1 * k, ease: EASE,
+          scrollTrigger: { trigger: el, start: 'top 92%', once: true }
+        });
+        gsap.set(el, { autoAlpha: 1 });
       }
     };
 
-    /* ---------- Hero: anima ao carregar, em sequência (CTA visível em ~1,2 s) ---------- */
+    /* ---------- Helpers ---------- */
+
+    function eyebrowTweens(el, tl, at) {
+      var line = el.querySelector('.eyebrow__line'), text = el.querySelector('.eyebrow__text');
+      gsap.set(line, { scaleX: 0 });
+      gsap.set(text, { autoAlpha: 0, x: -14 });
+      gsap.set(el, { autoAlpha: 1 });
+      tl.to(line, { scaleX: 1, duration: 0.8 * k, ease: EASE }, at);
+      tl.to(text, { autoAlpha: 1, x: 0, duration: 0.9 * k, ease: EASE }, at + 0.5 * k);
+    }
+
+    /* 1 e 17. Hero em sequência: headline, eyebrow, subtítulo, credenciais e CTA (CTA totalmente visível em ~1,2 s) */
     function hero() {
       var g = function (name) { return document.querySelector('[data-hero="' + name + '"]'); };
       var title = g('title'), eyebrow = g('eyebrow'), subtitle = g('subtitle');
-      var creds = g('creds'), cta = g('cta'), note = g('note'), fig = g('photo');
+      var creds = g('creds'), cta = g('cta'), note = g('note');
       if (!title) return;
 
-      var line = eyebrow.querySelector('.eyebrow__line'), etext = eyebrow.querySelector('.eyebrow__text');
-      gsap.set(line, { scaleX: 0 });
-      gsap.set(etext, { autoAlpha: 0, x: -14 });
-      gsap.set(eyebrow, { autoAlpha: 1 });
-      gsap.set([subtitle, creds, cta, note], { autoAlpha: 0, y: 20 * m });
-
-      var clip = fig.querySelector('.photo__clip'), inner = fig.querySelector('.photo__inner');
-      var top = fig.querySelector('.f-top'), right = fig.querySelector('.f-right');
-      var bottom = fig.querySelector('.f-bottom'), left = fig.querySelector('.f-left');
-      gsap.set(clip, { clipPath: 'inset(100% 0% 0% 0%)' });
-      gsap.set(inner, { scale: 1.15 });
-      gsap.set([top, bottom], { scaleX: 0 });
-      gsap.set([right, left], { scaleY: 0 });
+      gsap.set([subtitle, creds, cta, note], { autoAlpha: 0, y: dy });
 
       var started = false;
       function start() {
@@ -227,28 +272,19 @@
         });
 
         var tl = gsap.timeline();
-        tl.to(line, { scaleX: 1, duration: 0.8 * k, ease: EASE }, 0.35);
-        tl.to(etext, { autoAlpha: 1, x: 0, duration: 0.9 * k, ease: EASE }, 0.35 + 0.5 * k);
+        eyebrowTweens(eyebrow, tl, 0.35);
         tl.to(subtitle, { autoAlpha: 1, y: 0, duration: 0.9 * k, ease: EASE }, 0.5);
         tl.to(cta, { autoAlpha: 1, y: 0, duration: 0.75 * k, ease: EASE }, 0.45);
         tl.to(creds, { autoAlpha: 1, y: 0, duration: 0.8 * k, ease: EASE }, 0.55);
         tl.to(note, { autoAlpha: 1, y: 0, duration: 0.8 * k, ease: EASE }, 0.65);
-        // foto do hero: clip-path de baixo para cima e zoom; moldura de bronze desenhada depois
-        tl.to(clip, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.3 * k, ease: 'power3.inOut' }, 0.2);
-        tl.to(inner, { scale: 1, duration: 1.8 * k, ease: EASE }, 0.2);
-        var t0 = 1.0 * k, d = 0.6 * k;
-        tl.to(top, { scaleX: 1, duration: d, ease: 'power2.out' }, t0);
-        tl.to(right, { scaleY: 1, duration: d, ease: 'power2.out' }, t0 + d * 0.7);
-        tl.to(bottom, { scaleX: 1, duration: d, ease: 'power2.out' }, t0 + d * 1.4);
-        tl.to(left, { scaleY: 1, duration: d, ease: 'power2.out' }, t0 + d * 2.1);
       }
 
-      // Espera as fontes para a primeira quebra de linhas sair correta (teto de 0,9 s para não atrasar o CTA)
+      // Espera as fontes para a primeira quebra de linhas sair correta (com teto de 0,9 s para não atrasar o CTA)
       if (document.fonts && document.fonts.ready) document.fonts.ready.then(start);
       window.setTimeout(start, 900);
     }
 
-    /* Header: esconde ao rolar para baixo e reaparece ao rolar para cima (fundo já é sólido) */
+    /* 18. Header: esconde ao rolar para baixo e reaparece ao rolar para cima (fundo já é sólido) */
     function header() {
       var bar = document.querySelector('.site-header');
       var toggle = document.querySelector('.menu-toggle');
@@ -271,7 +307,7 @@
       bar.addEventListener('focusin', function () { set(false); });
     }
 
-    /* Botões: efeito roll (o texto sobe e uma cópia idêntica entra por baixo). Duplicata com aria-hidden. */
+    /* 11. Botões: o texto sobe e uma cópia idêntica entra por baixo (CSS em components.css). Duplicata com aria-hidden. */
     function rollButtons(restore) {
       $$('.btn').forEach(function (btn) {
         var node = Array.prototype.filter.call(btn.childNodes, function (n) {
@@ -299,7 +335,7 @@
       // Seções: sempre na ordem do documento (ScrollTrigger calcula as posições de cima para baixo)
       $$('[data-anim]').forEach(function (el) {
         var effect = EFFECTS[el.getAttribute('data-anim')];
-        if (effect) effect(el); else show(el);
+        if (effect) effect(el); else gsap.set(el, { autoAlpha: 1 });
       });
 
       // Recalcula posições quando as fontes chegam (as linhas do SplitText mudam de altura)

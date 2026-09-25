@@ -30,38 +30,37 @@ Construir uma landing page responsiva para **Dra. Mariana Zunino, Dermatologista
 - `_originais/` contém os arquivos-fonte da marca (PSD, EPS, PDF). Consulte se precisar, mas o site usa somente os arquivos de `assets/`.
 
 ## Padrões de animação (GSAP)
-Toda seção nova (Avaliações, CTA, Contato, Rodapé e o que vier depois) segue este sistema. A lógica fica em `js/animations.js`; a seção só precisa dos atributos e da estrutura abaixo. Não criar animações soltas em `main.js` nem em CSS de entrada.
+Toda seção nova (Contato, Rodapé, CTA final e o que vier depois) segue este sistema. A lógica fica em `js/animations.js`; a seção só precisa dos atributos e da estrutura abaixo. Não criar animações soltas em `main.js` nem em CSS de entrada.
 
 **Setup:** GSAP 3.15 via jsDelivr (`gsap`, `ScrollTrigger`, `SplitText`, `DrawSVGPlugin`, todos gratuitos), scripts com `defer` e `integrity` (SRI), nessa ordem, antes de `main.js` e `animations.js`.
 
 **Regras gerais**
-- **Tudo é guiado pela rolagem (scrub).** Toda animação de entrada usa `scrub: 1` (suavização de 1 s), começa com o elemento a 85% da altura da tela e termina a 50%. Se a pessoa rolar de volta, o efeito volta junto. Nada de gatilho único (`once`) nas entradas. Use sempre `clamp()` no início e no fim (`clamp(top 85%)`) para o efeito terminar mesmo no fim da página.
-- **Exceção: o hero** anima ao carregar (não depende de rolagem), em sequência, com o CTA visível em até 1,5 s.
-- `gsap.matchMedia()` com 3 cenários: desktop (`min-width: 64rem`), mobile (`max-width: 63.99rem`, deslocamentos em y pela metade e sem parallax) e `prefers-reduced-motion` (sem animação, tudo visível).
+- `gsap.matchMedia()` com 3 cenários: desktop (`min-width: 64rem`), mobile (efeitos mais curtos e leves) e `prefers-reduced-motion` (sem animação, tudo visível).
 - Conteúdo visível sem JavaScript. A classe `js-anim` no `<html>` é adicionada só pelo `animations.js` quando o GSAP carregou e não há movimento reduzido. O CSS só esconde `[data-anim]` e `[data-hero]` sob `.js-anim`. Nunca esconder conteúdo por outro caminho.
-- Animar só `transform`, `opacity` e `clip-path`. Nunca width, height, top, margin nem letter-spacing. O `visibility` é usado só para revelar o elemento depois de preparar os filhos.
-- Easing `none` nos efeitos com scrub (o ritmo vem da rolagem) e `expo.out` no hero. Proibido bounce, elastic e back, typewriter, scramble e letras girando.
+- Easing `expo.out` ou `power3.out`, durações de 0,8 s a 1,4 s. Proibido bounce, elastic e back, typewriter, scramble e letras girando.
+- Animar só `transform`, `opacity`, `clip-path` (e `visibility` via autoAlpha). Nunca width, height, top, margin. Única exceção pedida: `letter-spacing` dos títulos em caixa alta (de 0.02em ao valor final).
 - Sem pin de seção, sem scroll horizontal, sem smooth scroll que sequestre a rolagem nativa.
-- SplitText por linhas e palavras, **nunca por caracteres** (para não separar letra e acento). Sempre com `autoSplit: true` e a animação criada dentro de `onSplit()` (retornando a animação). `aria` fica em `auto`, então leitores de tela leem o texto original. Máscaras de linha usam `linesClass: 'sl'` (a classe `.sl-mask` tem folga para acentos de Cormorant).
-- Nenhuma animação pode causar overflow horizontal em 360 px. Testar 360 e 1440 px rolando devagar, rápido e de volta para cima.
+- Entradas com `once: true`. Só parallax e scrub reagem ao rolar de volta.
+- SplitText sempre com `autoSplit: true` e animação criada dentro de `onSplit()` (retornando a animação). `aria` fica em `auto`, então leitores de tela leem o texto original. Máscaras de linha usam `linesClass: 'sl'` (classe `.sl-mask` tem folga para acentos de Cormorant).
+- Nenhuma animação pode causar overflow horizontal em 360 px. Testar 360, 390 e 1440.
 
 **Atributos (`data-anim`)**
-| Valor | Onde | Efeito (todos em scrub) |
+| Valor | Onde | Efeito |
 |---|---|---|
-| `title` | h2/h3 de seção | linhas sobem de máscara |
+| `title` | h2/h3 de seção | linhas sobem de máscara; em caixa alta o letter-spacing abre |
 | `eyebrow` | `<p class="eyebrow"><span class="eyebrow__line"></span><span class="eyebrow__text">...</span></p>` | linha cresce, depois o texto entra pela esquerda |
-| `text` | parágrafos | linhas com opacity 0 para 1 e y 20 para 0; no mobile, parágrafo com mais de 160 caracteres anima como bloco |
-| `quote` | frase de destaque | palavras de opacity 0.15 para 1 em sequência, linhas subindo de 20 px para 0 (início a 80%, fim a 40%) |
+| `text` | parágrafos | linhas com fade e y 20 para 0, stagger 0.06; no mobile, parágrafo com mais de 160 caracteres anima como bloco |
+| `quote` | frase de destaque | palavras de opacity 0.15 para 1 em scrub |
 | `cred` | credencial ou proposta: `.rule--top`, `.cred__text`, `.rule--bottom` (cada `.rule` com 2 `<i>`) | linhas de bronze crescem das pontas para o centro, texto depois |
-| `cards` | `<ol>` de `.card` (`.card__num`, `.line`, `.card__title`, `.card__media` opcional) | cada card entra (y 40 para 0) na sua vez; número antes do nome |
-| `list` | `<ul>` de `<li>` com `.line--top` (e `.line--bottom` nos últimos) e `.li__text` | cada item entra (y 40 para 0); o divisor de 1px cresce antes do texto. Usar também para listas de contato |
+| `cards` | `<ol>` de `.card` (`.card__num`, `.line`, `.card__title`, `.card__media` opcional) | cards em stagger; número antes do nome |
+| `list` | `<ul>` de `<li>` com `.line--top` (e `.line--bottom` nos últimos) e `.li__text` | divisor de 1px cresce antes do texto, stagger 0.05. Usar também para listas de contato |
 | `valores` | `<ul>` de `.valor` com `.valor__icone path` e `<span>` | losango desenhado (DrawSVG), palavra aparece depois |
 | `draw` | `<svg>` decorativo com paths de traço | contorno desenhado com DrawSVG |
-| `photo` | `<figure class="photo">` com `.photo__clip > .photo__inner > (img ou .photo-placeholder)`, `--ratio` no style e `.photo__frame` opcional | clip-path de baixo para cima, zoom 1.15 para 1, parallax (yPercent -8 a 8) só no desktop |
-| `fade` | qualquer bloco | opacity 0 para 1 e y 20 para 0 |
+| `photo` | `<figure class="photo">` com `.photo__clip > .photo__inner > (img ou .photo-placeholder)`, `--ratio` no style e `.photo__frame` opcional | clip-path de baixo para cima, zoom 1.15 para 1, parallax no desktop |
+| `fade` | qualquer bloco | fade com y 20 para 0 |
 | `line` | `.line` isolada | scaleX de 0 a 1, origin left |
 
-O hero usa `data-hero` (`eyebrow`, `title`, `subtitle`, `creds`, `cta`, `note`, `photo`) e roda ao carregar.
+O hero usa `data-hero` (`eyebrow`, `title`, `subtitle`, `creds`, `cta`, `note`, `photo`) e roda em sequência ao carregar, com o CTA visível em ~1,2 s.
 
 **Hover e header:** links do menu e do rodapé usam sublinhado de 1px que cresce da esquerda (`.hover-underline` no rodapé). Botões `.btn` ganham efeito roll (texto duplicado com `aria-hidden`, criado pelo JS). O header esconde ao rolar para baixo e volta ao rolar para cima.
 
