@@ -54,4 +54,22 @@
   /* Ano do rodapé automático */
   var year = String(new Date().getFullYear());
   document.querySelectorAll('[data-year]').forEach(function (el) { el.textContent = year; });
+
+  /* Botão flutuante do WhatsApp: não fica em cima do texto durante a leitura */
+  var fab = document.querySelector('.whatsapp-float');
+  if (fab) {
+    var lastY = window.pageYOffset;
+    var ticking = false;
+    var update = function () {
+      var y = window.pageYOffset;
+      var nearEnd = y + window.innerHeight >= document.documentElement.scrollHeight - 320;
+      if (nearEnd || y < 300 || y < lastY - 4) fab.classList.remove('is-away');
+      else if (y > lastY + 4) fab.classList.add('is-away');
+      lastY = y;
+      ticking = false;
+    };
+    window.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; window.requestAnimationFrame(update); }
+    }, { passive: true });
+  }
 })();

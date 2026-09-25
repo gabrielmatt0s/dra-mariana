@@ -98,8 +98,10 @@
   display: grid; place-items: center; width: 3.5rem; height: 3.5rem;
   background: var(--color-brand-burgundy); color: var(--color-white);
   border-radius: 50%; text-decoration: none;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.3s ease, opacity 0.3s ease;
 }
+/* Sai da frente do texto enquanto a pessoa rola para baixo; volta ao rolar para cima e no fim da página */
+.whatsapp-float.is-away { opacity: 0; transform: translateY(calc(100% + 1.5rem)); pointer-events: none; }
 .whatsapp-float:hover { background: #6a2929; transform: scale(1.06); }
 .whatsapp-float:focus-visible { outline-color: var(--color-brand-sand); }
 

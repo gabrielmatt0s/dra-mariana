@@ -26,7 +26,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <!-- Só os pesos usados: Cormorant Garamond 500 e 600 (display, a partir de 24px) e Poppins 400 e 500 -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Poppins:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Playfair+Display:wght@500&family=Poppins:wght@400;500&display=swap">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@14.2.0/swiper-bundle.min.css" integrity="sha384-AR6M/55P6iB8bej/EgONjLv4RiBc7Ln04qqPLrEvIcFP0aq6I4rJHd88m8xP0d4E" crossorigin="anonymous">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
@@ -280,37 +280,26 @@
     </section>
 
     <section class="section section--soft abordagem" id="abordagem" aria-labelledby="abordagem-titulo">
-      <!-- Grafismo do manual (p. 9): losangos empilhados de linhas finas em bronze, nas duas bordas. Decorativo. -->
-      <svg class="abordagem__losangos" data-anim="draw" viewBox="0 0 320 480" aria-hidden="true" focusable="false">
-        <path d="M160 0 320 160 160 320 0 160Z"/>
-        <path d="M160 80 320 240 160 400 0 240Z"/>
-        <path d="M160 160 320 320 160 480 0 320Z"/>
-      </svg>
-      <svg class="abordagem__losangos abordagem__losangos--left" data-anim="draw" viewBox="0 0 320 480" aria-hidden="true" focusable="false">
-        <path d="M160 0 320 160 160 320 0 160Z"/>
-        <path d="M160 80 320 240 160 400 0 240Z"/>
-        <path d="M160 160 320 320 160 480 0 320Z"/>
-      </svg>
-
       <div class="container abordagem__inner">
-        <svg class="abordagem__ornamento" data-anim="draw" viewBox="0 0 44 60" aria-hidden="true" focusable="false"><path d="M22 1 43 30 22 59 1 30Z"/></svg>
-        <h2 class="title-section" id="abordagem-titulo" data-anim="title">Minha abordagem</h2>
+        <p class="eyebrow abordagem__eyebrow" data-anim="eyebrow"><span class="eyebrow__line" aria-hidden="true"></span><span class="eyebrow__text" id="abordagem-titulo">Minha abordagem</span></p>
 
-        <p class="abordagem__frase" data-anim="quote">A beleza é quando você se sente confortável na sua própria pele.</p>
+        <div class="abordagem__citacao">
+          <blockquote class="abordagem__quote">
+            <span class="abordagem__aspas" aria-hidden="true">&ldquo;</span>
+            <p class="abordagem__frase" data-anim="quote">A beleza é quando você se sente confortável na sua própria pele.</p>
+            <footer class="abordagem__assinatura" data-anim="fade">Dra. Mariana Zunino</footer>
+          </blockquote>
+        </div>
 
-        <div class="valores">
-          <h3 class="valores__titulo" data-anim="title">Valores que orientam o cuidado</h3>
-          <ul class="valores__lista" data-anim="valores">
+        <div class="abordagem__corpo">
+          <p class="abordagem__texto" data-anim="text">Gosto de deixar as pessoas melhores, através do ouvir, do cuidar e da atenção plena, por isso, entrego meu tempo, carinho e conhecimento para realçar a beleza que existe em você, valorizando sua essência e trazendo sempre a naturalidade.</p>
+          <ul class="valores__lista" data-anim="valores" aria-label="Valores que orientam o cuidado">
             <li class="valor"><svg class="valor__icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 1 23 12 12 23 1 12Z"/></svg><span>Saúde</span></li>
             <li class="valor"><svg class="valor__icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 1 23 12 12 23 1 12Z"/></svg><span>Empatia</span></li>
             <li class="valor"><svg class="valor__icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 1 23 12 12 23 1 12Z"/></svg><span>Família</span></li>
             <li class="valor"><svg class="valor__icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 1 23 12 12 23 1 12Z"/></svg><span>Crescimento</span></li>
             <li class="valor"><svg class="valor__icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 1 23 12 12 23 1 12Z"/></svg><span>Essência</span></li>
           </ul>
-        </div>
-
-        <div class="abordagem__texto">
-          <p data-anim="text">Gosto de deixar as pessoas melhores, através do ouvir, do cuidar e da atenção plena, por isso, entrego meu tempo, carinho e conhecimento para realçar a beleza que existe em você, valorizando sua essência e trazendo sempre a naturalidade.</p>
         </div>
       </div>
     </section>

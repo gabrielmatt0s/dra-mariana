@@ -73,52 +73,34 @@
   .li--end-desktop .line--bottom { display: block; }
 }
 
-/* Minha abordagem: off-white como o resto do site, com losangos e linhas finas de bronze (#a0815c, só decorativo) e linha de bronze de 1px separando das seções vizinhas. Texto #414042 sobre #e9e6e1 = 8,3:1. */
-.abordagem { --col: 44rem; --lados: 1.5rem; position: relative; overflow: hidden; border-block: 1px solid var(--color-brand-bronze); }
-@media (min-width: 64rem) { .abordagem { --col: 64rem; } }
-
-/* Ornamento do mobile: um losango pequeno e fino em bronze acima do título. Some a partir de 768 px. */
-.abordagem__ornamento { display: block; width: 44px; height: 60px; fill: none; stroke: var(--color-brand-bronze); stroke-width: 1; }
-.abordagem__ornamento path { vector-effect: non-scaling-stroke; }
-
-/* Grafismo lateral (tablet e desktop): só ocupa a folga entre a coluna de texto (--col) e a borda da seção, com
-   1,5rem de respiro. A parte visível é metade da largura do SVG (a outra metade vaza pela borda), então nunca invade o texto. */
-.abordagem__losangos {
-  display: none;
-  position: absolute; top: 30%; height: auto; transform: translateY(-50%);
-  width: max(0px, calc(100% - var(--col) - 2 * var(--lados)));
-  right: calc((100% - var(--col) - 2 * var(--lados)) / -2);
-  fill: none; stroke: var(--color-brand-bronze); stroke-width: 1; opacity: 0.75; pointer-events: none;
-}
-.abordagem__losangos--left { right: auto; left: calc((100% - var(--col) - 2 * var(--lados)) / -2); }
-.abordagem__losangos path { vector-effect: non-scaling-stroke; }
-
-/* Coluna de texto: largura máxima --col, centralizada, com 24 px de lado no mobile */
-.abordagem__inner.container {
-  position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-8);
-  max-width: none; width: min(var(--col), calc(100% - 3rem)); padding-inline: 0;
-}
-.abordagem__inner .title-section { margin-bottom: 0; }
+/* Minha abordagem (versão C, citação, com a grade de valores da versão D). Sem grafismo atrás de texto.
+   Frase e aspas em Playfair Display 500: o acento agudo/circunflexo do Cormorant Garamond sai deslocado à direita (ver _testes/teste-acentos.html). Texto #414042 sobre #e9e6e1 = 8,3:1. */
+.abordagem { border-block: 1px solid var(--color-brand-bronze); }
+.abordagem__inner.container { display: grid; gap: var(--space-8); padding-inline: max(var(--gutter-mobile), 1.5rem); text-align: left; }
+.abordagem__eyebrow { margin: 0; }
+.abordagem__quote { margin: 0; }
+.abordagem__aspas { display: block; font-family: 'Playfair Display', Georgia, serif; font-weight: 500; font-size: 5rem; line-height: 0.7; height: 2.25rem; color: var(--color-brand-bronze); }
 .abordagem__frase {
-  max-width: 20ch; font-family: var(--font-display); font-weight: var(--fw-headline);
-  font-size: clamp(2rem, 5vw + 1rem, 3.5rem); line-height: 1.15; letter-spacing: 0;
+  max-width: 22ch; margin: 0; font-family: 'Playfair Display', Georgia, serif; font-weight: 500;
+  font-size: clamp(1.75rem, 5vw + 0.75rem, 2.75rem); line-height: 1.2; letter-spacing: 0; text-wrap: balance;
 }
-.valores { width: 100%; }
-.valores__titulo { margin-bottom: var(--space-6); }
-/* Mobile: lista vertical centralizada, um valor por linha, losango à esquerda, espaçamento igual */
-.valores__lista { list-style: none; display: flex; flex-direction: column; align-items: flex-start; width: fit-content; margin-inline: auto; gap: var(--space-4); padding: 0; }
-.valor { display: flex; align-items: center; gap: var(--space-3); }
-.valor span { font-family: var(--font-display); font-size: 1.5rem; font-weight: var(--fw-title); line-height: 1.25; text-transform: uppercase; letter-spacing: var(--ls-caps); }
-.valor__icone { flex: none; width: 1.5rem; height: 1.5rem; fill: none; stroke: var(--color-brand-bronze); stroke-width: 1; }
-.abordagem__texto { display: flex; flex-direction: column; align-items: center; gap: var(--space-6); max-width: 44rem; }
-@media (min-width: 48rem) {
-  .abordagem__ornamento { display: none; }
-  .abordagem__losangos { display: block; }
-  .abordagem__inner.container { width: min(var(--col), calc(100% - 3rem)); }
-  .valores__lista { flex-direction: row; flex-wrap: wrap; justify-content: center; align-items: center; width: auto; gap: var(--space-4) var(--space-12); }
-}
-@media (min-width: 80rem) {
-  .valores__lista { flex-wrap: nowrap; }
+.abordagem__assinatura { margin-top: var(--space-6); font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: 1.5rem; line-height: 1.25; color: var(--color-brand-graphite); }
+.abordagem__corpo { display: grid; gap: var(--space-8); }
+.abordagem__texto { max-width: 44ch; margin: 0; }
+/* Grade de 2 colunas; o 5º valor (Essência) fica centralizado na última linha */
+.valores__lista { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6) var(--space-4); padding: 0; margin: 0; }
+.valor { display: flex; align-items: center; gap: var(--space-3); min-width: 0; }
+.valor:last-child { grid-column: 1 / -1; justify-self: center; }
+.valor span { font-family: var(--font-body); font-size: 0.8125rem; font-weight: 500; line-height: 1.3; text-transform: uppercase; letter-spacing: var(--ls-caps); overflow-wrap: anywhere; }
+.valor__icone { flex: none; width: 1.25rem; height: 1.25rem; fill: none; stroke: var(--color-brand-bronze); stroke-width: 1; }
+.valor__icone path { vector-effect: non-scaling-stroke; }
+@media (min-width: 64rem) {
+  .abordagem__inner.container { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--space-16); align-items: start; padding-inline: var(--gutter-desktop); }
+  .abordagem__eyebrow { grid-column: 1 / -1; }
+  .abordagem__frase { font-size: clamp(2.5rem, 3vw + 1rem, 3.25rem); }
+  .abordagem__aspas { font-size: 6rem; height: 2.75rem; }
+  .abordagem__texto { max-width: none; }
+  .valores__lista { column-gap: var(--space-8); }
 }
 
 /* Faixa CTA: bordô com texto claro (#e9e6e1 sobre #762d2d = 7,7:1) e botão invertido */
