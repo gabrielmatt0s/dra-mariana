@@ -63,3 +63,21 @@ p { max-width: 65ch; }
   padding: var(--space-3) var(--space-4); text-decoration: none;
 }
 .skip-link:focus { top: var(--space-4); }
+
+/* Seções */
+.section { padding-block: var(--space-16); }
+.section--soft { background: var(--color-bg-soft); }
+@media (min-width: 64rem) { .section { padding-block: 7rem; } }
+.title-section { margin-bottom: var(--space-6); }
+.title-sub { margin-bottom: var(--space-3); }
+
+/* Fade-in no scroll (IntersectionObserver em js/main.js). Sem JS, o conteúdo aparece normalmente. */
+.js .reveal {
+  opacity: 0; transform: translateY(1rem);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  transition-delay: calc(var(--i, 0) * 80ms);
+}
+.js .reveal.is-visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+}
