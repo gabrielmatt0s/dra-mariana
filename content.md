@@ -88,7 +88,7 @@ Fonte: mensagem da cliente (2026-09-25), fora do PDF.
 
 **Origem:** p. 7.
 
-**Proposta de valor extraída:** "Conhecimento + atendimento 360°".  
+**Proposta de valor extraída (p. 15 do brandbook): "Conhecimento + atendimento 360°". NÃO USAR NO SITE.** Fica registrada só como referência interna; foi retirada da seção "Minha abordagem", que termina no texto da p. 12.  
 **Origem:** p. 15.
 
 **Nota:** o material não define operacionalmente o que "atendimento 360°" inclui. Não detalhar etapas, exames, canais ou acompanhamento sem confirmação.
@@ -142,7 +142,7 @@ Fonte: mensagem da cliente (2026-09-25), fora do PDF.
 **Título:** Conhecimento, cuidado e atenção plena
 
 **Base extraída:**
-- "Conhecimento + atendimento 360°". Fonte: p. 15.
+- "Conhecimento + atendimento 360°". Fonte: p. 15. Referência interna, não usar no site.
 - Ouvir, cuidar e atenção plena. Fonte: p. 12.
 - Naturalidade e valorização da essência. Fonte: p. 12.
 - Imagem percebida desejada: saúde, conhecimento, segurança, sofisticação, sucesso, beleza e acolhimento. Fonte: p. 14.
