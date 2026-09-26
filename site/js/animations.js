@@ -183,6 +183,16 @@
         var clip = fig.querySelector('.photo__clip'), inner = fig.querySelector('.photo__inner');
         var top = fig.querySelector('.f-top'), right = fig.querySelector('.f-right');
         var bottom = fig.querySelector('.f-bottom'), left = fig.querySelector('.f-left');
+        if (isHero) {
+          // A entrada da foto do hero está em hero() (junto com a headline). Aqui só o parallax de rolagem; a foto nunca fica escondida (LCP).
+          if (desktop && !fig.hasAttribute('data-parallax-off')) {
+            gsap.fromTo(inner, { yPercent: -3.5 }, {
+              yPercent: 3.5, ease: 'none',
+              scrollTrigger: { trigger: fig, start: 'top bottom', end: 'bottom top', scrub: true }
+            });
+          }
+          return;
+        }
         gsap.set(clip, { clipPath: 'inset(100% 0% 0% 0%)' });
         gsap.set(inner, { scale: 1.15 });
 
@@ -192,6 +202,7 @@
         });
         tl.to(clip, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.3 * k, ease: 'power3.inOut' }, 0);
         tl.to(inner, { scale: 1, duration: 1.8 * k, ease: EASE }, 0);
+        tl.call(function () { fig._pronta = true; }, null, 1.8 * k);   // hover só depois da entrada
 
         if (top) {
           // Moldura de bronze desenhada depois da foto, no sentido horário
@@ -243,6 +254,16 @@
 
       gsap.set([subtitle, creds, cta, note], { autoAlpha: 0, y: dy });
 
+      // Foto do hero: NUNCA começa escondida (afeta o LCP). Estado inicial: 65% visível e um pouco ampliada.
+      var photo = g('photo');
+      var pClip = photo && photo.querySelector('.photo__clip'), pInner = photo && photo.querySelector('.photo__inner');
+      var pFrame = photo && photo.querySelector('.photo__frame');
+      if (photo) {
+        gsap.set(pClip, { clipPath: 'inset(35% 0% 0% 0%)' });
+        gsap.set(pInner, { scale: desktop ? 1.12 : 1.06 });
+        if (pFrame) gsap.set(pFrame, { x: 16, y: 16, opacity: 0 });
+      }
+
       var started = false;
       function start() {
         if (started) return;
@@ -264,11 +285,57 @@
         tl.to(cta, { autoAlpha: 1, y: 0, duration: 0.75 * k, ease: EASE }, 0.45);
         tl.to(creds, { autoAlpha: 1, y: 0, duration: 0.8 * k, ease: EASE }, 0.55);
         tl.to(note, { autoAlpha: 1, y: 0, duration: 0.8 * k, ease: EASE }, 0.65);
+
+        if (photo) {
+          // A foto começa junto com a headline (mesmo instante das linhas do título). Moldura desliza quando a foto está em 60%.
+          var pd = desktop ? 1.2 : 1, p0 = 0.1, fd = 0.9;
+          tl.to(pClip, { clipPath: 'inset(0% 0% 0% 0%)', duration: pd, ease: 'expo.out' }, p0);
+          tl.to(pInner, { scale: 1, duration: pd, ease: 'expo.out' }, p0);
+          if (pFrame) tl.to(pFrame, { x: 0, y: 0, opacity: 1, duration: fd, ease: 'expo.out' }, p0 + 0.6 * pd);
+          tl.call(function () { photo._pronta = true; }, null, p0 + 0.6 * pd + fd);   // hover só depois da entrada
+        }
       }
 
       // Espera as fontes para a primeira quebra de linhas sair correta (com teto de 0,9 s para não atrasar o CTA)
       if (document.fonts && document.fonts.ready) document.fonts.ready.then(start);
       window.setTimeout(start, 900);
+    }
+
+    /* 19. Hover das fotos (hero e sobre), só com mouse e só depois da entrada: zoom leve, moldura se aproxima e parallax da imagem pelo cursor */
+    function photoHover(fig) {
+      var inner = fig.querySelector('.photo__inner'), frame = fig.querySelector('.photo__frame');
+      var qx, qy, dentro = false;
+      function entra() {
+        if (!fig._pronta) return;
+        dentro = true;
+        gsap.killTweensOf(inner, 'x,y,scale');
+        qx = gsap.quickTo(inner, 'x', { duration: 0.6, ease: 'power3.out' });
+        qy = gsap.quickTo(inner, 'y', { duration: 0.6, ease: 'power3.out' });
+        gsap.to(inner, { scale: 1.04, duration: 0.8, ease: 'power2.out', overwrite: 'auto' });
+        if (frame) gsap.to(frame, { x: -8, y: -8, duration: 0.6, ease: 'power2.out', overwrite: 'auto' });
+      }
+      function move(e) {
+        if (!dentro || !qx) return;
+        var r = fig.getBoundingClientRect();
+        var nx = Math.max(-1, Math.min(1, (e.clientX - r.left - r.width / 2) / (r.width / 2)));
+        var ny = Math.max(-1, Math.min(1, (e.clientY - r.top - r.height / 2) / (r.height / 2)));
+        qx(-nx * 10); qy(-ny * 10);   // até 10px, na direção oposta ao mouse
+      }
+      function sai() {
+        if (!dentro) return;
+        dentro = false; qx = qy = null;
+        gsap.killTweensOf(inner, 'x,y');
+        gsap.to(inner, { x: 0, y: 0, scale: 1, duration: 0.8, ease: 'power3.out', overwrite: 'auto' });
+        if (frame) gsap.to(frame, { x: 0, y: 0, duration: 0.8, ease: 'power3.out', overwrite: 'auto' });
+      }
+      fig.addEventListener('mouseenter', entra);
+      fig.addEventListener('mousemove', move);
+      fig.addEventListener('mouseleave', sai);
+      return function () {
+        fig.removeEventListener('mouseenter', entra);
+        fig.removeEventListener('mousemove', move);
+        fig.removeEventListener('mouseleave', sai);
+      };
     }
 
     /* 18. Header: esconde ao rolar para baixo e reaparece ao rolar para cima (fundo já é sólido) */
@@ -327,6 +394,14 @@
       rollButtons(undo);
       header();
       hero();
+
+      // Hover das fotos: só em dispositivo com mouse (hover e ponteiro fino). Sem movimento reduzido, porque init() nem roda nesse caso.
+      var hoverMM = gsap.matchMedia();
+      hoverMM.add('(hover: hover) and (pointer: fine)', function () {
+        var limpar = $$('[data-anim="photo"]').map(photoHover);
+        return function () { limpar.forEach(function (fn) { fn(); }); };
+      });
+      undo.push(function () { hoverMM.revert(); });
 
       // Seções: sempre na ordem do documento (ScrollTrigger calcula as posições de cima para baixo)
       $$('[data-anim]').forEach(function (el) {

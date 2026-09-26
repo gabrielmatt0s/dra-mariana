@@ -86,7 +86,8 @@ p { max-width: 65ch; }
 
 /* Animações (js/animations.js): a classe js-anim só existe se o GSAP carregou e o usuário não pediu movimento reduzido.
    Sem ela, todo o conteúdo fica visível. Cada efeito revela o seu elemento depois de preparar os filhos. */
-.js-anim [data-anim], .js-anim [data-hero] { visibility: hidden; }
+/* A foto do hero é a exceção: nunca fica escondida, para não atrasar o LCP (a entrada dela começa visível, ver hero() em animations.js) */
+.js-anim [data-anim]:not([data-hero="photo"]), .js-anim [data-hero]:not([data-hero="photo"]) { visibility: hidden; }
 /* Máscaras de linha do SplitText: folga para acentos e descendentes de Cormorant não serem cortados */
 .sl-mask { padding-block: 0.15em; margin-block: -0.15em; }
 /* margens negativas adjacentes colapsam: sem esta regra a entrelinha cresceria 0,15em */
