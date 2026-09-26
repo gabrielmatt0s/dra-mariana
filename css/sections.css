@@ -249,16 +249,33 @@
 .trat__titulo { grid-area: titulo; margin-bottom: var(--space-8); }
 .trat { grid-area: carrossel; min-width: 0; margin-inline: calc(var(--gutter-mobile) * -1); }
 .trat:focus-visible { outline-offset: -3px; }
-.trat .swiper-slide { height: auto; display: flex; flex-direction: column; width: calc(85% - 20px - 16px); }
+.trat .swiper-slide { height: auto; display: flex; flex-direction: column; width: 85%; }
 .trat .swiper-wrapper { align-items: stretch; }
-.card--trat { background: var(--color-white); border: 1px solid var(--color-border); border-radius: 0; box-shadow: none; overflow: hidden; }
-.card--trat .card__media { position: relative; margin: 0; aspect-ratio: 4 / 5; overflow: hidden; }
+/* Card de tratamento: a foto é o card inteiro (3:4). Número e nome ficam por cima, na base, sobre um degradê de #414042 (85%) até transparente.
+   O degradê tem um patamar sólido sob o texto e só esmaece acima dele, então o texto sempre fica sobre #414042 a 85%
+   (branco sobre foto branca: 6,6:1; número #e9e6e1: 5,3:1, ambos AA, mesmo com foto clara). */
+.card--trat { position: relative; aspect-ratio: 3 / 4; background: transparent; border: 0; border-radius: 0; box-shadow: none; overflow: hidden; }
+.card--trat .card__media { position: absolute; inset: 0; margin: 0; aspect-ratio: auto; overflow: hidden; }
 .card--trat .card__media > *, .card--trat .card__media img { transition: transform 0.6s ease; }
-.card--trat .photo-placeholder { position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; }
-@media (hover: hover) { .card--trat:hover .card__media > * { transform: scale(1.05); } }
-.card--trat .card__body { flex: 1; padding: var(--space-6); }
-/* Palavra longa em caixa alta 24px não cabe no card do mobile: a quebra usa hífen suave (&shy; no HTML) */
-.card--trat .card__title { overflow-wrap: break-word; hyphens: manual; }
+.card--trat .card__media img { width: 100%; height: 100%; object-fit: cover; }
+/* Placeholder enquanto não há foto aprovada: areia #d0baa0 com leve degradê */
+.card--trat .photo-placeholder { position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; border: 0; background: linear-gradient(165deg, #d0baa0 0%, #c4a887 100%); }
+.card--trat .photo-placeholder__label { position: absolute; top: var(--space-6); left: var(--space-6); right: var(--space-6); text-align: left; color: var(--color-text); }
+.card--trat .card__body {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; min-height: 33.334%;
+  display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start; gap: 0.5rem;
+  padding: 3rem var(--space-6) var(--space-6);
+  background: linear-gradient(to top, rgb(65 64 66 / 85%) 0, rgb(65 64 66 / 85%) calc(100% - 2.5rem), rgb(65 64 66 / 0%) 100%);
+}
+.card--trat .card__num { font-family: var(--font-body); font-size: 0.8125rem; font-weight: 500; line-height: 1.2; letter-spacing: 0.12em; color: var(--color-brand-offwhite); }
+/* Linha de 1px: o elemento tem 80px e a parte desenhada (::before) ocupa metade (40px); no hover ocupa tudo (80px) */
+.card--trat .card__line { position: relative; width: 80px; height: 1px; background: transparent; }
+.card--trat .card__line::before { content: ""; position: absolute; inset: 0; background: var(--color-brand-bronze); transform: scaleX(0.5); transform-origin: left center; transition: transform 0.5s ease; }
+.card--trat .card__title { margin: 0; font-size: clamp(1.375rem, 1.1rem + 0.5vw, 1.625rem); line-height: 1.15; color: var(--color-white); overflow-wrap: break-word; hyphens: manual; }
+@media (hover: hover) {
+  .card--trat:hover .card__media > * { transform: scale(1.05); }
+  .card--trat:hover .card__line::before { transform: scaleX(1); }
+}
 
 /* Antes de o Swiper iniciar (sem JS, sem CDN): grade normal */
 .trat:not(.swiper-initialized) { margin-inline: 0; overflow: visible; }
@@ -325,10 +342,10 @@
   .sobre__photo { width: min(100%, calc((var(--sec-h) - 2 * var(--pad-y)) * 4 / 5)); }
   .sobre__text { gap: var(--gap-y); }
 
-  /* Tratamentos: cards mais baixos (mídia por altura em vez de 4:5) */
-  .trat { margin-top: var(--gap-y); }
-  .card--trat .card__media { aspect-ratio: auto; height: clamp(7rem, 24vh, 17rem); }
-  .card--trat .card__body { padding: clamp(1rem, 2.4vh, 2rem); gap: var(--gap-y); min-height: 0; }
+  /* Tratamentos: o card é 3:4 e a altura vem da altura da tela. Título, setas, gaps e paddings descontados: --trat-h.
+     A largura (3:4) é limitada pela largura do container; os 3 cards ficam centralizados. */
+  .tratamentos { --trat-h: calc(var(--sec-h) - 2 * var(--pad-y) - 3.5rem - var(--gap-y)); --trat-w: calc(var(--trat-h) * 3 / 4); }
+  .trat { margin-top: var(--gap-y); width: min(100%, calc(3 * var(--trat-w) + 2 * var(--space-6))); justify-self: center; }
 
   /* Procedimentos */
   .procedimentos__head { margin-bottom: var(--gap-y); }
