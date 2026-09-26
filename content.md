@@ -30,7 +30,7 @@ Fonte: mensagem da cliente (2026-09-25), fora do PDF.
 - **URL de site próprio:** **Ausente no material**.
 
 ## Hero
-**Eyebrow:** Dermatologista | Curitiba  
+**Eyebrow:** Dermatologista em Curitiba (ajuste de SEO local aprovado pelo Gabriel; no material era "Dermatologista | Curitiba")  
 **Título:** Cuido da sua pele honrando a sua essência.  
 **Subtítulo:** Sua pele, sua história.  
 **Credenciais:** CRM/PR 26153 | RQE 19939  

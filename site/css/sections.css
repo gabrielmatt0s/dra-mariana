@@ -85,7 +85,9 @@
 
 /* Tratamentos: carrossel Swiper (sem JS os 6 cards aparecem em grade) */
 .trat__wrap { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "titulo" "carrossel" "dica" "controles"; }
-.trat__titulo { grid-area: titulo; margin-bottom: var(--space-8); }
+.trat__cabeca { grid-area: titulo; margin-bottom: var(--space-8); }
+.trat__cabeca .eyebrow { margin-bottom: var(--space-2); }
+.trat__titulo { margin-bottom: 0; }
 .trat { grid-area: carrossel; min-width: 0; margin-inline: calc(var(--gutter-mobile) * -1); }
 .trat:focus-visible { outline-offset: -3px; }
 .trat .swiper-slide { height: auto; display: flex; flex-direction: column; width: 85%; }
@@ -150,7 +152,7 @@
 }
 @media (min-width: 64rem) {
   .trat__wrap { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "titulo controles" "carrossel carrossel"; align-items: end; column-gap: var(--space-8); }
-  .trat__titulo { margin-bottom: 0; }
+  .trat__cabeca { margin-bottom: 0; }
   .trat { margin-inline: 0; margin-top: var(--space-8); }
   .trat .swiper-slide { width: auto; }
   .trat-ready .trat__controles { grid-template-columns: 8rem auto auto; margin-top: 0; padding-bottom: 0.4rem; }
@@ -160,7 +162,7 @@
 @media (min-width: 64rem) and (min-height: 600px) {
   /* Tratamentos: o card é 3:4 e a altura vem da altura da tela. Título, setas, gaps e paddings descontados: --trat-h.
      A largura (3:4) é limitada pela largura do container; os 3 cards ficam centralizados. */
-  .tratamentos { --trat-h: calc(var(--sec-h) - 2 * var(--pad-y) - 3.5rem - var(--gap-y)); --trat-w: calc(var(--trat-h) * 3 / 4); }
+  .tratamentos { --trat-h: calc(var(--sec-h) - 2 * var(--pad-y) - 5.25rem - var(--gap-y)); --trat-w: calc(var(--trat-h) * 3 / 4); }
   .trat { margin-top: var(--gap-y); width: min(100%, calc(3 * var(--trat-w) + 2 * var(--space-6))); justify-self: center; }
 }
 
@@ -359,6 +361,7 @@
 
 /* Contato e localização */
 .contato__inner { display: grid; gap: var(--space-12); }
+.contato__local { margin-top: var(--space-2); }
 .dados { list-style: none; padding: 0; margin-top: var(--space-6); }
 .dados li { position: relative; padding-block: var(--space-4); }
 .dados .line { position: absolute; left: 0; right: 0; background: rgb(65 64 66 / 25%); }
@@ -390,7 +393,7 @@
 @media (min-width: 64rem) and (min-height: 600px) {
   .contato__inner { grid-template-columns: 1.3fr 0.7fr; gap: var(--space-12); }
   .contato__botoes .btn { padding-inline: var(--space-4); }
-  .dados { margin-top: var(--gap-y); }
+  .dados { margin-top: calc(var(--gap-y) / 2); }
   .dados li { padding-block: clamp(0.6rem, 1.6vh, 1rem); }
   .contato__botoes { margin-top: var(--gap-y); }
   .mapa { min-height: 0; height: auto; }
