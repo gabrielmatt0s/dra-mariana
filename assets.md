@@ -46,20 +46,21 @@ As fotografias vistas dentro do PDF não foram exportadas como assets separados.
 Recebidos dois JPEGs (metadados já ausentes, sRGB), guardados sem alteração em `_originais/fotos/` (fora do git). O site nunca usa o original.
 | Original | Resolução | Uso | Recorte |
 |---|---|---|---|
-| dra1.jpeg (sentada no banco, com a revista "VOGUE BELEZA" à mostra) | 1112 x 1600, 90,5 KB | Hero, 3:4 | 1112 x 1483, do topo. Sem retoque |
-| dra2.jpeg (retrato de busto, luz lateral) | 1066 x 1600, 102,8 KB | Sobre, 4:5 | 1066 x 1333, do topo. Sem retoque |
+| dra1.jpeg (sentada no banco, com a revista "VOGUE BELEZA" à mostra) | 1112 x 1600, 90,5 KB | Hero, 3:4 | 880 x 1173, x=200 e y=80, com a Dra. centrada no quadro. Sem retoque |
+| dra2.jpeg (retrato de busto, luz lateral) | 1066 x 1600, 102,8 KB | Sobre, 4:5 | 952 x 1190, x=114 e y=0, com a Dra. centrada no quadro. Sem retoque |
 
 Versões em `site/assets/img/` (`dra-mariana-zunino-hero-{480,800,1200}` e `dra-mariana-zunino-sobre-{480,800,1200}`), geradas com sharp (Lanczos3), sem metadados, com perfil sRGB embutido. Só recorte, redimensionamento e compressão: AVIF q50, WebP q75, JPEG q80 progressivo (mozjpeg).
 | Arquivo | 480 | 800 | 1200 |
 |---|---|---|---|
-| hero AVIF / WebP / JPEG (KB) | 9,1 / 11,0 / 20,2 | 16,9 / 21,8 / 41,9 | 29,0 / 35,8 / 73,9 |
-| sobre AVIF / WebP / JPEG (KB) | 9,6 / 12,0 / 21,3 | 20,1 / 25,6 / 47,1 | 35,5 / 44,0 / 87,3 |
+| hero AVIF / WebP / JPEG (KB) | 9,7 / 12,5 / 21,9 | 18,2 / 23,3 / 44,5 | 29,6 / 37,0 / 76,6 |
+| sobre AVIF / WebP / JPEG (KB) | 10,2 / 12,9 / 22,9 | 21,6 / 28,0 / 51,0 | 37,4 / 46,0 / 93,0 |
 
-Atenção: a largura de origem é 1112 e 1066 px, então as versões de 1200 px são ampliadas em cerca de 8% e 13%.
+Atenção: como o recorte centrado usa só 880 e 952 px de largura, as versões de 1200 px são ampliações de cerca de 36% (hero) e 26% (Sobre); as de 800 px, de 9% e nenhuma. Se a cliente enviar as fotos em resolução maior, refazer os recortes.
+Para a Dra. aparecer inteira e centrada, a folga vertical das fotos passou de 10% para 4% (`.photo__inner` em `components.css`) e o parallax de ±8% para ±3,5% (`animations.js`).
 Pendente com a cliente: a capa da revista "VOGUE" na foto do hero pode sugerir matéria ou parceria; confirmar o respaldo antes de publicar.
 
 ### og-image (26/09/2026)
-`site/assets/og-image.jpg`, 1200 x 630: fundo #e9e6e1, logo principal (`_originais/logos-nao-usadas/logo-principal.svg`, versão escura) à esquerda e recorte da foto do hero à direita (800 x 840 do original, reduzido a 600 x 630). JPEG q85, 40 KB.
+`site/assets/og-image.jpg`, 1200 x 630: fundo #e9e6e1, logo principal (`_originais/logos-nao-usadas/logo-principal.svg`, versão escura) à esquerda e recorte da foto do hero à direita (880 x 924 do original, reduzido a 600 x 630). JPEG q85, 40 KB.
 
 ## Verificação
 Cada SVG gerado foi renderizado para PNG após a conversão e comparado visualmente com o respectivo original. Não foram adicionados fundo, efeitos, texto novo ou redesenho intencional. O `viewBox` foi ajustado ao bounding box do conteúdo.
