@@ -154,19 +154,28 @@
         });
       },
 
-      /* 9 e 16. Valores: células entram em stagger curto; o losango é desenhado (DrawSVG) dentro de cada uma */
+      /* 9 e 16. Valores. Mobile (células): entram em stagger curto com o losango desenhado dentro de cada uma.
+         Desktop: o losango é desenhado (DrawSVG) e só depois a palavra aparece. */
       valores: function (ul) {
         var items = $$(':scope > li', ul);
+        var cells = window.matchMedia('(max-width: 47.9375rem)').matches;
         items.forEach(function (li) {
-          gsap.set(li, { autoAlpha: 0, y: 16 });
           gsap.set($$('.valor__icone path', li), { drawSVG: '0%' });
+          if (cells) gsap.set(li, { autoAlpha: 0, y: 16 });
+          else gsap.set($$('span', li), { autoAlpha: 0, y: 10 });
         });
         gsap.set(ul, { autoAlpha: 1 });
-        var tl = gsap.timeline({ scrollTrigger: { trigger: ul, start: 'top 90%', once: true } });
+        var tl = gsap.timeline({ scrollTrigger: { trigger: ul, start: cells ? 'top 90%' : 'top 88%', once: true } });
         items.forEach(function (li, i) {
-          var at = i * 0.1;
-          tl.to(li, { autoAlpha: 1, y: 0, duration: 0.9 * k, ease: EASE }, at);
-          tl.to($$('.valor__icone path', li), { drawSVG: '100%', duration: 1 * k, ease: 'power3.inOut' }, at + 0.2);
+          if (cells) {
+            var c = i * 0.1;
+            tl.to(li, { autoAlpha: 1, y: 0, duration: 0.9 * k, ease: EASE }, c);
+            tl.to($$('.valor__icone path', li), { drawSVG: '100%', duration: 1 * k, ease: 'power3.inOut' }, c + 0.2);
+          } else {
+            var at = i * 0.18, draw = 1.1 * k;
+            tl.to($$('.valor__icone path', li), { drawSVG: '100%', duration: draw, ease: 'power3.inOut' }, at);
+            tl.to($$('span', li), { autoAlpha: 1, y: 0, duration: 0.9 * k, ease: EASE }, at + draw);
+          }
         });
       },
 
