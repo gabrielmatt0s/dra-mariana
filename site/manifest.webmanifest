@@ -1,0 +1,29 @@
+{
+  "name": "Dra. Mariana Zunino | Dermatologista em Curitiba",
+  "short_name": "Dra. Mariana Zunino",
+  "description": "Dra. Mariana Zunino, dermatologista em Curitiba (Batel). Dermatologia clínica e estética com atendimento particular. Agende sua consulta pelo WhatsApp.",
+  "lang": "pt-BR",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "theme_color": "#e9e6e1",
+  "background_color": "#e9e6e1",
+  "icons": [
+    {
+      "src": "assets/logo/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/logo/favicon-32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/logo/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

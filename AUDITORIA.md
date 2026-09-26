@@ -40,7 +40,7 @@ Legenda: **Corrigido**, **Pendente** (depende de algo externo ou de teste futuro
 | K7 formação, K8 nota do Google | Pendente | Dependem da cliente e de nova coleta |
 | B6 botão do WhatsApp cobrindo texto | Decisão do Gabriel | Mantido (some ao rolar para baixo) |
 | B8 arrastar/deslizar e animações | Pendente | Testar em aparelho real; o navegador de teste não gera esses eventos nem roda o GSAP normalmente |
-| SEO1 og:image, canonical, JSON-LD, robots.txt, sitemap.xml | Pendente | Aguardam domínio e imagem. Nenhum `robots.txt` nem `sitemap.xml` foi criado (não há domínio) |
+| SEO1 og:image, canonical, JSON-LD, robots.txt, sitemap.xml | Corrigido (parte) | Feitos: canonical, Open Graph e Twitter Card com URL absoluta do domínio, `og-image.jpg` provisória, JSON-LD (Physician e MedicalBusiness, WebSite), `robots.txt`, `sitemap.xml`, manifest, 404 e `.htaccess`. Pendente: trocar a og-image por foto aprovada, ativar o `alternateName`, cadastrar no Search Console. Ver `CHECKLIST-PUBLICACAO.md` |
 
 ### Decisão do Gabriel: limpeza final do `.git`
 

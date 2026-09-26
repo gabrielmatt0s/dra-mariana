@@ -30,7 +30,7 @@ Construir uma landing page responsiva para **Dra. Mariana Zunino, Dermatologista
 - Avaliações do Google só entram se forem sóbrias: sem superlativos ("a melhor", "excelente", "impecável"), sem promessa ou descrição de resultado, sem elogio à técnica ou ao resultado de procedimentos e sem detalhe de saúde do paciente (Resolução CFM 2.336/2023). No máximo um corte por texto, marcado com reticências, e nunca alterar palavras, nem corrigir erros de digitação. Sem data no card. O registro dos textos e links fica em `content.md`.
 - Não usar em-dash nos textos do projeto.
 - `_originais/` contém os arquivos-fonte da marca (PSD, EPS, PDF). Consulte se precisar, mas o site usa somente os arquivos de `site/assets/`. `_originais/`, `_testes/` e `referencia/` não vão para o git (`.gitignore`) e nunca são publicados.
-- **Somente a pasta `site/` é publicada.** Na raiz ficam apenas documentos de trabalho (CLAUDE.md, content.md, design-system.md, assets.md, tokens.json, AUDITORIA.md) e as pastas de material de apoio.
+- **Somente a pasta `site/` é publicada.** Domínio definitivo: https://dermatomarianazunino.com (sem www). Falta antes de publicar: `CHECKLIST-PUBLICACAO.md`. Na raiz ficam apenas documentos de trabalho (CLAUDE.md, content.md, design-system.md, assets.md, tokens.json, AUDITORIA.md) e as pastas de material de apoio.
 
 ## Padrões de animação (GSAP)
 Toda seção nova (Contato, Rodapé, CTA final e o que vier depois) segue este sistema. A lógica fica em `site/js/animations.js`; a seção só precisa dos atributos e da estrutura abaixo. Não criar animações soltas em `main.js` nem em CSS de entrada.
@@ -44,7 +44,7 @@ Toda seção nova (Contato, Rodapé, CTA final e o que vier depois) segue este s
 - Animar só `transform`, `opacity`, `clip-path` (e `visibility` via autoAlpha). Nunca width, height, top, margin. Única exceção pedida: `letter-spacing` dos títulos em caixa alta (de 0.02em ao valor final).
 - Sem pin de seção, sem scroll horizontal, sem smooth scroll que sequestre a rolagem nativa.
 - Entradas com `once: true`. Só parallax e scrub reagem ao rolar de volta.
-- SplitText sempre com `autoSplit: true` e animação criada dentro de `onSplit()` (retornando a animação). `aria` fica em `auto`, então leitores de tela leem o texto original. Máscaras de linha usam `linesClass: 'sl'` (classe `.sl-mask` tem folga para acentos de Cormorant).
+- SplitText sempre com `autoSplit: true` e animação criada dentro de `onSplit()` (retornando a animação). `aria` fica em `auto` em títulos, então leitores de tela leem o texto original; em parágrafos (`<p>`) usar `aria: 'none'`, porque o `aria-label` que o modo `auto` cria é atributo proibido em `<p>` (o Lighthouse reprova). Máscaras de linha usam `linesClass: 'sl'` (classe `.sl-mask` tem folga para acentos de Cormorant).
 - Nenhuma animação pode causar overflow horizontal em 360 px. Testar 360, 390 e 1440.
 
 **Atributos (`data-anim`)**
@@ -74,13 +74,14 @@ projeto-dra-mariana/
 ├── CLAUDE.md, content.md, design-system.md, assets.md, tokens.json, AUDITORIA.md   (documentos de trabalho)
 ├── .gitignore                       (ignora _originais/, _testes/, referencia/, .DS_Store, Thumbs.db)
 ├── site/                            (ÚNICA pasta publicada)
-│   ├── index.html
-│   ├── privacidade.html             (quando existir)
-│   ├── robots.txt, sitemap.xml      (quando houver domínio)
+│   ├── index.html, privacidade.html, 404.html
+│   ├── robots.txt, sitemap.xml, manifest.webmanifest
+│   ├── .htaccess                    (Apache; validar na hospedagem final)
 │   ├── css/  (tokens.css, base.css, components.css, sections.css)
 │   ├── js/   (main.js, carrossel.js, animations.js)
 │   └── assets/
 │       ├── fonts/   (Cormorant Garamond, Poppins, OFL.txt)
+│       ├── og-image.jpg  (PROVISÓRIA, trocar por foto aprovada)
 │       ├── logo/    (somente os SVG/PNG usados)
 │       └── vendor/  (GSAP, Swiper, quando hospedados)
 ├── _originais/       (PSD, EPS, PDF, logos não usadas; fora do git)

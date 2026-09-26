@@ -217,6 +217,7 @@ WhatsApp, mesmo link do CTA do hero (ver "Contato").
 
 **Em aberto:**
 - Texto da seção Sobre (cliente vai enviar).
+- Publicação: aguardando contratação da Locaweb (plano Linux). Domínio definitivo: https://dermatomarianazunino.com (ver `CHECKLIST-PUBLICACAO.md`).
 - Formação acadêmica: AGUARDANDO CLIENTE (a landing é construída sem ela).
 - Fotos originais em alta resolução, com autorização de uso web.
 - Licença webfont de SALVAGER e Collection New Style.

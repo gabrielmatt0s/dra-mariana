@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dermatomarianazunino.com/sitemap.xml

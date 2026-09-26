@@ -63,8 +63,9 @@
           });
           return;
         }
+        // aria: 'none' porque o modo 'auto' põe aria-label no <p>, atributo proibido em parágrafo (o texto continua sendo lido normalmente)
         SplitText.create(el, {
-          type: 'lines', linesClass: 'sl', autoSplit: true,
+          type: 'lines', linesClass: 'sl', autoSplit: true, aria: 'none',
           onSplit: function (self) {
             var tween = gsap.fromTo(self.lines, { autoAlpha: 0, y: dy }, {
               autoAlpha: 1, y: 0, duration: 0.9 * k, stagger: 0.06, ease: EASE,

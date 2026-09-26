@@ -5,18 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>document.documentElement.className = 'js';</script>
 
-  <title>Dra. Mariana Zunino | Dermatologista em Curitiba</title>
-  <meta name="description" content="Dra. Mariana Zunino, dermatologista em Curitiba (CRM/PR 26153, RQE 19939). Dermatologia estética e clínica com escuta, atenção plena e naturalidade. Agende sua consulta.">
-  <meta name="theme-color" content="#762d2d">
+  <title>Dra. Mariana Zunino | Dermatologista em Curitiba, Batel</title>
+  <meta name="description" content="Dra. Mariana Zunino, dermatologista em Curitiba (Batel). Dermatologia clínica e estética com atendimento particular. Agende sua consulta pelo WhatsApp.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://dermatomarianazunino.com/">
+  <meta name="theme-color" content="#e9e6e1">
   <meta name="author" content="Mariana Zunino">
 
-  <!-- Open Graph. og:url e og:image entram quando houver domínio final e imagem autorizada (1200x630). -->
+  <!-- Open Graph e Twitter Card. og:image é PROVISÓRIA (logo sobre #e9e6e1, 1200x630): trocar por foto aprovada da Dra. Mariana (1200x630) e conferir se o og:image:alt continua correto. -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:site_name" content="Dra. Mariana Zunino">
-  <meta property="og:title" content="Dra. Mariana Zunino | Dermatologista em Curitiba">
-  <meta property="og:description" content="Cuido da sua pele honrando a sua essência. Sua pele, sua história.">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:title" content="Dra. Mariana Zunino | Dermatologista em Curitiba, Batel">
+  <meta property="og:description" content="Dra. Mariana Zunino, dermatologista em Curitiba (Batel). Dermatologia clínica e estética com atendimento particular. Agende sua consulta pelo WhatsApp.">
+  <meta property="og:url" content="https://dermatomarianazunino.com/">
+  <meta property="og:image" content="https://dermatomarianazunino.com/assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Logotipo da Dra. Mariana Zunino, dermatologista em Curitiba">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dra. Mariana Zunino | Dermatologista em Curitiba, Batel">
+  <meta name="twitter:description" content="Dra. Mariana Zunino, dermatologista em Curitiba (Batel). Dermatologia clínica e estética com atendimento particular. Agende sua consulta pelo WhatsApp.">
+  <meta name="twitter:image" content="https://dermatomarianazunino.com/assets/og-image.jpg">
+  <meta name="twitter:image:alt" content="Logotipo da Dra. Mariana Zunino, dermatologista em Curitiba">
+
+  <link rel="manifest" href="manifest.webmanifest">
 
   <link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml" sizes="any">
   <link rel="icon" href="assets/logo/favicon-32.png" type="image/png" sizes="32x32">
@@ -31,6 +44,83 @@
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/sections.css">
+
+  <!-- Dados estruturados (SEO local). NAP igual ao texto visível do site.
+       NÃO incluir aggregateRating nem review: o Google trata avaliações do próprio site como autopromoção.
+       "image" usa a og-image provisória: trocar quando houver foto aprovada.
+       NOME ALTERNATIVO (desativado, confirmar com a cliente): para ativar, acrescentar ao bloco Physician, depois de "name":
+         "alternateName": "Mariana Martins Bardou Zunino", -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": [
+    "Physician",
+    "MedicalBusiness"
+  ],
+  "@id": "https://dermatomarianazunino.com/#consultorio",
+  "name": "Dra. Mariana Zunino",
+  "medicalSpecialty": "Dermatology",
+  "url": "https://dermatomarianazunino.com/",
+  "image": "https://dermatomarianazunino.com/assets/og-image.jpg",
+  "logo": "https://dermatomarianazunino.com/assets/logo/logo-horizontal-header.svg",
+  "telephone": "+55-41-99178-0320",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Avenida Sete de Setembro, 4214, Edifício Business Offices, sala 1304",
+    "addressLocality": "Curitiba",
+    "addressRegion": "PR",
+    "postalCode": "80250-085",
+    "addressCountry": "BR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -25.4426827,
+    "longitude": -49.2794436
+  },
+  "hasMap": "https://www.google.com/maps?cid=11232544285409833721",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "09:00",
+      "closes": "12:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "13:00",
+      "closes": "18:00"
+    }
+  ],
+  "areaServed": "Curitiba",
+  "sameAs": [
+    "https://www.instagram.com/marianazunino.dermato/",
+    "https://www.google.com/maps?cid=11232544285409833721"
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://dermatomarianazunino.com/#website",
+  "name": "Dra. Mariana Zunino",
+  "url": "https://dermatomarianazunino.com/",
+  "inLanguage": "pt-BR"
+}
+  </script>
 </head>
 <body id="topo">
   <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
@@ -39,7 +129,7 @@
     <div class="container container--wide site-header__bar">
       <a class="site-header__logo" href="#topo" aria-label="Voltar ao início">
         <!-- Variação horizontal para header (SUGESTÃO aprovada): monograma + nome na mesma linha -->
-        <img src="assets/logo/logo-horizontal-header.svg" alt="Mariana Zunino" width="3092" height="413">
+        <img src="assets/logo/logo-horizontal-header.svg" alt="Logotipo da Dra. Mariana Zunino, dermatologista" width="3092" height="413">
       </a>
 
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu">
@@ -457,7 +547,7 @@
                 <svg class="dados__icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.5 20.5 5 16A8.5 8.5 0 1 1 8 19l-4.5 1.5Z"/><path d="M9.2 8.8c0 3 2.2 5.4 5.4 6.2l1.2-1.4-2-1-.9.8a4.5 4.5 0 0 1-1.9-1.9l.8-.9-1-2-1.6 1.2Z"/></svg>
                 <span class="dados__corpo">
                   <span class="dados__rotulo">WhatsApp</span>
-                  <span><a href="https://wa.me/5541991780320?text=Ol%C3%A1%2C%20Dra.%20Mariana!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener noreferrer">(41) 99178-0320<span class="visually-hidden"> (abre o WhatsApp em nova aba)</span></a> <span aria-hidden="true">|</span> <a href="tel:+5541991780320">Ligar</a></span>
+                  <span><a href="https://wa.me/5541991780320?text=Ol%C3%A1%2C%20Dra.%20Mariana!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener noreferrer">(41) 99178-0320<span class="visually-hidden"> (abre o WhatsApp em nova aba)</span></a> <span aria-hidden="true">|</span> <a href="tel:+5541991780320">Ligar<span class="visually-hidden"> para (41) 99178-0320</span></a></span>
                 </span>
               </span>
             </li>
@@ -493,13 +583,13 @@
 
         <!-- Mapa do perfil oficial no Google (cid 11232544285409833721, place ID 0x94dce3403684883b:0x9be20383d7b272f9, coordenadas -25.4426827,-49.2794436).
              O iframe do Google só é criado (js/main.js) depois do clique em "Ver mapa". Sem JavaScript, o link do noscript abre o Google Maps. -->
-        <div class="mapa" data-anim="fade" data-mapa-src="https://www.google.com/maps?cid=11232544285409833721&amp;output=embed" data-mapa-titulo="Mapa com a localização do consultório da Dra. Mariana Zunino: Avenida Sete de Setembro, 4214, sala 1304, Batel, Curitiba">
+        <div class="mapa" data-anim="fade" data-mapa-src="https://www.google.com/maps?cid=11232544285409833721&amp;output=embed" data-mapa-titulo="Mapa com a localização do consultório da Dra. Mariana Zunino: Avenida Sete de Setembro, 4214, Edifício Business Offices, sala 1304, Batel, Curitiba/PR, CEP 80250-085">
           <div class="mapa__previa">
             <svg class="mapa__icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>
-            <p class="mapa__endereco">Avenida Sete de Setembro, 4214, sala 1304, Batel, Curitiba/PR</p>
+            <p class="mapa__endereco">Avenida Sete de Setembro, 4214, Edifício Business Offices, sala 1304, Batel, Curitiba/PR, CEP 80250-085</p>
             <button class="btn btn--primary mapa__botao" type="button">Ver mapa</button>
             <noscript><a class="btn btn--primary" href="https://www.google.com/maps?cid=11232544285409833721" target="_blank" rel="noopener noreferrer">Abrir no Google Maps<span class="visually-hidden"> (abre em nova aba)</span></a></noscript>
-            <p class="mapa__aviso">Ao ver o mapa, o Google recebe os dados do seu acesso. <a href="privacidade.html#mapa">Saiba mais</a>.</p>
+            <p class="mapa__aviso">Ao ver o mapa, o Google recebe os dados do seu acesso, como explica a <a href="privacidade.html#mapa">política de privacidade</a>.</p>
           </div>
         </div>
       </div>
@@ -510,14 +600,14 @@
     <div class="container site-footer__inner">
       <div class="site-footer__top" data-anim="fade">
         <a class="site-footer__logo" href="#topo" aria-label="Voltar ao início">
-          <img src="assets/logo/logo-horizontal-original-claro.svg" alt="Mariana Zunino" width="3092" height="413" loading="lazy">
+          <img src="assets/logo/logo-horizontal-original-claro.svg" alt="Logotipo da Dra. Mariana Zunino, dermatologista" width="3092" height="413" loading="lazy">
         </a>
         <p class="site-footer__id">Dra. Mariana Zunino, Dermatologista, CRM/PR 26153, RQE 19939</p>
       </div>
 
       <div class="site-footer__cols" data-anim="fade">
         <ul class="site-footer__contato">
-          <li>Av. Sete de Setembro, 4214, sala 1304, Batel, Curitiba/PR</li>
+          <li>Avenida Sete de Setembro, 4214, Edifício Business Offices, sala 1304, Batel, Curitiba/PR, CEP 80250-085</li>
           <li><a class="hover-underline" href="https://wa.me/5541991780320?text=Ol%C3%A1%2C%20Dra.%20Mariana!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener noreferrer">WhatsApp (41) 99178-0320<span class="visually-hidden"> (abre em nova aba)</span></a></li>
           <li><a class="hover-underline" href="https://www.instagram.com/marianazunino.dermato/" target="_blank" rel="noopener noreferrer">Instagram @marianazunino.dermato<span class="visually-hidden"> (abre em nova aba)</span></a></li>
         </ul>
