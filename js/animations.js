@@ -154,19 +154,19 @@
         });
       },
 
-      /* 9 e 16. Valores: o losango é desenhado (DrawSVG) e só depois a palavra aparece */
+      /* 9 e 16. Valores: células entram em stagger curto; o losango é desenhado (DrawSVG) dentro de cada uma */
       valores: function (ul) {
         var items = $$(':scope > li', ul);
         items.forEach(function (li) {
+          gsap.set(li, { autoAlpha: 0, y: 16 });
           gsap.set($$('.valor__icone path', li), { drawSVG: '0%' });
-          gsap.set($$('span', li), { autoAlpha: 0, y: 10 });
         });
         gsap.set(ul, { autoAlpha: 1 });
-        var tl = gsap.timeline({ scrollTrigger: { trigger: ul, start: 'top 88%', once: true } });
+        var tl = gsap.timeline({ scrollTrigger: { trigger: ul, start: 'top 90%', once: true } });
         items.forEach(function (li, i) {
-          var at = i * 0.18, draw = 1.1 * k;
-          tl.to($$('.valor__icone path', li), { drawSVG: '100%', duration: draw, ease: 'power3.inOut' }, at);
-          tl.to($$('span', li), { autoAlpha: 1, y: 0, duration: 0.9 * k, ease: EASE }, at + draw);
+          var at = i * 0.1;
+          tl.to(li, { autoAlpha: 1, y: 0, duration: 0.9 * k, ease: EASE }, at);
+          tl.to($$('.valor__icone path', li), { drawSVG: '100%', duration: 1 * k, ease: 'power3.inOut' }, at + 0.2);
         });
       },
 

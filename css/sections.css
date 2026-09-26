@@ -87,21 +87,30 @@
 .abordagem__assinatura { margin-top: var(--space-6); font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: 1.5rem; line-height: 1.25; color: var(--color-brand-graphite); }
 .abordagem__corpo { display: grid; gap: var(--space-8); }
 .abordagem__texto { max-width: 44ch; margin: 0; }
-/* Grade de 2 colunas; o 5º valor (Essência) fica centralizado na última linha */
-.valores__lista { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6) var(--space-4); padding: 0; margin: 0; }
-.valor { display: flex; align-items: center; gap: var(--space-3); min-width: 0; }
-.valor:last-child { grid-column: 1 / -1; justify-self: center; }
-.valor span { font-family: var(--font-body); font-size: 0.8125rem; font-weight: 500; line-height: 1.3; text-transform: uppercase; letter-spacing: var(--ls-caps); overflow-wrap: anywhere; }
-.valor__icone { flex: none; width: 1.25rem; height: 1.25rem; fill: none; stroke: var(--color-brand-bronze); stroke-width: 1; }
+/* Grade de valores: cada valor é uma célula com borda de 1px em bronze a 50%. Mobile: 2 colunas, Essência ocupa as duas. */
+.valores__lista { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; padding: 0; margin: 0; width: 100%; }
+.valor {
+  display: flex; align-items: center; gap: 8px; min-width: 0; padding: 14px 16px;
+  border: 1px solid rgb(160 129 92 / 50%); border-radius: 0; transition: background-color 0.3s ease;
+}
+.valor:last-child { grid-column: 1 / -1; justify-content: center; }
+.valor span { font-family: var(--font-body); font-size: 0.8125rem; font-weight: 500; line-height: 1.3; text-transform: uppercase; letter-spacing: 0.12em; color: var(--color-brand-graphite); white-space: nowrap; }
+.valor__icone { flex: none; width: 1.125rem; height: 1.125rem; fill: none; stroke: var(--color-brand-bronze); stroke-width: 1; }
 .valor__icone path { vector-effect: non-scaling-stroke; }
+@media (max-width: 23.75rem) { .valor { padding-inline: 12px; gap: 6px; } .valor span { letter-spacing: 0.06em; } }
 @media (min-width: 64rem) {
   .abordagem__inner.container { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--space-16); align-items: start; padding-inline: var(--gutter-desktop); }
   .abordagem__eyebrow { grid-column: 1 / -1; }
   .abordagem__frase { font-size: clamp(2.5rem, 3vw + 1rem, 3.25rem); }
   .abordagem__aspas { font-size: 6rem; height: 2.75rem; }
   .abordagem__texto { max-width: none; }
-  .valores__lista { column-gap: var(--space-8); }
+  /* 5 células em uma linha só, na largura total do bloco (a meia coluna não comporta CRESCIMENTO) */
+  .valores__lista { grid-column: 1 / -1; grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .valor { padding-inline: 12px; gap: 8px; }
+  .valor:last-child { grid-column: auto; justify-content: flex-start; }
+  .valor span { font-size: 0.875rem; }
 }
+@media (min-width: 64rem) and (hover: hover) { .valor:hover { background-color: rgb(160 129 92 / 8%); } }
 
 /* Faixa CTA: bordô com texto claro (#e9e6e1 sobre #762d2d = 7,7:1) e botão invertido */
 .cta { text-align: center; }
