@@ -299,6 +299,15 @@
       var toggle = document.querySelector('.menu-toggle');
       if (!bar) return;
       var hidden = false;
+      var locked = false;   // durante a rolagem de um link do menu o header fica visível, para a seção encostar na base dele
+      function unlock() { locked = false; }
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest && e.target.closest('a[href^="#"]');
+        if (!a || a.getAttribute('href') === '#topo' || a.classList.contains('site-header__logo')) return;
+        locked = true; set(false);
+        window.setTimeout(unlock, 1600);
+      });
+      ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (t) { window.addEventListener(t, unlock, { passive: true }); });
       function set(hide) {
         if (hide === hidden) return;
         hidden = hide;
@@ -308,7 +317,7 @@
         start: 0, end: 'max',
         onUpdate: function (self) {
           var menuOpen = toggle && toggle.getAttribute('aria-expanded') === 'true';
-          if (menuOpen || self.scroll() < bar.offsetHeight * 1.5) { set(false); return; }
+          if (menuOpen || locked || self.scroll() < bar.offsetHeight * 1.5) { set(false); return; }
           if (self.direction === 1) set(true);
           else if (self.direction === -1) set(false);
         }

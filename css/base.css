@@ -3,7 +3,9 @@
 /* Reset */
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 5.5rem; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+/* Links do menu: o topo da seção encosta na base do header (--header-h é medido pelo main.js) */
+main > section[id] { scroll-margin-top: var(--header-h, 5rem); }
 body {
   min-height: 100vh;
   background: var(--color-bg);
