@@ -80,4 +80,15 @@
     if (window.ResizeObserver) new ResizeObserver(setHeaderH).observe(header);
     else window.addEventListener('resize', setHeaderH);
   }
+  /* Logo do header: volta ao topo (suave, ou instantâneo com movimento reduzido), fecha o menu mobile e deixa a URL limpa */
+  var logo = document.querySelector('.site-header__logo');
+  if (logo) {
+    logo.addEventListener('click', function (event) {
+      event.preventDefault();
+      if (toggle && toggle.getAttribute('aria-expanded') === 'true') toggle.click();
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, left: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+      if (window.location.hash) history.replaceState(null, '', window.location.pathname + window.location.search);
+    });
+  }
 })();
