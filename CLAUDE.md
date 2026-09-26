@@ -6,9 +6,9 @@ Construir uma landing page responsiva para **Dra. Mariana Zunino, Dermatologista
 ## Fontes de verdade
 1. `content.md`: textos e dados profissionais extraídos do material.
 2. `design-system.md`: identidade, acessibilidade, UI e regras de uso.
-3. `tokens.css` e `tokens.json`: tokens de implementação.
+3. `site/css/tokens.css` e `tokens.json`: tokens de implementação.
 4. `assets.md`: proveniência e status de cada asset.
-5. `assets/logo/`: SVGs preparados para implementação.
+5. `site/assets/logo/`: SVGs preparados para implementação (só os usados; os demais ficam em `_originais/logos-nao-usadas/`).
 6. `referencia/REFERENCIA.md`: referência de estrutura/estilo de layout observada em site análogo.
 7. `referencia/screens/`: capturas de tela da referência visual.
 
@@ -22,17 +22,18 @@ Construir uma landing page responsiva para **Dra. Mariana Zunino, Dermatologista
 - Para texto corrido, priorizar contraste WCAG AA. Não usar `#a0815c` ou `#d0baa0` como texto pequeno sobre branco.
 - A fonte Collection New Style exige licença comercial/web apropriada antes de uso em site. Até a licença ser fornecida, não carregar arquivo de fonte não licenciado.
 - SALVAGER consta no manual, mas arquivo/licença não foram fornecidos. Não presumir direito de uso web.
-- Cormorant Garamond 500 e 600 é hospedada em `assets/fonts/` (woff2 latin, licença SIL OFL 1.1 em `assets/fonts/OFL.txt`), não mais pelo Google Fonts. É cópia modificada da v4.001: os acentos de U+00C0 a U+00FF foram recentralizados na horizontal, porque no original o acento sai deslocado para o lado. Não voltar a carregar a versão do Google.
+- Cormorant Garamond 500 e 600 é hospedada em `site/assets/fonts/` (woff2 latin, licença SIL OFL 1.1 em `site/assets/fonts/OFL.txt`), não mais pelo Google Fonts. É cópia modificada da v4.001: os acentos de U+00C0 a U+00FF foram recentralizados na horizontal, porque no original o acento sai deslocado para o lado. Não voltar a carregar a versão do Google.
 - Desktop (1024px+ de largura e 600px+ de altura): cada seção ocupa `100svh - --header-h` (o `main.js` mede o header), com conteúdo centralizado e medidas por vh. Abaixo disso, altura natural.
 - Poppins pode ser carregada via Google Fonts. Enquanto SALVAGER não tiver licença webfont, usar Cormorant Garamond (SUBSTITUTA, SUGESTÃO) no display: só a partir de 24px, peso 500 na headline e 600 nos títulos em caixa alta, nunca 300. Abaixo de 24px, Poppins. Assinatura cursiva somente via logo SVG.
 - Nunca usar no site: a pesquisa de valores da p. 10 do PDF, a foto de família da p. 21 e as imagens de banco da p. 20.
 - Formação acadêmica: AGUARDANDO CLIENTE. Construir sem ela, com bloco comentado no HTML.
 - Avaliações do Google só entram se forem sóbrias: sem superlativos ("a melhor", "excelente", "impecável"), sem promessa ou descrição de resultado, sem elogio à técnica ou ao resultado de procedimentos e sem detalhe de saúde do paciente (Resolução CFM 2.336/2023). No máximo um corte por texto, marcado com reticências, e nunca alterar palavras, nem corrigir erros de digitação. Sem data no card. O registro dos textos e links fica em `content.md`.
 - Não usar em-dash nos textos do projeto.
-- `_originais/` contém os arquivos-fonte da marca (PSD, EPS, PDF). Consulte se precisar, mas o site usa somente os arquivos de `assets/`.
+- `_originais/` contém os arquivos-fonte da marca (PSD, EPS, PDF). Consulte se precisar, mas o site usa somente os arquivos de `site/assets/`. `_originais/`, `_testes/` e `referencia/` não vão para o git (`.gitignore`) e nunca são publicados.
+- **Somente a pasta `site/` é publicada.** Na raiz ficam apenas documentos de trabalho (CLAUDE.md, content.md, design-system.md, assets.md, tokens.json, AUDITORIA.md) e as pastas de material de apoio.
 
 ## Padrões de animação (GSAP)
-Toda seção nova (Contato, Rodapé, CTA final e o que vier depois) segue este sistema. A lógica fica em `js/animations.js`; a seção só precisa dos atributos e da estrutura abaixo. Não criar animações soltas em `main.js` nem em CSS de entrada.
+Toda seção nova (Contato, Rodapé, CTA final e o que vier depois) segue este sistema. A lógica fica em `site/js/animations.js`; a seção só precisa dos atributos e da estrutura abaixo. Não criar animações soltas em `main.js` nem em CSS de entrada.
 
 **Setup:** GSAP 3.15 via jsDelivr (`gsap`, `ScrollTrigger`, `SplitText`, `DrawSVGPlugin`, todos gratuitos), scripts com `defer` e `integrity` (SRI), nessa ordem, antes de `main.js` e `animations.js`.
 
@@ -69,33 +70,24 @@ O hero usa `data-hero` (`eyebrow`, `title`, `subtitle`, `creds`, `cta`, `note`, 
 ## Texto em Unicode NFC
 Todo texto do projeto (HTML, MD, CSS, JS, JSON) deve estar em NFC (letra acentuada em um único code point, ex.: `ê` = U+00EA). Texto copiado de PDF pode vir em NFD (letra + acento combinante U+0300 a U+036F), que desloca os acentos em algumas fontes. Antes de commitar, conferir com: `python -c "import re,sys;print(len(re.findall('[\u0300-\u036f]',open(sys.argv[1],encoding='utf8').read())))" arquivo` (deve dar 0) e normalizar com `unicodedata.normalize('NFC', texto)`.
 
-## Estrutura recomendada do projeto
+## Estrutura do projeto
 ```text
 projeto-dra-mariana/
-├── CLAUDE.md
-├── design-system.md
-├── content.md
-├── assets.md
-├── tokens.css
-├── tokens.json
-├── assets/
-│   ├── logo/
-│   │   ├── logo-principal.svg
-│   │   ├── logo-simbolo.svg
-│   │   ├── logo-selo.svg
-│   │   ├── logo-escala-cinza.svg
-│   │   ├── logo-negativa.svg
-│   │   ├── logo-positiva.svg
-│   │   ├── logo-selo-escala-cinza.svg
-│   │   ├── logo-selo-negativa.svg
-│   │   ├── logo-selo-positiva.svg
-│   │   └── favicon.svg
-│   └── img/
-├── referencia/
-│   ├── REFERENCIA.md
-│   ├── reference-tokens.css
-│   └── screens/
-└── _originais/
+├── CLAUDE.md, content.md, design-system.md, assets.md, tokens.json, AUDITORIA.md   (documentos de trabalho)
+├── .gitignore                       (ignora _originais/, _testes/, referencia/, .DS_Store, Thumbs.db)
+├── site/                            (ÚNICA pasta publicada)
+│   ├── index.html
+│   ├── privacidade.html             (quando existir)
+│   ├── robots.txt, sitemap.xml      (quando houver domínio)
+│   ├── css/  (tokens.css, base.css, components.css, sections.css)
+│   ├── js/   (main.js, carrossel.js, animations.js)
+│   └── assets/
+│       ├── fonts/   (Cormorant Garamond, Poppins, OFL.txt)
+│       ├── logo/    (somente os SVG/PNG usados)
+│       └── vendor/  (GSAP, Swiper, quando hospedados)
+├── _originais/       (PSD, EPS, PDF, logos não usadas; fora do git)
+├── _testes/          (páginas de teste; fora do git)
+└── referencia/       (capturas e notas de outro site; fora do git)
 ```
 
 ## Estrutura da landing page
