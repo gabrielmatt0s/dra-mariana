@@ -73,43 +73,72 @@
   .li--end-desktop .line--bottom { display: block; }
 }
 
-/* Minha abordagem (versão C, citação, com a grade de valores da versão D). Sem grafismo atrás de texto.
-   Frase e aspas em Playfair Display 500: o acento agudo/circunflexo do Cormorant Garamond sai deslocado à direita (ver _testes/teste-acentos.html). Texto #414042 sobre #e9e6e1 = 8,3:1. */
-.abordagem { border-block: 1px solid var(--color-brand-bronze); }
-.abordagem__inner.container { display: grid; gap: var(--space-8); padding-inline: max(var(--gutter-mobile), 1.5rem); text-align: left; }
-.abordagem__eyebrow { margin: 0; }
-.abordagem__quote { margin: 0; }
-.abordagem__aspas { display: block; font-family: 'Playfair Display', Georgia, serif; font-weight: 500; font-size: 5rem; line-height: 0.7; height: 2.25rem; color: var(--color-brand-bronze); }
-.abordagem__frase {
-  max-width: 22ch; margin: 0; font-family: 'Playfair Display', Georgia, serif; font-weight: 500;
-  font-size: clamp(1.75rem, 5vw + 0.75rem, 2.75rem); line-height: 1.2; letter-spacing: 0; text-wrap: balance;
+/* Minha abordagem: dois layouts com o mesmo HTML. Desktop (768px+): tudo centralizado (título, frase, subtítulo, valores em linha, parágrafo).
+   Mobile (até 767px): citação (eyebrow, aspas, frase, parágrafo, assinatura, valores em células). Fundo off-white; texto #414042 sobre #e9e6e1 = 8,3:1. */
+.abordagem { --col: 44rem; --lados: 1.5rem; position: relative; overflow: hidden; border-block: 1px solid var(--color-brand-bronze); }
+@media (min-width: 64rem) { .abordagem { --col: 64rem; } }
+
+/* Grafismo lateral (só desktop): ocupa a folga entre a coluna de texto (--col) e a borda da seção, com 1,5rem de respiro.
+   A parte visível é metade da largura do SVG (a outra metade vaza pela borda), então nunca invade o texto. */
+.abordagem__losangos {
+  display: none;
+  position: absolute; top: 30%; height: auto; transform: translateY(-50%);
+  width: max(0px, calc(100% - var(--col) - 2 * var(--lados)));
+  right: calc((100% - var(--col) - 2 * var(--lados)) / -2);
+  fill: none; stroke: var(--color-brand-bronze); stroke-width: 1; opacity: 0.75; pointer-events: none;
 }
-.abordagem__assinatura { margin-top: var(--space-6); font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: 1.5rem; line-height: 1.25; color: var(--color-brand-graphite); }
-.abordagem__corpo { display: grid; gap: var(--space-8); }
-.abordagem__texto { max-width: 44ch; margin: 0; }
-/* Grade de 2 colunas; o 5º valor (Essência) fica centralizado na última linha */
-.valores__lista { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6) var(--space-4); padding: 0; margin: 0; }
-.valor { display: flex; align-items: center; gap: var(--space-3); min-width: 0; }
-.valor:last-child { grid-column: 1 / -1; justify-self: center; }
-.valor span { font-family: var(--font-body); font-size: 0.8125rem; font-weight: 500; line-height: 1.3; text-transform: uppercase; letter-spacing: var(--ls-caps); overflow-wrap: anywhere; }
-.valor__icone { flex: none; width: 1.25rem; height: 1.25rem; fill: none; stroke: var(--color-brand-bronze); stroke-width: 1; }
+.abordagem__losangos--left { right: auto; left: calc((100% - var(--col) - 2 * var(--lados)) / -2); }
+.abordagem__losangos path { vector-effect: non-scaling-stroke; }
+
+.abordagem__inner.container { position: relative; z-index: 1; display: flex; flex-direction: column; gap: var(--space-8); max-width: none; padding-inline: 0; width: min(var(--col), calc(100% - 3rem)); }
+.abordagem__inner .title-section { margin-bottom: 0; }
+.abordagem__quote { margin: 0; }
+.abordagem__aspas, .abordagem__assinatura { display: none; }
+.abordagem__frase { margin: 0; font-family: var(--font-display); font-weight: var(--fw-headline); line-height: 1.15; letter-spacing: 0; text-wrap: balance; }
+.valores__titulo { text-wrap: balance; }
+.valor { display: flex; align-items: center; gap: var(--space-3); }
+.valor__icone { flex: none; fill: none; stroke: var(--color-brand-bronze); stroke-width: 1; }
 .valor__icone path { vector-effect: non-scaling-stroke; }
-/* Mobile (até 767px): cada valor vira uma célula com borda fina em bronze a 50%. Não vale de 768px para cima. */
+.abordagem__texto { margin: 0; }
+.valores__lista { list-style: none; padding: 0; margin: 0; }
+
+/* Desktop (768px+): layout original centralizado */
+@media (min-width: 48rem) {
+  .abordagem__losangos { display: block; }
+  .abordagem__inner.container { align-items: center; text-align: center; }
+  .abordagem__quote { display: contents; }
+  .abordagem__frase { max-width: 20ch; font-size: clamp(2rem, 5vw + 1rem, 3.5rem); }
+  .valores { width: 100%; }
+  .valores__titulo { margin-bottom: var(--space-6); }
+  .valores__lista { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: var(--space-4) var(--space-12); }
+  .valor span { font-family: var(--font-display); font-size: 1.5rem; font-weight: var(--fw-title); line-height: 1.25; text-transform: uppercase; letter-spacing: var(--ls-caps); }
+  .valor__icone { width: 1.5rem; height: 1.5rem; }
+  .abordagem__texto { max-width: 44rem; }
+}
+@media (min-width: 80rem) { .valores__lista { flex-wrap: nowrap; } }
+
+/* Mobile (até 767px): citação, alinhada à esquerda, com 24px de lado */
 @media (max-width: 47.9375rem) {
-  .valores__lista { gap: 8px; width: 100%; }
-  .valor { padding: 14px 16px; border: 1px solid rgb(160 129 92 / 50%); border-radius: 0; }
-  .valor:last-child { justify-content: center; }
-  .valor span { font-size: 0.8125rem; letter-spacing: 0.12em; color: var(--color-brand-graphite); white-space: nowrap; }
+  .abordagem__inner.container { text-align: left; }
+  .abordagem__titulo {
+    display: flex; align-items: center; gap: var(--space-3); margin: 0;
+    font-family: var(--font-body); font-size: var(--fs-small); font-weight: 500; line-height: 1.5; letter-spacing: 0.14em; color: var(--color-brand-burgundy);
+  }
+  .abordagem__titulo::before { content: ''; flex: none; width: 3rem; height: 1px; background: var(--color-brand-bronze); }
+  .abordagem__aspas { display: block; font-family: var(--font-display); font-weight: var(--fw-headline); font-size: 5rem; line-height: 0.7; height: 2.25rem; color: var(--color-brand-bronze); }
+  .abordagem__frase { max-width: 22ch; font-size: clamp(1.75rem, 5vw + 0.75rem, 2.75rem); line-height: 1.2; }
+  .abordagem__assinatura { display: block; margin-top: var(--space-6); font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: 1.5rem; line-height: 1.25; color: var(--color-brand-graphite); }
+  .valores__titulo { display: none; }
+  .abordagem__texto { order: 1; max-width: 44ch; }
+  .valores { order: 2; }
+  /* Células: borda fina em bronze a 50%; Essência ocupa as duas colunas */
+  .valores__lista { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; width: 100%; }
+  .valor { min-width: 0; gap: 8px; padding: 14px 16px; border: 1px solid rgb(160 129 92 / 50%); border-radius: 0; }
+  .valor:last-child { grid-column: 1 / -1; justify-content: center; }
+  .valor span { font-family: var(--font-body); font-size: 0.8125rem; font-weight: 500; line-height: 1.3; text-transform: uppercase; letter-spacing: 0.12em; color: var(--color-brand-graphite); white-space: nowrap; }
+  .valor__icone { width: 1.125rem; height: 1.125rem; }
 }
 @media (max-width: 23.75rem) { .valor { padding-inline: 12px; gap: 6px; } .valor span { letter-spacing: 0.06em; } }
-@media (min-width: 64rem) {
-  .abordagem__inner.container { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--space-16); align-items: start; padding-inline: var(--gutter-desktop); }
-  .abordagem__eyebrow { grid-column: 1 / -1; }
-  .abordagem__frase { font-size: clamp(2.5rem, 3vw + 1rem, 3.25rem); }
-  .abordagem__aspas { font-size: 6rem; height: 2.75rem; }
-  .abordagem__texto { max-width: none; }
-  .valores__lista { column-gap: var(--space-8); }
-}
 
 /* Faixa CTA: bordô com texto claro (#e9e6e1 sobre #762d2d = 7,7:1) e botão invertido */
 .cta { text-align: center; }
