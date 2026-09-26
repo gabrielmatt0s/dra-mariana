@@ -79,7 +79,7 @@
 
 @media (min-width: 64rem) and (min-height: 600px) {
   .sobre__inner { gap: var(--space-16); }
-  .sobre__photo { width: min(100%, calc((var(--sec-h) - 2 * var(--pad-y)) * 4 / 5)); }
+  .sobre__photo { width: min(100%, calc((var(--sec-h) - 2 * var(--pad-y)) * 2 / 3)); }
   .sobre__text { gap: var(--gap-y); }
 }
 

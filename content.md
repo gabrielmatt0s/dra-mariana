@@ -45,7 +45,7 @@ Fonte: mensagem da cliente (2026-09-25), fora do PDF.
 
 **Título sugerido de seção:** Sobre a Dra. Mariana
 
-**Foto:** retrato de busto da Dra. Mariana (dra2.jpeg, recebido em 26/09/2026), 4:5. Alt: "Dra. Mariana Zunino em retrato, com blusa preta e brincos dourados".
+**Foto:** retrato de busto da Dra. Mariana (dra2.jpeg, recebido em 26/09/2026), foto inteira em 2:3, sem recorte. Alt: "Dra. Mariana Zunino em retrato, com blusa preta e brincos dourados".
 
 **Credencial em destaque (dado confirmado, p. 8):** Dermatologista, CRM/PR 26153, RQE 19939.
 

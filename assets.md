@@ -47,15 +47,15 @@ Recebidos dois JPEGs (metadados já ausentes, sRGB), guardados sem alteração e
 | Original | Resolução | Uso | Recorte |
 |---|---|---|---|
 | dra1.jpeg (sentada no banco, com a revista "VOGUE BELEZA" à mostra) | 1112 x 1600, 90,5 KB | Hero, 3:4 | 990 x 1320, x=110 e y=30, com a Dra. centrada no quadro e mais ar ao redor. Sem retoque |
-| dra2.jpeg (retrato de busto, luz lateral) | 1066 x 1600, 102,8 KB | Sobre, 4:5 | 1010 x 1263, x=56 e y=0, com a Dra. centrada no quadro e mais ar ao redor. Sem retoque |
+| dra2.jpeg (retrato de busto, luz lateral) | 1066 x 1600, 102,8 KB | Sobre, 2:3 | Foto inteira, 1066 x 1600, sem recorte (a foto termina na altura do quadril). Sem retoque |
 
 Versões em `site/assets/img/` (`dra-mariana-zunino-hero-{480,800,1200}` e `dra-mariana-zunino-sobre-{480,800,1200}`), geradas com sharp (Lanczos3), sem metadados, com perfil sRGB embutido. Só recorte, redimensionamento e compressão: AVIF q50, WebP q75, JPEG q80 progressivo (mozjpeg).
 | Arquivo | 480 | 800 | 1200 |
 |---|---|---|---|
 | hero AVIF / WebP / JPEG (KB) | 8,9 / 11,4 / 20,4 | 17,2 / 21,8 / 42,1 | 28,0 / 34,9 / 72,4 |
-| sobre AVIF / WebP / JPEG (KB) | 9,7 / 12,2 / 21,8 | 20,6 / 26,6 / 48,8 | 36,4 / 44,6 / 89,8 |
+| sobre AVIF / WebP / JPEG (KB) | 10,3 / 12,7 / 23,3 | 21,3 / 27,1 / 50,9 | 37,4 / 46,5 / 94,2 |
 
-Atenção: como o recorte centrado usa só 990 e 1010 px de largura, as versões de 1200 px são ampliações de cerca de 21% (hero) e 19% (Sobre); as de 800 px não são ampliadas. Se a cliente enviar as fotos em resolução maior, refazer os recortes.
+Atenção: como o recorte do hero usa só 990 px de largura e a foto do Sobre tem 1066 px, as versões de 1200 px são ampliações de cerca de 21% (hero) e 13% (Sobre); as de 800 px não são ampliadas. Se a cliente enviar as fotos em resolução maior, refazer os recortes.
 Para a Dra. aparecer inteira e centrada, a folga vertical das fotos passou de 10% para 4% (`.photo__inner` em `components.css`) e o parallax de ±8% para ±3,5% (`animations.js`).
 Pendente com a cliente: a capa da revista "VOGUE" na foto do hero pode sugerir matéria ou parceria; confirmar o respaldo antes de publicar.
 
