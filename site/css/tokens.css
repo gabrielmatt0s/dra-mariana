@@ -4,6 +4,8 @@
   /* EXTRAÍDO: MarianaZunino.pdf p.18 */
   --color-brand-bronze: #a0815c;
   --color-brand-sand: #d0baa0;
+  /* SUGESTÃO (não consta no material): bronze escurecido só para ornamentos grandes de texto (aspas). #957650 dá 3,4:1 sobre #e9e6e1 e 4,2:1 sobre branco. */
+  --color-brand-bronze-text: #957650;
   --color-brand-offwhite: #e9e6e1;
   --color-white: #ffffff;
   --color-brand-burgundy: #762d2d;

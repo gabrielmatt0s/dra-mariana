@@ -97,3 +97,7 @@ p { max-width: 65ch; }
 .section--burgundy { background: var(--color-brand-burgundy); color: var(--color-brand-offwhite); }
 /* Fundos escuros: foco em areia/claro (o bordô do foco padrão some sobre bordô e grafite) */
 .section--burgundy :focus-visible, .site-footer :focus-visible { outline-color: var(--color-brand-offwhite); }
+
+/* Quebra de linha: títulos equilibrados e parágrafos sem palavra sozinha na última linha */
+h1, h2, h3, .cta__title { text-wrap: balance; }
+p { text-wrap: pretty; }

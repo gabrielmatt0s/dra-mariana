@@ -85,7 +85,7 @@
   }
   .site-nav__list { flex-direction: row; gap: 1.25rem; }
   .site-nav__list a {
-    padding: var(--space-2) 0; font-size: var(--fs-small); font-weight: 500;
+    padding: 0.6875rem 0; font-size: var(--fs-small); font-weight: 500;
     letter-spacing: 0.08em; white-space: nowrap; border-bottom: 0;
   }
   .site-nav__list a:hover { color: var(--color-text); }
@@ -183,3 +183,8 @@
 /* Botão invertido (faixa bordô): fundo claro, texto bordô (7,7:1) */
 .btn--inverted { background: var(--color-brand-offwhite); color: var(--color-brand-burgundy); }
 .btn--inverted:hover { background: var(--color-white); }
+
+/* Áreas de toque de pelo menos 44 x 44 px */
+.site-header__logo { display: flex; align-items: center; min-height: 44px; }
+.site-footer__logo { display: flex; align-items: center; min-height: 44px; }
+.link-cta { min-height: 44px; }

@@ -93,3 +93,46 @@
     io.observe(root);
   }
 })();
+
+/*
+ * Avaliações no desktop baixo (faixa com rolagem lateral, ver css/sections.css): setas, contador e barra de progresso
+ * no mesmo padrão do carrossel de Tratamentos. Fora desse modo os controles ficam ocultos e a lista é grade (ou rolagem nativa no mobile).
+ */
+(function () {
+  'use strict';
+
+  var lista = document.querySelector('.avaliacoes__lista');
+  var controles = document.querySelector('.avaliacoes__controles');
+  if (!lista || !controles) return;
+
+  var ant = controles.querySelector('.avaliacoes__seta--ant');
+  var prox = controles.querySelector('.avaliacoes__seta--prox');
+  var atual = controles.querySelector('.avaliacoes__atual');
+  var total = controles.querySelector('.avaliacoes__total');
+  var fill = controles.querySelector('.avaliacoes__progresso-fill');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function atualiza() {
+    var max = lista.scrollWidth - lista.clientWidth;
+    if (max <= 2) { ant.disabled = true; prox.disabled = true; return; }
+    var paginas = Math.max(1, Math.ceil(lista.scrollWidth / lista.clientWidth - 0.05));
+    var noInicio = lista.scrollLeft <= 2;
+    var noFim = lista.scrollLeft >= max - 2;
+    var pagina = noInicio ? 1 : noFim ? paginas : Math.round(lista.scrollLeft / max * (paginas - 1)) + 1;
+    atual.textContent = String(pagina);
+    total.textContent = String(paginas);
+    fill.style.transform = 'scaleX(' + Math.min(1, (lista.scrollLeft + lista.clientWidth) / lista.scrollWidth).toFixed(3) + ')';
+    ant.disabled = noInicio;
+    prox.disabled = noFim;
+  }
+
+  function passo(direcao) {
+    lista.scrollBy({ left: direcao * lista.clientWidth * 0.95, behavior: reduce ? 'auto' : 'smooth' });
+  }
+
+  ant.addEventListener('click', function () { passo(-1); });
+  prox.addEventListener('click', function () { passo(1); });
+  lista.addEventListener('scroll', atualiza, { passive: true });
+  window.addEventListener('resize', atualiza);
+  atualiza();
+})();
