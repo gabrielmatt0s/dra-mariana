@@ -37,8 +37,6 @@ a { color: inherit; }
    centralizado sobre a letra. No original o acento sai deslocado para o lado (ex.: "é" +7,1% do corpo, "ó" +4,8%, "ê" +2,5%). */
 @font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 500; font-display: swap; src: url("../assets/fonts/cormorant-garamond-500.woff2") format("woff2"); }
 @font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 600; font-display: swap; src: url("../assets/fonts/cormorant-garamond-600.woff2") format("woff2"); }
-/* Itálico 500 (só a assinatura da abordagem no mobile): arquivo original do Google, sem falso itálico. Sem acentos na frase, então sem a correção de acentos. */
-@font-face { font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 500; font-display: swap; src: url("../assets/fonts/cormorant-garamond-italic-500.woff2") format("woff2"); }
 
 /* Tipografia. Cantos retos em todo o site (radius 0). */
 /* Cormorant Garamond (substituta da Salvager): só a partir de 24px, pesos 500 e 600, nunca 300.

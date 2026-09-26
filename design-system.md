@@ -106,7 +106,7 @@ Fontes **EXTRAÍDAS** da p. 19 do PDF.
 | EXTRAÍDO | Collection New Style | assinatura/script | Não é Google Fonts. Evidência externa indica uso pessoal gratuito e licença comercial necessária. | Reservar para acentos curtos após licenciamento |
 | EXTRAÍDO | Poppins | sans serif | Google Fonts (OFL), hospedada no site | corpo, UI, botões, labels |
 
-Fontes no site: todas hospedadas em `site/assets/fonts/` e declaradas em `site/css/base.css` (Cormorant Garamond 500, 600 e itálico 500; Poppins 400 e 500), sem Google Fonts em tempo de execução. A Cormorant hospedada é cópia modificada (acentos recentralizados), ver `assets.md`.
+Fontes no site: todas hospedadas em `site/assets/fonts/` e declaradas em `site/css/base.css` (Cormorant Garamond 500 e 600; Poppins 400 e 500), sem Google Fonts em tempo de execução. A Cormorant hospedada é cópia modificada (acentos recentralizados), ver `assets.md`.
 
 ### Regra de fontes enquanto não houver licença webfont confirmada
 - **Display: Cormorant Garamond, SUBSTITUTA da SALVAGER** (**SUGESTÃO, decisão da equipe**, não consta no material). Licença OFL, hospedada no site.

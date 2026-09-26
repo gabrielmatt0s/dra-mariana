@@ -80,7 +80,6 @@ Nada é carregado de terceiros junto com a página (o Google Maps só carrega de
 | Arquivo | Origem | Licença | Observação |
 |---|---|---|---|
 | `fonts/cormorant-garamond-500.woff2`, `-600.woff2` | Google Fonts, Cormorant Garamond v4.001, subset latin | SIL OFL 1.1 (`fonts/OFL-Cormorant.txt`) | **Modificada**: acentos de U+00C0 a U+00FF recentralizados na horizontal (no original saem deslocados) |
-| `fonts/cormorant-garamond-italic-500.woff2` | Google Fonts, itálico 500, subset latin | SIL OFL 1.1 | Original, sem modificação. Só a assinatura da abordagem no mobile |
 | `fonts/poppins-400.woff2`, `-500.woff2` | Google Fonts, Poppins v24, latin | SIL OFL 1.1 (`fonts/OFL-Poppins.txt`) | Sem modificação |
 | `vendor/gsap.min.js`, `ScrollTrigger.min.js`, `SplitText.min.js`, `DrawSVGPlugin.min.js` | GSAP 3.15.0 (jsDelivr) | Licença padrão GreenSock (gratuita, inclui os plugins) | Sem modificação |
 | `vendor/swiper-custom.min.js`, `swiper-custom.min.css` | Swiper 14.2.0, build próprio só com Navigation, Pagination, A11y e Keyboard (esbuild) | MIT (`vendor/LICENSE-swiper.txt`) | 88,6 KB (27,4 KB gzip), contra 152,8 KB (43,9 KB gzip) do bundle completo |

@@ -18,7 +18,7 @@ Legenda: **Corrigido**, **Pendente** (depende de algo externo ou de teste futuro
 | P7 / Priv1 terceiros e privacidade | Corrigido | Poppins, GSAP e Swiper locais, sem Google Fonts nem CDN; o iframe do Google Maps só carrega depois do clique em "Ver mapa"; `site/privacidade.html` com link no rodapé. O texto da política é **SUGESTÃO** e precisa da revisão da cliente (Pendente) |
 | P1 `@import` do tokens | Corrigido | `<link>` no `index.html` |
 | P6 preload do Cormorant 600 | Decisão do Gabriel | Nenhum título em peso 600 fica acima da dobra (o hero usa 500), então não foi feito. Foram adicionados preloads do Cormorant 500 e dos dois Poppins |
-| Cormorant itálico 500 | Corrigido | Arquivo próprio para a assinatura, sem falso itálico |
+| Cormorant itálico 500 | Removido | A assinatura da abordagem no mobile foi retirada; o arquivo do itálico saiu do site |
 | P5 SVGs das logos | Corrigido | SVGO: header 36,9 para 22,5 KB, rodapé 35,7 para 21,3 KB, favicon 18,0 para 8,4 KB; diferença visual de no máximo 0,003% dos pixels |
 | P4 GSAP em 4 arquivos | Decisão do Gabriel | Mantido (agora locais, com cache do próprio site). Juntar em um arquivo é possível se quiser menos requisições |
 | B2 aria-label das avaliações | Corrigido | Removido dos 6 cards |
@@ -165,7 +165,7 @@ Não há imagens raster. Nenhum script bloqueia render (todos com `defer`).
 | P8 | 11 dos 16 SVGs de `assets/logo/` não são usados pelo site (~500 KB no repositório, 0 KB transferidos) | `assets/logo/` | Baixo | Mover para `_originais/` ou documentar. Só `logo-horizontal-header`, `logo-horizontal-original-claro` e o favicon são usados |
 | P9 | Nenhum arquivo de `_testes/` é referenciado pelo `index.html`, CSS ou JS (verificado) | n/a | OK | n/a |
 
-Fontes carregadas: **Cormorant Garamond 500 e 600** (local) e **Poppins 400 e 500** (Google Fonts). Nada mais. O itálico do Cormorant usado na assinatura mobile ("Dra. Mariana Zunino") não tem arquivo: o navegador sintetiza o oblíquo (falso itálico). Gravidade baixa; correção: incluir o Cormorant itálico 500 ou trocar o estilo.
+Fontes carregadas: **Cormorant Garamond 500 e 600** (local) e **Poppins 400 e 500** (Google Fonts). Nada mais. O itálico do Cormorant (assinatura mobile) foi removido junto com a assinatura.
 
 Bibliotecas carregadas e não usadas: nenhuma. GSAP (todos os plugins) e Swiper estão em uso. Há **2 handlers mortos** em `animations.js` (ver seção 5).
 

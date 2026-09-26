@@ -191,7 +191,7 @@
 }
 
 /* Minha abordagem: dois layouts com o mesmo HTML. Desktop (768px+): tudo centralizado (título, frase, subtítulo, valores em linha, parágrafo).
-   Mobile (até 767px): citação (eyebrow, aspas, frase, parágrafo, assinatura, valores em células). Fundo off-white; texto #414042 sobre #e9e6e1 = 8,3:1. */
+   Mobile (até 767px): citação (eyebrow, aspas, frase, parágrafo, valores em células). Fundo off-white; texto #414042 sobre #e9e6e1 = 8,3:1. */
 .abordagem { --col: 44rem; --lados: 1.5rem; position: relative; overflow: hidden; border-block: 1px solid var(--color-brand-bronze); }
 @media (min-width: 64rem) { .abordagem { --col: 64rem; } }
 
@@ -210,7 +210,7 @@
 .abordagem__inner.container { position: relative; z-index: 1; display: flex; flex-direction: column; gap: var(--space-8); max-width: none; padding-inline: 0; width: min(var(--col), calc(100% - 3rem)); }
 .abordagem__inner .title-section { margin-bottom: 0; }
 .abordagem__quote { margin: 0; }
-.abordagem__aspas, .abordagem__assinatura { display: none; }
+.abordagem__aspas { display: none; }
 .abordagem__frase { margin: 0; font-family: var(--font-display); font-weight: var(--fw-headline); line-height: 1.15; letter-spacing: 0; text-wrap: balance; }
 .valores__titulo { text-wrap: balance; }
 .valor { display: flex; align-items: center; gap: var(--space-3); }
@@ -244,7 +244,6 @@
   .abordagem__titulo::before { content: ''; flex: none; width: 3rem; height: 1px; background: var(--color-brand-bronze); }
   .abordagem__aspas { display: block; font-family: var(--font-display); font-weight: var(--fw-headline); font-size: 5rem; line-height: 0.7; height: 2.25rem; color: var(--color-brand-bronze-text); }
   .abordagem__frase { max-width: 22ch; font-size: clamp(1.75rem, 5vw + 0.75rem, 2.75rem); line-height: 1.2; }
-  .abordagem__assinatura { display: block; margin-top: var(--space-6); font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: 1.5rem; line-height: 1.25; color: var(--color-brand-graphite); }
   .valores__titulo { display: none; }
   .abordagem__texto { order: 1; max-width: 44ch; }
   .valores { order: 2; }
