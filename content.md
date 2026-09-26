@@ -16,11 +16,12 @@
 ## Contato (informado pela cliente)
 Fonte: mensagem da cliente (2026-09-25), fora do PDF.
 
-- **Endereço:** Avenida Sete de Setembro, 4214, Edifício Business Offices, sala 1304, Batel, Curitiba/PR, CEP 80250-085.
+- **Endereço (NAP oficial, como está no perfil do Google, conferido por Gabriel em 26/09/2026):** Av. Sete de Setembro, 4214 - Sl 1304 - Batel, Curitiba - PR, 80250-085
+- **Linha de apoio (só na seção Contato, não entra no NAP, no rodapé nem no JSON-LD):** Edifício Business Offices.
 - **WhatsApp / telefone (exibição):** (41) 99178-0320.
 - **Link WhatsApp (CTA do hero, botão flutuante e contato):** `https://wa.me/5541991780320?text=Ol%C3%A1%2C%20Dra.%20Mariana!%20Gostaria%20de%20agendar%20uma%20consulta.`
 - **Link telefone:** `tel:+5541991780320`
-- **Instagram:** @marianazunino.dermato, `https://www.instagram.com/marianazunino.dermato/`
+- **Instagram:** @marianazunino.dermato, `https://www.instagram.com/marianazunino.dermato/` (perfil confirmado por Gabriel em 26/09/2026)
 - **Horário:** segunda a sexta, das 9h às 12h e das 13h às 18h.
 - **Atendimento:** particular (não atende convênios). Comunicar de forma discreta, perto do horário ou do CTA de contato, sem tom de barreira. Ex.: "Atendimento particular." em texto de apoio, sem destaque e sem a palavra "não".
 - **Perfil no Google:** `https://share.google/SD7QJqkNnq5ACpZ09`. Usar nos botões "Como chegar" e "Ver avaliações no Google". Não exibir notas, contagens ou trechos de avaliações (não fornecidos).
@@ -222,7 +223,6 @@ WhatsApp, mesmo link do CTA do hero (ver "Contato").
 - Fotos originais em alta resolução, com autorização de uso web.
 - Licença webfont de SALVAGER e Collection New Style.
 - Confirmação da cliente sobre citar marcas comerciais (Sculptra, Radiesse, Skinbooster, Profhilo). Site sem marcas por enquanto.
-- Links individuais das 6 avaliações do Google (cards apontam para o perfil; comentário no `index.html`).
 - E-mail.
 - Preços.
 - URL de site próprio.

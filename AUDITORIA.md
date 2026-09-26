@@ -11,7 +11,7 @@ Legenda: **Corrigido**, **Pendente** (depende de algo externo ou de teste futuro
 | C1 trabalho sem commit | Corrigido | Commitado ("tratamentos em vidro fosco e altura exata das secoes") |
 | C2 `_originais/`, `referencia/` e `_testes/` no repositório | Corrigido | Site movido para `site/`; `.gitignore` criado; as 3 pastas saíram do controle do git, sem apagar do disco; histórico reescrito (o repositório nunca foi enviado a um remoto) e nenhum objeto acima de 105 KB restou nos commits alcançáveis. Ver "Decisão do Gabriel" sobre a limpeza final do `.git` |
 | P8 SVGs sem uso | Corrigido | 11 SVGs em `_originais/logos-nao-usadas/` |
-| B1 links das avaliações | Pendente | Texto trocado para "Avaliação no Google" e comentário no HTML; os links individuais ainda dependem da cliente |
+| B1 links das avaliações | Decisão do Gabriel: manter link do perfil | Os 6 cards seguem apontando para o perfil do Google, com o texto "Avaliação no Google". Comentário de pendência removido do HTML |
 | K2 marcas comerciais | Corrigido | Procedimentos sem marcas; versões com marca registradas no `content.md` como aguardando confirmação |
 | P2 conteúdo dependente de JS / CDN | Corrigido | GSAP local; se a animação do hero não começar em 1,5 s, o `animations.js` remove `js-anim` e revela tudo (testado: no navegador de teste, onde o ticker do GSAP quase não avança, o conteúdo apareceu) |
 | P3 Swiper pesado | Corrigido | Build próprio (Navigation, Pagination, A11y, Keyboard): 88,6 KB contra 152,8 KB (gzip 27,4 KB contra 43,9 KB) |

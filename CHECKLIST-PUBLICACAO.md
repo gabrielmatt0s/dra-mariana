@@ -12,7 +12,7 @@ Tudo o que falta antes de o site ir ao ar em **https://dermatomarianazunino.com*
   - [ ] Conferir o contraste do texto no vidro fosco dos cards com as fotos reais (com foto muito escura cai para ~4,4:1)
 - [ ] **Texto da seção Sobre** (ideal: 3 parágrafos curtos, até ~90 palavras). Substituir o bloco reservado `SOBRE` no `index.html`
 - [ ] **Formação acadêmica** (bloco comentado `FORMAÇÃO` no `index.html`; não inventar instituições, anos ou títulos)
-- [ ] **Links individuais das 6 avaliações do Google** (hoje todos apontam para o perfil). Depois de trocar, o rótulo "Avaliação no Google" pode voltar a "Ver no Google". Atualizar também a nota e o total, com a data da coleta
+- [ ] **Nota e total das avaliações do Google** (hoje 5,0 e 61): reatualizar com a data da coleta. Decisão: os 6 cards continuam apontando para o perfil, com o texto "Avaliação no Google"
 - [ ] **Confirmação das marcas comerciais** (Sculptra, Radiesse, Skinbooster, Profhilo). Hoje o site usa só termos genéricos; as versões com marca estão no `content.md`
 - [ ] **Revisão da política de privacidade** (`site/privacidade.html`, texto marcado como SUGESTÃO), pela cliente e, se ela quiser, por um advogado. Decidir se entra CNPJ/razão social
 - [ ] **alternateName "Mariana Martins Bardou Zunino"**: confirmar com a cliente e ativar no JSON-LD (instruções no comentário acima do bloco, no `<head>` do `index.html`)
@@ -43,7 +43,7 @@ Tudo o que falta antes de o site ir ao ar em **https://dermatomarianazunino.com*
 
 - [ ] Cadastrar o site no **Google Search Console** (propriedade do domínio) e enviar o `sitemap.xml`
 - [ ] Testar o JSON-LD no **Rich Results Test** e no **validador do schema.org** (o teste aqui foi só contra o vocabulário do schema.org, sem acesso a essas ferramentas)
-- [ ] Conferir o **perfil da empresa no Google** (nome, endereço e telefone iguais aos do site: "Avenida Sete de Setembro, 4214, Edifício Business Offices, sala 1304, Batel, Curitiba/PR, CEP 80250-085" e "(41) 99178-0320")
+- [ ] Conferir o **perfil da empresa no Google** (nome, endereço e telefone iguais aos do site: "Av. Sete de Setembro, 4214 - Sl 1304 - Batel, Curitiba - PR, 80250-085" e "(41) 99178-0320")
 - [ ] Pedir a reindexação da home e remover do índice as URLs do WordPress antigo, se aparecerem
 - [ ] Rodar o **Lighthouse** no domínio final (mobile e desktop)
 - [ ] Testar o botão do WhatsApp, o telefone, o mapa ("Ver mapa") e o carrossel em um celular real
