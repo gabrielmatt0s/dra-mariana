@@ -56,7 +56,7 @@ Versões em `site/assets/img/` (`dra-mariana-zunino-hero-{480,800,1200}` e `dra-
 | sobre AVIF / WebP / JPEG (KB) | 10,3 / 12,7 / 23,3 | 21,3 / 27,1 / 50,9 | 37,4 / 46,5 / 94,2 |
 
 Atenção: como o recorte do hero usa só 990 px de largura e a foto do Sobre tem 1066 px, as versões de 1200 px são ampliações de cerca de 21% (hero) e 13% (Sobre); as de 800 px não são ampliadas. Se a cliente enviar as fotos em resolução maior, refazer os recortes.
-Para a Dra. aparecer inteira e centrada, a folga vertical das fotos passou de 10% para 4% (`.photo__inner` em `components.css`) e o parallax de ±8% para ±3,5% (`animations.js`).
+A foto do Sobre (`.photo--inteira`, `data-parallax-off`) não tem folga vertical nem parallax, para o cabelo, que começa a 1,6% da borda de cima, não ser cortado. Para a Dra. aparecer inteira e centrada no hero, a folga vertical das fotos passou de 10% para 4% (`.photo__inner` em `components.css`) e o parallax de ±8% para ±3,5% (`animations.js`).
 Pendente com a cliente: a capa da revista "VOGUE" na foto do hero pode sugerir matéria ou parceria; confirmar o respaldo antes de publicar.
 
 ### og-image (26/09/2026)

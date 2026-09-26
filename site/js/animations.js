@@ -206,7 +206,7 @@
         gsap.set(fig, { autoAlpha: 1 });
 
         // Parallax sutil na imagem interna (yPercent de -3.5 a 3.5, dentro da folga de 4% da imagem), só no desktop. Funciona igual com placeholder e foto real.
-        if (desktop) {
+        if (desktop && !fig.hasAttribute('data-parallax-off')) {
           gsap.fromTo(inner, { yPercent: -3.5 }, {
             yPercent: 3.5, ease: 'none',
             scrollTrigger: { trigger: fig, start: 'top bottom', end: 'bottom top', scrub: true }

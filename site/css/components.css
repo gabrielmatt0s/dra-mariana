@@ -172,6 +172,7 @@
 .photo { position: relative; }
 .photo__clip { position: relative; aspect-ratio: var(--ratio, 3 / 4); overflow: hidden; }
 .photo__inner { position: absolute; left: 0; right: 0; top: -4%; height: 108%; }
+.photo--inteira .photo__inner { top: 0; height: 100%; } /* foto mostrada por inteiro: sem folga vertical nem parallax */
 .photo__inner .photo-placeholder, .photo__inner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .photo__frame { position: absolute; inset: 1.25rem -1.25rem -1.25rem 1.25rem; pointer-events: none; }
 .photo__frame i { position: absolute; display: block; background: var(--color-brand-bronze); }
