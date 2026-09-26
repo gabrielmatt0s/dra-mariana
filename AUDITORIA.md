@@ -1,5 +1,60 @@
 # AUDITORIA.md
 
+## Status das correções (26/09/2026)
+
+Este bloco mostra o que foi feito depois da auditoria. O restante do arquivo (a partir de "Auditoria do site...") é o relatório original, do estado anterior às correções, mantido para consulta.
+
+Legenda: **Corrigido**, **Pendente** (depende de algo externo ou de teste futuro) e **Decisão do Gabriel** (ficou como está de propósito ou pede escolha).
+
+| Item | Status | O que foi feito / o que falta |
+|---|---|---|
+| C1 trabalho sem commit | Corrigido | Commitado ("tratamentos em vidro fosco e altura exata das secoes") |
+| C2 `_originais/`, `referencia/` e `_testes/` no repositório | Corrigido | Site movido para `site/`; `.gitignore` criado; as 3 pastas saíram do controle do git, sem apagar do disco; histórico reescrito (o repositório nunca foi enviado a um remoto) e nenhum objeto acima de 105 KB restou nos commits alcançáveis. Ver "Decisão do Gabriel" sobre a limpeza final do `.git` |
+| P8 SVGs sem uso | Corrigido | 11 SVGs em `_originais/logos-nao-usadas/` |
+| B1 links das avaliações | Pendente | Texto trocado para "Avaliação no Google" e comentário no HTML; os links individuais ainda dependem da cliente |
+| K2 marcas comerciais | Corrigido | Procedimentos sem marcas; versões com marca registradas no `content.md` como aguardando confirmação |
+| P2 conteúdo dependente de JS / CDN | Corrigido | GSAP local; se a animação do hero não começar em 1,5 s, o `animations.js` remove `js-anim` e revela tudo (testado: no navegador de teste, onde o ticker do GSAP quase não avança, o conteúdo apareceu) |
+| P3 Swiper pesado | Corrigido | Build próprio (Navigation, Pagination, A11y, Keyboard): 88,6 KB contra 152,8 KB (gzip 27,4 KB contra 43,9 KB) |
+| P7 / Priv1 terceiros e privacidade | Corrigido | Poppins, GSAP e Swiper locais, sem Google Fonts nem CDN; o iframe do Google Maps só carrega depois do clique em "Ver mapa"; `site/privacidade.html` com link no rodapé. O texto da política é **SUGESTÃO** e precisa da revisão da cliente (Pendente) |
+| P1 `@import` do tokens | Corrigido | `<link>` no `index.html` |
+| P6 preload do Cormorant 600 | Decisão do Gabriel | Nenhum título em peso 600 fica acima da dobra (o hero usa 500), então não foi feito. Foram adicionados preloads do Cormorant 500 e dos dois Poppins |
+| Cormorant itálico 500 | Corrigido | Arquivo próprio para a assinatura, sem falso itálico |
+| P5 SVGs das logos | Corrigido | SVGO: header 36,9 para 22,5 KB, rodapé 35,7 para 21,3 KB, favicon 18,0 para 8,4 KB; diferença visual de no máximo 0,003% dos pixels |
+| P4 GSAP em 4 arquivos | Decisão do Gabriel | Mantido (agora locais, com cache do próprio site). Juntar em um arquivo é possível se quiser menos requisições |
+| B2 aria-label das avaliações | Corrigido | Removido dos 6 cards |
+| B3 "Avaliações" no menu | Corrigido | Cabe sem quebrar de 1280 a 1920 px (medido em 1280, 1300, 1366 e 1440). Em 1280 px o botão "Agende a sua consulta" fica a 21 px da borda (nos outros tamanhos, 32 px). Abaixo de 1280 px o menu já é o do hambúrguer |
+| B4 logo do rodapé | Corrigido | Mesmo rótulo e mesmo comportamento da logo do header |
+| B5 controles da faixa de avaliações | Corrigido | Setas, contador e barra de progresso no mesmo padrão dos Tratamentos. A lógica foi verificada disparando o evento de rolagem (o navegador de teste não gera a rolagem suave) |
+| Áreas de toque de 44 px | Corrigido | Logos, links do menu, contatos, rodapé e `link-cta`. Nenhum alvo visível abaixo de 44 px em 390, 1366 e 1440 px |
+| Viúvas nos títulos | Corrigido | `text-wrap: balance` em h1, h2, h3 e `.cta__title`; `pretty` nos parágrafos. Sobrou só "Contato e localização" em 2 linhas equilibradas em 360 px |
+| A1 aspas decorativas | Corrigido | `#957650` (3,4:1 sobre `#e9e6e1`) via token `--color-brand-bronze-text` |
+| C4 a C8 CSS, JS e tokens mortos | Corrigido | Bloco antigo de cards removido; handlers `quote` e `line` removidos; `.section--sand` removido; 20 tokens sem uso removidos; `sections.css` reorganizado na ordem das seções, com o ajuste de altura da tela dentro de cada uma. A reorganização foi comparada elemento por elemento (~443 elementos) em 390, 768, 1366 e 1440 px: só mudou a largura da coluna da Abordagem no desktop, que agora respeita os 64rem do desenho original (antes ocupava a largura toda por causa da ordem das regras) |
+| C10 documentos | Corrigido | `assets.md`, `design-system.md`, `content.md` e `CLAUDE.md` atualizados |
+| C6 `.title-sub`, `.sobre__formacao`, `.sobre__lista` | Decisão do Gabriel | Mantidos porque o bloco de Formação comentado no HTML usa essas classes |
+| C7 `tokens.json` | Decisão do Gabriel | Mantido como referência do design system; alguns valores dele não estão mais no `tokens.css` |
+| C9 fontes antigas em `_testes/` | Pendente | Só em `teste-acentos.html` e `teste-fontes.html`, que agora ficam fora do git e da publicação. Pode apagar quando quiser |
+| A2 rótulo do bloco reservado do Sobre | Pendente | Some quando o texto da cliente chegar |
+| A3 alt das fotos reais | Pendente | Trocar os placeholders por `<img>` com alt ao receber as fotos |
+| A4 contraste do vidro fosco com foto escura | Pendente | Conferir com as fotos reais |
+| K1 placeholders | Pendente | 8 espaços de foto e o texto do Sobre |
+| K7 formação, K8 nota do Google | Pendente | Dependem da cliente e de nova coleta |
+| B6 botão do WhatsApp cobrindo texto | Decisão do Gabriel | Mantido (some ao rolar para baixo) |
+| B8 arrastar/deslizar e animações | Pendente | Testar em aparelho real; o navegador de teste não gera esses eventos nem roda o GSAP normalmente |
+| SEO1 og:image, canonical, JSON-LD, robots.txt, sitemap.xml | Pendente | Aguardam domínio e imagem. Nenhum `robots.txt` nem `sitemap.xml` foi criado (não há domínio) |
+
+### Decisão do Gabriel: limpeza final do `.git`
+
+Depois de reescrever o histórico, os objetos antigos (dois EPS de 129 MB e 107 MB, o PDF e os PSD) ainda existem dentro de `.git` como objetos sem referência, e o backup do histórico anterior ficou em `.git/refs/original` e no reflog. Eles não vão para o GitHub (só o que está alcançável a partir da branch é enviado), mas ocupam ~26 MB no disco. Limpar exige `git reflog expire --expire=now --all` e `git gc --prune=now`, que o ambiente bloqueou por serem destrutivos. Rode você mesmo se quiser, no terminal do projeto: `rm -rf .git/refs/original && git reflog expire --expire=now --all && git gc --prune=now --aggressive`. Sem isso nada quebra.
+
+Restam também duas cópias de segurança que eu criei e que você pode apagar quando quiser: a pasta `_bkp_originais_tmp`, ao lado da pasta do projeto (cópia de `_originais/`, 254 MB), e um `.bundle` do repositório anterior à reescrita, na pasta temporária da sessão.
+
+### Verificação final
+
+- **Overflow horizontal:** nenhum em 320, 360, 390, 414, 768, 1024x768, 1366x650, 1440x780 e 1920x950.
+- **Seções na altura da tela (desktop):** as 8 seções cabem em 1024x768, 1366x650, 1440x780 e 1920x950 (altura de cada uma igual à altura útil, sem estourar).
+- **Console:** sem erros nem avisos em `site/index.html` e `site/privacidade.html`.
+- **Rede:** a página carrega só arquivos do próprio site (nenhuma requisição para Google ou CDN antes do clique em "Ver mapa").
+
 Auditoria do site da Dra. Mariana Zunino em 26/09/2026. Nada foi corrigido: este arquivo é o único que foi criado. O estado auditado é o working tree (inclui alterações ainda não commitadas, ver item C1).
 
 **Como foi feito:** leitura estática de `index.html`, CSS e JS (parser de HTML, contagem de ids, headings, classes e variáveis); medição no Chrome em iframes de 320, 360, 390, 414, 768, 1024, 1366x650, 1440x780 e 1920x950 (alturas úteis, já descontada a barra do navegador); teste de cada link externo com `curl`; conferência do SRI baixando cada arquivo da CDN; contraste calculado pelos estilos computados; teste do menu, do carrossel e das âncoras por script.
