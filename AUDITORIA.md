@@ -53,6 +53,7 @@ Restam também duas cópias de segurança que eu criei e que você pode apagar q
 - **Overflow horizontal:** nenhum em 320, 360, 390, 414, 768, 1024x768, 1366x650, 1440x780 e 1920x950.
 - **Seções na altura da tela (desktop):** as 8 seções cabem em 1024x768, 1366x650, 1440x780 e 1920x950 (altura de cada uma igual à altura útil, sem estourar).
 - **Console:** sem erros nem avisos em `site/index.html` e `site/privacidade.html`.
+- **Animações do GSAP local (Chrome em primeiro plano, via Puppeteer):** rodam de verdade, sem a rede de segurança. Com `js-anim` ativa aos 2 s, o CTA do hero vai de 0 para 1 de opacidade em ~1,2 s e os itens abaixo da dobra (CTA de Procedimentos, itens da lista, frase da Abordagem, avaliações) só aparecem, com fade, quando a rolagem chega a eles.
 - **Rede:** a página carrega só arquivos do próprio site (nenhuma requisição para Google ou CDN antes do clique em "Ver mapa").
 
 Auditoria do site da Dra. Mariana Zunino em 26/09/2026. Nada foi corrigido: este arquivo é o único que foi criado. O estado auditado é o working tree (inclui alterações ainda não commitadas, ver item C1).
