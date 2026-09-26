@@ -38,11 +38,18 @@ Fonte: mensagem da cliente (2026-09-25), fora do PDF.
 **Origem:** `MarianaZunino.pdf`, p. 8 (texto); destino informado pela cliente.
 
 ## Sobre
+**Status: AGUARDANDO TEXTO DA CLIENTE.** A Dra. Mariana vai enviar o texto da seção. No site há um bloco reservado (borda tracejada, "TEXTO: aguardando a Dra. Mariana") com a altura de ~3 parágrafos. Quando o texto chegar: 3 parágrafos curtos, até ~90 palavras no total (comentário `SOBRE` em `index.html`).
+
 **Título sugerido de seção:** Sobre a Dra. Mariana
 
 **Credencial em destaque (dado confirmado, p. 8):** Dermatologista, CRM/PR 26153, RQE 19939.
 
-**Texto do Sobre, SUGESTÃO (não consta literalmente no material) para aprovação.** Resumo do propósito da p. 6 no tom de voz da marca (amigável, próxima sem intimidade, informal), focado em quem ela é. Não usa nada da p. 12 (ouvir, cuidar, atenção plena, entrega de tempo e carinho), que fica só em "Minha abordagem". Não acrescenta formação, instituições, anos de experiência ou títulos.
+**Espaço reservado para Formação:** ver seção "Formação". No HTML, deixar bloco comentado (`<!-- FORMAÇÃO: ativar quando a cliente enviar -->`) que encaixe no layout sem quebrar nada quando ativado.
+
+### Sobre, versão anterior (descartada)
+Texto sugerido que estava no site e foi removido a pedido. Não usar.
+
+**Texto do Sobre, SUGESTÃO (não constava literalmente no material).** Resumo do propósito da p. 6 no tom de voz da marca, focado em quem ela é. Não usava nada da p. 12, que fica só em "Minha abordagem". Não acrescentava formação, instituições, anos de experiência ou títulos.
 
 > Acredito que a beleza é nos sentirmos confortáveis em ser quem somos. Amo pessoas, boas histórias e aprender.
 >
@@ -51,8 +58,6 @@ Fonte: mensagem da cliente (2026-09-25), fora do PDF.
 > Meu coração é de aprendiz e minha vida é pautada em evoluir sempre.
 
 **Origem:** p. 6.
-
-**Espaço reservado para Formação:** ver seção "Formação". No HTML, deixar bloco comentado (`<!-- FORMAÇÃO: ativar quando a cliente enviar -->`) que encaixe no layout sem quebrar nada quando ativado.
 
 ## Propósito (texto integral)
 **Título sugerido de seção:** Propósito
@@ -204,6 +209,7 @@ WhatsApp, mesmo link do CTA do hero (ver "Contato").
 - [resolvida] Lista de procedimentos e tratamentos.
 
 **Em aberto:**
+- Texto da seção Sobre (cliente vai enviar).
 - Formação acadêmica: AGUARDANDO CLIENTE (a landing é construída sem ela).
 - Fotos originais em alta resolução, com autorização de uso web.
 - Licença webfont de SALVAGER e Collection New Style.
