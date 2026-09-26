@@ -141,7 +141,14 @@ Texto sugerido que estava no site e foi removido a pedido. Não usar.
 - "Tratamentos": cards (6 itens da lista acima).
 - "Procedimentos": lista compacta (10 itens da lista acima).
 - Não inventar descrições médicas. Se um card precisar de texto de apoio, usar no máximo uma linha neutra, marcada como SUGESTÃO para aprovação. Nenhum texto de apoio foi proposto até agora.
-- Citação das marcas comerciais (Sculptra, Radiesse, Profhilo): aguardando confirmação da cliente (ver "Lacunas e Pendências").
+- Citação das marcas comerciais (Sculptra, Radiesse, Skinbooster, Profhilo): **aguardando confirmação da cliente** (ver "Lacunas e Pendências"). Enquanto isso, o site usa só os termos genéricos.
+
+**Versões com marca (AGUARDANDO CONFIRMAÇÃO DA CLIENTE, não estão no site):**
+- Bioestimulador de colágeno (Sculptra e Radiesse)
+- Hidratação injetável com ácido hialurônico (Skinbooster)
+- Biorremodelador tecidual (Profhilo)
+
+**Versões em uso no site:** "Bioestimulador de colágeno", "Hidratação injetável com ácido hialurônico", "Biorremodelador tecidual".
 
 ## Diferenciais
 **Título:** Conhecimento, cuidado e atenção plena
@@ -213,7 +220,8 @@ WhatsApp, mesmo link do CTA do hero (ver "Contato").
 - Formação acadêmica: AGUARDANDO CLIENTE (a landing é construída sem ela).
 - Fotos originais em alta resolução, com autorização de uso web.
 - Licença webfont de SALVAGER e Collection New Style.
-- Confirmação da cliente sobre citar marcas comerciais (Sculptra, Radiesse, Profhilo).
+- Confirmação da cliente sobre citar marcas comerciais (Sculptra, Radiesse, Skinbooster, Profhilo). Site sem marcas por enquanto.
+- Links individuais das 6 avaliações do Google (cards apontam para o perfil; comentário no `index.html`).
 - E-mail.
 - Preços.
 - URL de site próprio.
