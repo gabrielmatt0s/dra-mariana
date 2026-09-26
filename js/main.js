@@ -72,4 +72,12 @@
       if (!ticking) { ticking = true; window.requestAnimationFrame(update); }
     }, { passive: true });
   }
+  /* Altura do header em --header-h: as seções do desktop usam 100svh menos essa altura */
+  var header = document.querySelector('.site-header');
+  if (header) {
+    var setHeaderH = function () { document.documentElement.style.setProperty('--header-h', header.offsetHeight + 'px'); };
+    setHeaderH();
+    if (window.ResizeObserver) new ResizeObserver(setHeaderH).observe(header);
+    else window.addEventListener('resize', setHeaderH);
+  }
 })();

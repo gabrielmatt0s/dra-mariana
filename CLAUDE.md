@@ -22,6 +22,8 @@ Construir uma landing page responsiva para **Dra. Mariana Zunino, Dermatologista
 - Para texto corrido, priorizar contraste WCAG AA. Não usar `#a0815c` ou `#d0baa0` como texto pequeno sobre branco.
 - A fonte Collection New Style exige licença comercial/web apropriada antes de uso em site. Até a licença ser fornecida, não carregar arquivo de fonte não licenciado.
 - SALVAGER consta no manual, mas arquivo/licença não foram fornecidos. Não presumir direito de uso web.
+- Cormorant Garamond 500 e 600 é hospedada em `assets/fonts/` (woff2 latin, licença SIL OFL 1.1 em `assets/fonts/OFL.txt`), não mais pelo Google Fonts. É cópia modificada da v4.001: os acentos de U+00C0 a U+00FF foram recentralizados na horizontal, porque no original o acento sai deslocado para o lado. Não voltar a carregar a versão do Google.
+- Desktop (1024px+ de largura e 600px+ de altura): cada seção ocupa `100svh - --header-h` (o `main.js` mede o header), com conteúdo centralizado e medidas por vh. Abaixo disso, altura natural.
 - Poppins pode ser carregada via Google Fonts. Enquanto SALVAGER não tiver licença webfont, usar Cormorant Garamond (SUBSTITUTA, SUGESTÃO) no display: só a partir de 24px, peso 500 na headline e 600 nos títulos em caixa alta, nunca 300. Abaixo de 24px, Poppins. Assinatura cursiva somente via logo SVG.
 - Nunca usar no site: a pesquisa de valores da p. 10 do PDF, a foto de família da p. 21 e as imagens de banco da p. 20.
 - Formação acadêmica: AGUARDANDO CLIENTE. Construir sem ela, com bloco comentado no HTML.

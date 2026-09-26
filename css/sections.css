@@ -297,3 +297,80 @@
   .trat-ready .trat__controles { grid-template-columns: 8rem auto auto; margin-top: 0; padding-bottom: 0.4rem; }
   .trat__progresso.swiper-pagination-progressbar { grid-column: auto; }
 }
+
+/* Desktop (1024px+, altura da janela de 600px ou mais): cada seção ocupa a altura útil da janela (100svh menos o header),
+   com o conteúdo centralizado na vertical. Paddings, fontes de destaque e gaps escalam com a altura (vh) para caber.
+   --header-h é medido pelo main.js; o valor abaixo é só o reserva. Texto de corpo nunca abaixo de 15px.
+   Abaixo de 1024px de largura ou de 600px de altura, as seções mantêm a altura natural. */
+@media (min-width: 64rem) and (min-height: 600px) {
+  :root {
+    --sec-h: calc(100svh - var(--header-h, 5rem));
+    --pad-y: clamp(1.25rem, 4.5vh, 4.5rem);
+    --gap-y: clamp(0.75rem, 2.4vh, 2rem);
+  }
+  .hero, .section { min-height: var(--sec-h); display: flex; flex-direction: column; justify-content: center; padding-block: var(--pad-y); }
+  .hero > .container, .section > .container { width: 100%; }
+
+  /* Hero: a foto respeita a altura da seção (proporção 3:4 mantida) */
+  .hero { --hero-overlap: clamp(3rem, 9vh, 6rem); --hero-photo-h: calc(var(--sec-h) - var(--pad-y) - var(--hero-overlap) / 2); padding-block: var(--pad-y) calc(var(--hero-overlap) / 2); }
+  .hero__inner { gap: var(--space-12); }
+  .hero__photo { width: min(100%, calc(var(--hero-photo-h) * 3 / 4)); margin-left: auto; }
+  .hero__title { font-size: clamp(2.25rem, 1.5rem + 4.5vh, 4rem); }
+  .hero__text { gap: var(--gap-y); }
+  .hero__actions { margin-top: 0; }
+  .hero__note { flex: none; }
+
+  /* Sobre: foto limitada pela altura (4:5) */
+  .sobre__inner { gap: var(--space-16); }
+  .sobre__photo { width: min(100%, calc((var(--sec-h) - 2 * var(--pad-y)) * 4 / 5)); }
+  .sobre__text { gap: var(--gap-y); }
+
+  /* Tratamentos: cards mais baixos (mídia por altura em vez de 4:5) */
+  .trat { margin-top: var(--gap-y); }
+  .card--trat .card__media { aspect-ratio: auto; height: clamp(7rem, 24vh, 17rem); }
+  .card--trat .card__body { padding: clamp(1rem, 2.4vh, 2rem); gap: var(--gap-y); min-height: 0; }
+
+  /* Procedimentos */
+  .procedimentos__head { margin-bottom: var(--gap-y); }
+  .lista li { padding-block: clamp(0.5rem, 1.5vh, 1rem); }
+  .procedimentos__cta { margin-top: var(--gap-y); }
+
+  /* Abordagem */
+  .abordagem__inner.container { gap: var(--gap-y); }
+  .abordagem__frase { max-width: 26ch; font-size: clamp(2rem, 1rem + 4.5vh, 3.5rem); }
+  .valores__titulo { margin-bottom: var(--gap-y); }
+
+  /* Avaliações: título, nota e link na mesma linha; 3 cards por linha, mais baixos */
+  .avaliacoes > .container { display: grid; grid-template-columns: auto 1fr auto; grid-template-areas: "titulo resumo link" "lista lista lista"; align-items: end; column-gap: var(--space-8); }
+  .avaliacoes .title-section { grid-area: titulo; margin-bottom: 0; }
+  .avaliacoes__resumo { grid-area: resumo; margin-bottom: 0.35rem; }
+  .avaliacoes__link { grid-area: link; margin: 0 0 0.35rem; }
+  .avaliacoes__lista { grid-area: lista; margin-top: var(--gap-y); gap: var(--gap-y) var(--space-6); padding: 4px 0 0; }
+  .review { padding: clamp(1rem, 2.2vh, 1.5rem); }
+  .review__aspas { height: 1.6rem; font-size: 3.5rem; }
+  .review__estrelas { margin-block: 0.25rem clamp(0.5rem, 1.4vh, 1rem); }
+  .review__linha { margin-top: clamp(0.75rem, 2vh, 1.5rem); }
+  .review__rodape { margin-top: clamp(0.5rem, 1.4vh, 1rem); }
+
+  /* CTA */
+  .cta__inner { gap: var(--gap-y); }
+
+  /* Contato: o mapa acompanha a altura dos dados */
+  .title-section { font-size: clamp(1.75rem, 0.5rem + 3.6vh, 2.5rem); }
+  .contato__inner { grid-template-columns: 1.3fr 0.7fr; gap: var(--space-12); }
+  .contato__botoes .btn { padding-inline: var(--space-4); }
+  .dados { margin-top: var(--gap-y); }
+  .dados li { padding-block: clamp(0.6rem, 1.6vh, 1rem); }
+  .contato__botoes { margin-top: var(--gap-y); }
+  .mapa { min-height: 0; height: auto; }
+}
+
+/* Telas baixas (até 860px de altura útil, como um notebook 1366x768 ou 1440x900): as 6 avaliações não cabem em 2 linhas com o texto inteiro.
+   Ficam em uma linha só, em faixa com rolagem lateral (scroll-snap), mostrando 3 cards e a ponta do quarto. Texto completo, sem corte. */
+@media (min-width: 64rem) and (min-height: 600px) and (max-height: 860px) {
+  .avaliacoes__lista {
+    display: flex; gap: var(--space-4); margin-inline: 0; padding: 4px 0 var(--space-3);
+    overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scroll-padding-inline: 0;
+  }
+  .avaliacoes__lista > li { flex: 0 0 calc((100% - 3 * var(--space-4)) / 3.25); scroll-snap-align: start; }
+}

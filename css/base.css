@@ -27,6 +27,12 @@ a { color: inherit; }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
 
+/* Cormorant Garamond 500 e 600, latin, hospedada aqui. Cópia modificada da v4.001 do Google Fonts (licença SIL OFL 1.1, assets/fonts/OFL.txt).
+   Modificação: nos glifos acentuados de U+00C0 a U+00FF, o acento (contorno acima da altura da letra) foi movido na horizontal para ficar
+   centralizado sobre a letra. No original o acento sai deslocado para o lado (ex.: "é" +7,1% do corpo, "ó" +4,8%, "ê" +2,5%). */
+@font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 500; font-display: swap; src: url("../assets/fonts/cormorant-garamond-500.woff2") format("woff2"); }
+@font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 600; font-display: swap; src: url("../assets/fonts/cormorant-garamond-600.woff2") format("woff2"); }
+
 /* Tipografia. Cantos retos em todo o site (radius 0). */
 /* Cormorant Garamond (substituta da Salvager): só a partir de 24px, pesos 500 e 600, nunca 300.
    Abaixo de 24px o texto usa Poppins. */
