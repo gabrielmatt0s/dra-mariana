@@ -40,7 +40,26 @@ Estas cores são **APROXIMADAS, extraídas de imagem**, e não substituem a pale
 - A paleta oficial escrita no manual continua sendo a fonte de verdade para UI: `#a0815c`, `#d0baa0`, `#e9e6e1`, `#ffffff`, `#762d2d`, `#414042`.
 
 ## Fotografias
-As fotografias vistas dentro do PDF não foram exportadas como assets separados, porque o pedido forneceu o PDF como referência e não arquivos-fonte das fotos. Para produção, solicitar os retratos originais em alta resolução com autorização de uso web.
+As fotografias vistas dentro do PDF não foram exportadas como assets separados. Para os 6 cards de tratamento, ainda é preciso solicitar as fotos com autorização de uso web.
+
+### Retratos da Dra. Mariana (26/09/2026)
+Recebidos dois JPEGs (metadados já ausentes, sRGB), guardados sem alteração em `_originais/fotos/` (fora do git). O site nunca usa o original.
+| Original | Resolução | Uso | Recorte |
+|---|---|---|---|
+| dra1.jpeg (sentada no banco, com a revista "VOGUE BELEZA" à mostra) | 1112 x 1600, 90,5 KB | Hero, 3:4 | 1112 x 1483, do topo. Sem retoque |
+| dra2.jpeg (retrato de busto, luz lateral) | 1066 x 1600, 102,8 KB | Sobre, 4:5 | 1066 x 1333, do topo. Sem retoque |
+
+Versões em `site/assets/img/` (`dra-mariana-zunino-hero-{480,800,1200}` e `dra-mariana-zunino-sobre-{480,800,1200}`), geradas com sharp (Lanczos3), sem metadados, com perfil sRGB embutido. Só recorte, redimensionamento e compressão: AVIF q50, WebP q75, JPEG q80 progressivo (mozjpeg).
+| Arquivo | 480 | 800 | 1200 |
+|---|---|---|---|
+| hero AVIF / WebP / JPEG (KB) | 9,1 / 11,0 / 20,2 | 16,9 / 21,8 / 41,9 | 29,0 / 35,8 / 73,9 |
+| sobre AVIF / WebP / JPEG (KB) | 9,6 / 12,0 / 21,3 | 20,1 / 25,6 / 47,1 | 35,5 / 44,0 / 87,3 |
+
+Atenção: a largura de origem é 1112 e 1066 px, então as versões de 1200 px são ampliadas em cerca de 8% e 13%.
+Pendente com a cliente: a capa da revista "VOGUE" na foto do hero pode sugerir matéria ou parceria; confirmar o respaldo antes de publicar.
+
+### og-image (26/09/2026)
+`site/assets/og-image.jpg`, 1200 x 630: fundo #e9e6e1, logo principal (`_originais/logos-nao-usadas/logo-principal.svg`, versão escura) à esquerda e recorte da foto do hero à direita (800 x 840 do original, reduzido a 600 x 630). JPEG q85, 40 KB.
 
 ## Verificação
 Cada SVG gerado foi renderizado para PNG após a conversão e comparado visualmente com o respectivo original. Não foram adicionados fundo, efeitos, texto novo ou redesenho intencional. O `viewBox` foi ajustado ao bounding box do conteúdo.
@@ -64,3 +83,6 @@ Nada é carregado de terceiros junto com a página (o Google Maps só carrega de
 | `fonts/poppins-400.woff2`, `-500.woff2` | Google Fonts, Poppins v24, latin | SIL OFL 1.1 (`fonts/OFL-Poppins.txt`) | Sem modificação |
 | `vendor/gsap.min.js`, `ScrollTrigger.min.js`, `SplitText.min.js`, `DrawSVGPlugin.min.js` | GSAP 3.15.0 (jsDelivr) | Licença padrão GreenSock (gratuita, inclui os plugins) | Sem modificação |
 | `vendor/swiper-custom.min.js`, `swiper-custom.min.css` | Swiper 14.2.0, build próprio só com Navigation, Pagination, A11y e Keyboard (esbuild) | MIT (`vendor/LICENSE-swiper.txt`) | 88,6 KB (27,4 KB gzip), contra 152,8 KB (43,9 KB gzip) do bundle completo |
+
+### Verificação das fotos (26/09/2026)
+Sem overflow horizontal em 320, 360, 390, 414, 768, 1024, 1280, 1440 e 1920 px. As 8 seções cabem na altura em 1024x768, 1366x650, 1440x780 e 1920x950. Lighthouse (servidor local com gzip): desktop 100/100/100/100 (LCP 0,5 s); mobile 98/100/100/100 (LCP 2,3 s, contra 2,1 s antes das fotos; agora o LCP é a foto do hero).

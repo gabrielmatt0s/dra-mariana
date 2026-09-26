@@ -81,7 +81,7 @@ projeto-dra-mariana/
 │   ├── js/   (main.js, carrossel.js, animations.js)
 │   └── assets/
 │       ├── fonts/   (Cormorant Garamond, Poppins, OFL.txt)
-│       ├── og-image.jpg  (PROVISÓRIA, trocar por foto aprovada)
+│       ├── og-image.jpg  (logo + foto do hero), img/ (fotos otimizadas)
 │       ├── logo/    (somente os SVG/PNG usados)
 │       └── vendor/  (GSAP, Swiper, quando hospedados)
 ├── _originais/       (PSD, EPS, PDF, logos não usadas; fora do git)

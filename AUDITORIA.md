@@ -34,9 +34,9 @@ Legenda: **Corrigido**, **Pendente** (depende de algo externo ou de teste futuro
 | C7 `tokens.json` | Decisão do Gabriel | Mantido como referência do design system; alguns valores dele não estão mais no `tokens.css` |
 | C9 fontes antigas em `_testes/` | Pendente | Só em `teste-acentos.html` e `teste-fontes.html`, que agora ficam fora do git e da publicação. Pode apagar quando quiser |
 | A2 rótulo do bloco reservado do Sobre | Pendente | Some quando o texto da cliente chegar |
-| A3 alt das fotos reais | Pendente | Trocar os placeholders por `<img>` com alt ao receber as fotos |
+| A3 alt das fotos reais | Corrigido (hero e Sobre) | Hero e Sobre com `<picture>` e alt; o `role="img"` e o rótulo "Espaço reservado" saíram desses dois. Restam os 6 cards de tratamento, que seguem como placeholder |
 | A4 contraste do vidro fosco com foto escura | Pendente | Conferir com as fotos reais |
-| K1 placeholders | Pendente | 8 espaços de foto e o texto do Sobre |
+| K1 placeholders | Pendente | 6 espaços de foto (tratamentos) e o texto do Sobre |
 | K7 formação, K8 nota do Google | Pendente | Dependem da cliente e de nova coleta |
 | B6 botão do WhatsApp cobrindo texto | Decisão do Gabriel | Mantido (some ao rolar para baixo) |
 | B8 arrastar/deslizar e animações | Pendente | Testar em aparelho real; o navegador de teste não gera esses eventos nem roda o GSAP normalmente |

@@ -12,7 +12,7 @@
   <meta name="theme-color" content="#e9e6e1">
   <meta name="author" content="Mariana Zunino">
 
-  <!-- Open Graph e Twitter Card. og:image é PROVISÓRIA (logo sobre #e9e6e1, 1200x630): trocar por foto aprovada da Dra. Mariana (1200x630) e conferir se o og:image:alt continua correto. -->
+  <!-- Open Graph e Twitter Card. og:image (1200x630): logo sobre #e9e6e1 à esquerda e foto do hero à direita. Se a foto mudar, conferir se o og:image:alt continua correto. -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:site_name" content="Dra. Mariana Zunino">
@@ -22,12 +22,12 @@
   <meta property="og:image" content="https://dermatomarianazunino.com/assets/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Logotipo da Dra. Mariana Zunino, dermatologista em Curitiba">
+  <meta property="og:image:alt" content="Logotipo da Dra. Mariana Zunino, dermatologista, ao lado do retrato da Dra. Mariana">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Dra. Mariana Zunino | Dermatologista em Curitiba, Batel">
   <meta name="twitter:description" content="Dra. Mariana Zunino, dermatologista em Curitiba (Batel). Dermatologia clínica e estética com atendimento particular. Agende sua consulta pelo WhatsApp.">
   <meta name="twitter:image" content="https://dermatomarianazunino.com/assets/og-image.jpg">
-  <meta name="twitter:image:alt" content="Logotipo da Dra. Mariana Zunino, dermatologista em Curitiba">
+  <meta name="twitter:image:alt" content="Logotipo da Dra. Mariana Zunino, dermatologista, ao lado do retrato da Dra. Mariana">
 
   <link rel="manifest" href="manifest.webmanifest">
 
@@ -36,6 +36,7 @@
   <link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png" sizes="180x180">
 
   <!-- Tudo hospedado neste site (fontes, GSAP e Swiper): nenhum recurso de terceiros carrega junto com a página. -->
+  <link rel="preload" as="image" type="image/avif" imagesrcset="assets/img/dra-mariana-zunino-hero-480.avif 480w, assets/img/dra-mariana-zunino-hero-800.avif 800w, assets/img/dra-mariana-zunino-hero-1200.avif 1200w" imagesizes="(min-width: 64rem) 34rem, (min-width: 30rem) 26rem, 100vw" fetchpriority="high">
   <link rel="preload" href="assets/fonts/cormorant-garamond-500.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/poppins-500.woff2" as="font" type="font/woff2" crossorigin>
@@ -47,7 +48,7 @@
 
   <!-- Dados estruturados (SEO local). NAP igual ao texto visível do site.
        NÃO incluir aggregateRating nem review: o Google trata avaliações do próprio site como autopromoção.
-       "image" usa a og-image provisória: trocar quando houver foto aprovada.
+       "image" usa a og-image (logo e retrato).
        NOME ALTERNATIVO (desativado, confirmar com a cliente): para ativar, acrescentar ao bloco Physician, depois de "name":
          "alternateName": "Mariana Martins Bardou Zunino", -->
   <script type="application/ld+json">
@@ -165,21 +166,15 @@
           </div>
         </div>
 
-        <!--
-          FOTO DO HERO: retrato da Dra. Mariana, proporção 3:4 (vertical).
-          Tamanho ideal do arquivo: 1200 x 1600 px, JPG ou WebP, até 250 KB.
-          Fotografia natural, luz suave, pele com textura real (ver design-system.md, seção 6).
-          Trocar o <div class="photo-placeholder"> (dentro de .photo__inner) por:
-          <img src="assets/img/hero-mariana.webp" alt="Dra. Mariana Zunino, dermatologista" width="1200" height="1600" fetchpriority="high">
-          A revelação por clip-path, o zoom e o parallax funcionam igual com placeholder e com foto real.
-        -->
         <figure class="photo hero__photo" data-anim="photo" data-hero="photo" style="--ratio: 3 / 4">
           <span class="photo__frame" aria-hidden="true"><i class="f-top"></i><i class="f-right"></i><i class="f-bottom"></i><i class="f-left"></i></span>
           <div class="photo__clip">
             <div class="photo__inner">
-              <div class="photo-placeholder" role="img" aria-label="Espaço reservado para o retrato da Dra. Mariana">
-                <span class="photo-placeholder__label">FOTO: retrato da Dra. Mariana</span>
-              </div>
+              <picture>
+                <source type="image/avif" srcset="assets/img/dra-mariana-zunino-hero-480.avif 480w, assets/img/dra-mariana-zunino-hero-800.avif 800w, assets/img/dra-mariana-zunino-hero-1200.avif 1200w" sizes="(min-width: 64rem) 34rem, (min-width: 30rem) 26rem, 100vw">
+                <source type="image/webp" srcset="assets/img/dra-mariana-zunino-hero-480.webp 480w, assets/img/dra-mariana-zunino-hero-800.webp 800w, assets/img/dra-mariana-zunino-hero-1200.webp 1200w" sizes="(min-width: 64rem) 34rem, (min-width: 30rem) 26rem, 100vw">
+                <img src="assets/img/dra-mariana-zunino-hero-800.jpg" srcset="assets/img/dra-mariana-zunino-hero-480.jpg 480w, assets/img/dra-mariana-zunino-hero-800.jpg 800w, assets/img/dra-mariana-zunino-hero-1200.jpg 1200w" sizes="(min-width: 64rem) 34rem, (min-width: 30rem) 26rem, 100vw" alt="Dra. Mariana Zunino, dermatologista em Curitiba" width="1200" height="1600" loading="eager" fetchpriority="high" decoding="async">
+              </picture>
             </div>
           </div>
         </figure>
@@ -212,18 +207,14 @@
           -->
         </div>
 
-        <!--
-          FOTO DA SEÇÃO SOBRE: retrato da Dra. Mariana, proporção 4:5 (vertical).
-          Tamanho ideal do arquivo: 1200 x 1500 px, JPG ou WebP, até 250 KB.
-          Trocar o <div class="photo-placeholder"> (dentro de .photo__inner) por:
-          <img src="assets/img/sobre-mariana.webp" alt="Dra. Mariana Zunino, dermatologista" width="1200" height="1500" loading="lazy">
-        -->
         <figure class="photo sobre__photo" data-anim="photo" style="--ratio: 4 / 5">
           <div class="photo__clip">
             <div class="photo__inner">
-              <div class="photo-placeholder" role="img" aria-label="Espaço reservado para o retrato da Dra. Mariana">
-                <span class="photo-placeholder__label">FOTO: retrato da Dra. Mariana</span>
-              </div>
+              <picture>
+                <source type="image/avif" srcset="assets/img/dra-mariana-zunino-sobre-480.avif 480w, assets/img/dra-mariana-zunino-sobre-800.avif 800w, assets/img/dra-mariana-zunino-sobre-1200.avif 1200w" sizes="(min-width: 64rem) 34rem, (min-width: 30rem) 26rem, 100vw">
+                <source type="image/webp" srcset="assets/img/dra-mariana-zunino-sobre-480.webp 480w, assets/img/dra-mariana-zunino-sobre-800.webp 800w, assets/img/dra-mariana-zunino-sobre-1200.webp 1200w" sizes="(min-width: 64rem) 34rem, (min-width: 30rem) 26rem, 100vw">
+                <img src="assets/img/dra-mariana-zunino-sobre-800.jpg" srcset="assets/img/dra-mariana-zunino-sobre-480.jpg 480w, assets/img/dra-mariana-zunino-sobre-800.jpg 800w, assets/img/dra-mariana-zunino-sobre-1200.jpg 1200w" sizes="(min-width: 64rem) 34rem, (min-width: 30rem) 26rem, 100vw" alt="Dra. Mariana Zunino em retrato, com blusa preta e brincos dourados" width="1200" height="1500" loading="lazy" decoding="async">
+              </picture>
             </div>
           </div>
         </figure>

@@ -37,11 +37,15 @@ Fonte: mensagem da cliente (2026-09-25), fora do PDF.
 **Credenciais:** CRM/PR 26153 | RQE 19939  
 **CTA:** "Agende a sua consulta", destino: link do WhatsApp com mensagem pré-preenchida (ver "Contato").  
 **Origem:** `MarianaZunino.pdf`, p. 8 (texto); destino informado pela cliente.
+**Foto:** retrato da Dra. Mariana sentada no banco (dra1.jpeg, recebido em 26/09/2026), 3:4. Alt: "Dra. Mariana Zunino, dermatologista em Curitiba". A capa da revista "VOGUE" aparece na foto; confirmar com a cliente o respaldo antes de publicar.
+
 
 ## Sobre
 **Status: AGUARDANDO TEXTO DA CLIENTE.** A Dra. Mariana vai enviar o texto da seção. No site há um bloco reservado (borda tracejada, "TEXTO: aguardando a Dra. Mariana") com a altura de ~3 parágrafos. Quando o texto chegar: 3 parágrafos curtos, até ~90 palavras no total (comentário `SOBRE` em `index.html`).
 
 **Título sugerido de seção:** Sobre a Dra. Mariana
+
+**Foto:** retrato de busto da Dra. Mariana (dra2.jpeg, recebido em 26/09/2026), 4:5. Alt: "Dra. Mariana Zunino em retrato, com blusa preta e brincos dourados".
 
 **Credencial em destaque (dado confirmado, p. 8):** Dermatologista, CRM/PR 26153, RQE 19939.
 
@@ -220,7 +224,7 @@ WhatsApp, mesmo link do CTA do hero (ver "Contato").
 - Texto da seção Sobre (cliente vai enviar).
 - Publicação: aguardando contratação da Locaweb (plano Linux). Domínio definitivo: https://dermatomarianazunino.com (ver `CHECKLIST-PUBLICACAO.md`).
 - Formação acadêmica: AGUARDANDO CLIENTE (a landing é construída sem ela).
-- Fotos originais em alta resolução, com autorização de uso web.
+- Fotos dos 6 tratamentos, com autorização de uso web (hero e Sobre já recebidos).
 - Licença webfont de SALVAGER e Collection New Style.
 - Confirmação da cliente sobre citar marcas comerciais (Sculptra, Radiesse, Skinbooster, Profhilo). Site sem marcas por enquanto.
 - E-mail.

@@ -5,10 +5,8 @@ Tudo o que falta antes de o site ir ao ar em **https://dermatomarianazunino.com*
 ## Depende da cliente
 
 - [ ] **Fotos aprovadas**, com autorização de uso web e no formato indicado nos comentários do `index.html`:
-  - [ ] Hero: retrato 3:4, 1200x1600 px, WebP, até 250 KB (`assets/img/hero-mariana.webp`)
-  - [ ] Sobre: retrato 4:5, 1200x1500 px, WebP, até 250 KB (`assets/img/sobre-mariana.webp`)
   - [ ] 6 tratamentos: 3:4, 900x1200 px, WebP, até 150 KB cada (`assets/img/tratamento-01.webp` a `06`). Sem lesões, antes e depois, agulhas ou procedimento em execução (regras do CFM)
-  - [ ] Trocar cada placeholder pelo `<img>` e escrever o `alt` real (nos tratamentos, `alt=""` se a foto for decorativa)
+  - [ ] Trocar cada placeholder dos tratamentos pelo `<img>` (hero e Sobre já têm foto; `alt=""`, `alt=""` se a foto for decorativa)
   - [ ] Conferir o contraste do texto no vidro fosco dos cards com as fotos reais (com foto muito escura cai para ~4,4:1)
 - [ ] **Texto da seção Sobre** (ideal: 3 parágrafos curtos, até ~90 palavras). Substituir o bloco reservado `SOBRE` no `index.html`
 - [ ] **Formação acadêmica** (bloco comentado `FORMAÇÃO` no `index.html`; não inventar instituições, anos ou títulos)
@@ -20,8 +18,7 @@ Tudo o que falta antes de o site ir ao ar em **https://dermatomarianazunino.com*
 
 ## Depende de mim/de vocês, antes de subir
 
-- [ ] **og-image definitiva** (`site/assets/og-image.jpg`, 1200x630): trocar a provisória (logo sobre #e9e6e1) por foto aprovada, e atualizar o `og:image:alt` e o `image` do JSON-LD
-- [ ] Depois da troca, testar o compartilhamento (WhatsApp, Facebook Sharing Debugger, LinkedIn Post Inspector)
+- [ ] Testar o compartilhamento da og-image (logo e retrato do hero) (WhatsApp, Facebook Sharing Debugger, LinkedIn Post Inspector)
 - [ ] Reler título, descrição e textos com a cliente (sem superlativos nem promessa de resultado)
 - [ ] Rodar o Lighthouse de novo com as fotos reais e conferir o LCP
 
