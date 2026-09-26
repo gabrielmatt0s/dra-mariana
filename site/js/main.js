@@ -82,13 +82,28 @@
   }
   /* Logo do header: volta ao topo (suave, ou instantâneo com movimento reduzido), fecha o menu mobile e deixa a URL limpa */
   var logo = document.querySelector('.site-header__logo');
-  if (logo) {
+  if (logo && (logo.getAttribute('href') || '').charAt(0) === '#') {
     logo.addEventListener('click', function (event) {
       event.preventDefault();
       if (toggle && toggle.getAttribute('aria-expanded') === 'true') toggle.click();
       var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       window.scrollTo({ top: 0, left: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
       if (window.location.hash) history.replaceState(null, '', window.location.pathname + window.location.search);
+    });
+  }
+  /* Mapa: o iframe do Google só é criado depois do clique em "Ver mapa" (nenhum dado vai ao Google antes disso) */
+  var mapa = document.querySelector('.mapa[data-mapa-src]');
+  if (mapa) {
+    var botao = mapa.querySelector('.mapa__botao');
+    if (botao) botao.addEventListener('click', function () {
+      var frame = document.createElement('iframe');
+      frame.title = mapa.getAttribute('data-mapa-titulo') || 'Mapa';
+      frame.src = mapa.getAttribute('data-mapa-src');
+      frame.referrerPolicy = 'no-referrer-when-downgrade';
+      frame.allowFullscreen = true;
+      var previa = mapa.querySelector('.mapa__previa');
+      mapa.replaceChild(frame, previa);
+      frame.focus();
     });
   }
 })();

@@ -22,13 +22,12 @@
   <link rel="icon" href="assets/logo/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png" sizes="180x180">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-  <!-- Poppins 400 e 500 via Google Fonts. Cormorant Garamond 500 e 600 (display, a partir de 24px) é hospedada em assets/fonts, com os acentos recentralizados (ver css/base.css) -->
+  <!-- Tudo hospedado neste site (fontes, GSAP e Swiper): nenhum recurso de terceiros carrega junto com a página. -->
   <link rel="preload" href="assets/fonts/cormorant-garamond-500.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@14.2.0/swiper-bundle.min.css" integrity="sha384-AR6M/55P6iB8bej/EgONjLv4RiBc7Ln04qqPLrEvIcFP0aq6I4rJHd88m8xP0d4E" crossorigin="anonymous">
+  <link rel="preload" href="assets/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/poppins-500.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="assets/vendor/swiper-custom.min.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/sections.css">
@@ -482,12 +481,16 @@
           </div>
         </div>
 
-        <!-- Mapa do perfil oficial no Google (cid 11232544285409833721, place ID 0x94dce3403684883b:0x9be20383d7b272f9, coordenadas -25.4426827,-49.2794436). O link share.google não funciona em iframe. -->
-        <div class="mapa" data-anim="fade">
-          <iframe
-            title="Mapa com a localização do consultório da Dra. Mariana Zunino: Avenida Sete de Setembro, 4214, sala 1304, Batel, Curitiba"
-            src="https://www.google.com/maps?cid=11232544285409833721&amp;output=embed"
-            loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        <!-- Mapa do perfil oficial no Google (cid 11232544285409833721, place ID 0x94dce3403684883b:0x9be20383d7b272f9, coordenadas -25.4426827,-49.2794436).
+             O iframe do Google só é criado (js/main.js) depois do clique em "Ver mapa". Sem JavaScript, o link do noscript abre o Google Maps. -->
+        <div class="mapa" data-anim="fade" data-mapa-src="https://www.google.com/maps?cid=11232544285409833721&amp;output=embed" data-mapa-titulo="Mapa com a localização do consultório da Dra. Mariana Zunino: Avenida Sete de Setembro, 4214, sala 1304, Batel, Curitiba">
+          <div class="mapa__previa">
+            <svg class="mapa__icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>
+            <p class="mapa__endereco">Avenida Sete de Setembro, 4214, sala 1304, Batel, Curitiba/PR</p>
+            <button class="btn btn--primary mapa__botao" type="button">Ver mapa</button>
+            <noscript><a class="btn btn--primary" href="https://www.google.com/maps?cid=11232544285409833721" target="_blank" rel="noopener noreferrer">Abrir no Google Maps<span class="visually-hidden"> (abre em nova aba)</span></a></noscript>
+            <p class="mapa__aviso">Ao ver o mapa, o Google recebe os dados do seu acesso. <a href="privacidade.html#mapa">Saiba mais</a>.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -522,7 +525,7 @@
       </div>
 
       <div class="site-footer__bottom">
-        <p>&copy; <span data-year>2026</span> Mariana Zunino. Todos os direitos reservados.</p>
+        <p>&copy; <span data-year>2026</span> Mariana Zunino. Todos os direitos reservados. <a class="hover-underline" href="privacidade.html">Política de privacidade</a></p>
         <!-- LINK: informar a URL de Gabriel Vigo e transformar em <a class="hover-underline" href="URL" target="_blank" rel="noopener noreferrer"> -->
         <p class="site-footer__credit">Desenvolvido por Gabriel Vigo</p>
       </div>
@@ -533,13 +536,13 @@
     <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" focusable="false"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
 
-  <!-- GSAP 3.15 (SplitText e DrawSVGPlugin são gratuitos). Se a CDN falhar, o conteúdo continua visível. -->
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" integrity="sha384-XmJ9SoHtVOHoQUcKvFAzVXwdkKo1Ie3bhmSoIAkcdsHGaIrVJIkmozyq0FJeb/Ly" crossorigin="anonymous" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js" integrity="sha384-wl5TeDVvOWt30Pbf8aSo2ZrzsOjddu3avOBvHe+p+OhJt9gP6w9YXmDkN5DK2/dF" crossorigin="anonymous" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js" integrity="sha384-SWJ0lLVRoipvHh59xj0pL7uC7Ih51F+5smaFtrG+2nr+TlDZU5SYJHmxfolbeNTr" crossorigin="anonymous" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/DrawSVGPlugin.min.js" integrity="sha384-pfZbCpJUiv0Y8664JafRbiKcx2uJmjNjVCoPXGwaxvTSbO11M0htzeEeTC6KSaqa" crossorigin="anonymous" defer></script>
-  <!-- Swiper 14.2 (>= 11) para o carrossel de Tratamentos. Sem a CDN, os cards ficam em grade. -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@14.2.0/swiper-bundle.min.js" integrity="sha384-/RHqZ3SjkuPxoYsTTu11J3Ox7DmtTwPr2AJVTYqdoD7k+mRDlf6LhNkm1kP7pQpn" crossorigin="anonymous" defer></script>
+  <!-- GSAP 3.15 (SplitText e DrawSVGPlugin são gratuitos) e Swiper 14.2 (build só com Navigation, Pagination, A11y e Keyboard), locais em assets/vendor.
+       Sem GSAP o conteúdo continua visível; sem Swiper os cards ficam em grade. -->
+  <script src="assets/vendor/gsap.min.js" defer></script>
+  <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="assets/vendor/SplitText.min.js" defer></script>
+  <script src="assets/vendor/DrawSVGPlugin.min.js" defer></script>
+  <script src="assets/vendor/swiper-custom.min.js" defer></script>
   <script src="js/main.js" defer></script>
   <script src="js/carrossel.js" defer></script>
   <script src="js/animations.js" defer></script>

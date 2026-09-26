@@ -1,5 +1,4 @@
-/* Fontes: carregadas por <link> no index.html (preconnect + display=swap), só os pesos usados:
-   https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap (Cormorant Garamond é hospedada em assets/fonts) */
+/* Fontes: todas hospedadas em assets/fonts (Cormorant Garamond 500, 600 e itálico 500; Poppins 400 e 500), declaradas em css/base.css. */
 
 :root {
   /* EXTRAÍDO: MarianaZunino.pdf p.18 */

@@ -174,6 +174,11 @@
 .contato__botoes { display: flex; flex-direction: column; gap: var(--space-4); margin-top: var(--space-8); }
 .mapa { position: relative; min-width: 0; height: clamp(18rem, 80vw, 26rem); background: var(--color-bg-soft); }
 .mapa iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; filter: grayscale(0.7); transition: filter 0.5s ease; }
+.mapa__previa { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-4); padding: var(--space-6); text-align: center; border: 1px solid var(--color-border); }
+.mapa__icone { width: 2.5rem; height: 2.5rem; fill: none; stroke: var(--color-brand-bronze); stroke-width: 1.25; stroke-linecap: round; stroke-linejoin: round; }
+.mapa__endereco { max-width: 26ch; font-family: var(--font-display); font-size: 1.5rem; font-weight: var(--fw-headline); line-height: 1.25; }
+.mapa__aviso { max-width: 34ch; font-size: var(--fs-small); }
+.mapa__aviso a { text-decoration: underline; text-underline-offset: 0.2em; }
 .mapa:hover iframe, .mapa:focus-within iframe { filter: none; }
 @media (min-width: 30rem) { .contato__botoes { flex-direction: row; flex-wrap: wrap; } }
 @media (min-width: 64rem) {
@@ -397,3 +402,15 @@
   }
   .avaliacoes__lista > li { flex: 0 0 calc((100% - 3 * var(--space-4)) / 3.25); scroll-snap-align: start; }
 }
+
+/* Página de política de privacidade (privacidade.html) */
+.legal { padding-block: var(--space-16); }
+.legal__inner { max-width: 46rem; }
+.legal h1 { font-size: clamp(2rem, 1.2rem + 3vw, 3rem); text-transform: none; letter-spacing: 0; margin-bottom: var(--space-4); text-wrap: balance; }
+.legal h2 { margin-top: var(--space-12); margin-bottom: var(--space-3); font-size: 1.5rem; text-wrap: balance; }
+.legal p, .legal li { max-width: 70ch; }
+.legal p + p { margin-top: var(--space-3); }
+.legal ul { padding-left: 1.25rem; margin-top: var(--space-3); display: grid; gap: var(--space-2); }
+.legal a { text-decoration: underline; text-underline-offset: 0.2em; }
+.legal__aviso { margin-block: var(--space-6); padding: var(--space-4) var(--space-6); border: 1px dashed rgb(160 129 92 / 50%); font-size: var(--fs-small); }
+.legal__voltar { margin-top: var(--space-12); }

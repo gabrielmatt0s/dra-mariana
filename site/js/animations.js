@@ -2,7 +2,7 @@
  * Camada de animações (GSAP + ScrollTrigger + SplitText + DrawSVGPlugin).
  * Sistema orientado por atributos: cada seção nova só precisa dos data-attributes (ver CLAUDE.md, "Padrões de animação").
  *
- * - Sem GSAP (CDN fora do ar) ou com prefers-reduced-motion: a classe js-anim nunca existe e todo o conteúdo fica visível.
+ * - Sem GSAP (arquivo não carregou), com prefers-reduced-motion ou se a animação do hero não começar em 1,5 s: a classe js-anim nunca existe e todo o conteúdo fica visível.
  * - Só transform, opacity, clip-path e visibility (via autoAlpha). Exceção pedida: letter-spacing dos títulos em caixa alta.
  * - Entradas com once: true. Só parallax e scrub reagem ao rolar de volta.
  */
@@ -361,6 +361,15 @@
     }
 
     run();
+
+    /* Rede de segurança: o conteúdo nunca depende das animações. Se em 1,5 s a animação do hero não começou
+       (JS travado, aba em segundo plano, ticker parado), a classe js-anim sai e tudo fica visível. */
+    window.setTimeout(function () {
+      var title = document.querySelector('[data-hero="title"]');
+      if (title && window.getComputedStyle(title).visibility !== 'hidden') return;   // a animação do hero começou
+      html.classList.remove('js-anim');
+      mm.revert();
+    }, 1500);
 
     return function () {
       html.classList.remove('js-anim');
