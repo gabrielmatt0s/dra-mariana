@@ -93,7 +93,6 @@ p { max-width: 65ch; }
 .sl-mask { padding-block: 0.15em; margin-block: -0.15em; }
 /* margens negativas adjacentes colapsam: sem esta regra a entrelinha cresceria 0,15em */
 .sl-mask + .sl-mask { margin-top: -0.3em; }
-.section--sand { background: var(--color-brand-sand); color: var(--color-text); }
 .section--burgundy { background: var(--color-brand-burgundy); color: var(--color-brand-offwhite); }
 /* Fundos escuros: foco em areia/claro (o bordô do foco padrão some sobre bordô e grafite) */
 .section--burgundy :focus-visible, .site-footer :focus-visible { outline-color: var(--color-brand-offwhite); }

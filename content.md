@@ -165,9 +165,9 @@ Texto sugerido que estava no site e foi removido a pedido. Não usar.
 **Status:** SUGESTÃO (não consta literalmente no material), síntese fiel das pp. 12, 14 e 15.
 
 ## Prova social
-Depoimentos, avaliações, números de pacientes, prêmios e resultados: **Ausente no material**.
+**Status: em uso, com regras.** Não há depoimentos escritos por nós nem números de pacientes, prêmios ou resultados. A seção **Avaliações** do site usa apenas 6 avaliações reais do perfil do Google da clínica, transcritas sem alteração (ver "Avaliações do Google" abaixo), com a nota e o total exibidos no perfil.
 
-**Regra:** não criar prova social fictícia. Se nada for fornecido, omitir a seção.
+**Regra:** não criar prova social fictícia. Só entram avaliações sóbrias, conforme o `CLAUDE.md` (Resolução CFM 2.336/2023). Os links individuais das avaliações ainda não foram fornecidos: os cards apontam para o perfil.
 
 ## CTA final
 **Título:** Sua pele, sua história.  
@@ -225,10 +225,9 @@ WhatsApp, mesmo link do CTA do hero (ver "Contato").
 - E-mail.
 - Preços.
 - URL de site próprio.
-- Política de privacidade e CNPJ/razão social.
+- CNPJ/razão social (para completar a política de privacidade, se a cliente quiser).
 - Depoimentos reais.
 - URL do link "Desenvolvido por Gabriel Vigo" no rodapé.
-- Links diretos das 6 avaliações do Google (cada card usa hoje o link do perfil como reserva).
 
 **Item sugerido e dispensado:** CRM-PR e RQE já constam no material (CRM/PR 26153, RQE 19939), então a pendência não se aplica. Exibi-los junto ao anúncio da especialidade.
 
@@ -262,6 +261,9 @@ WhatsApp, mesmo link do CTA do hero (ver "Contato").
 - p. 21: mistura de retrato P&B, conteúdo educativo, pele e família. **NUNCA usar a foto de família no site.**
 - p. 22: referências de vídeo incluindo "Melasma", "Dermatologia Estética" e "rituais". Serviços vêm somente da lista oficial da cliente, não destes rótulos.
 - p. 25: destaques "Sobre mim", "Consulta", "Botox", "Congressos". Serviços vêm somente da lista oficial da cliente.
+
+## Política de privacidade
+**Status: SUGESTÃO, aguardando revisão da cliente.** Página `site/privacidade.html`, com link no rodapé. Cobre: quem é o responsável, o que o site coleta (nada por conta própria; WhatsApp ao clicar; Google Maps só depois de "Ver mapa"), finalidade, tempo de guarda, direitos da LGPD e contato (WhatsApp da clínica). Revisar com a cliente (e, se ela quiser, com um advogado) antes de dar como definitiva.
 
 ## Nunca usar no site
 - A pesquisa de valores da p. 10.

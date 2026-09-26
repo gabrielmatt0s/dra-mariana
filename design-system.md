@@ -38,16 +38,16 @@
 
 | Status | SVG | Versão | Origem | Uso recomendado |
 |---|---|---|---|---|
-| APROXIMADO | `assets/logo/logo-principal.svg` | principal colorida horizontal | `logotipo-mariana-zunino.png` | header claro, hero claro, assinatura institucional |
-| APROXIMADO | `assets/logo/logo-simbolo.svg` | símbolo MZ | recorte do símbolo de `logotipo-mariana-zunino.png` | favicon grande, detalhes, avatar quando necessário |
-| APROXIMADO | `assets/logo/favicon.svg` | símbolo MZ | mesma origem do símbolo | favicon |
-| APROXIMADO | `assets/logo/logo-escala-cinza.svg` | escala de cinza | PNG homônimo | impressão/uso neutro |
-| APROXIMADO | `assets/logo/logo-negativa.svg` | monocromática escura | PNG homônimo | fundos claros |
-| APROXIMADO | `assets/logo/logo-positiva.svg` | monocromática branca | PNG homônimo | fundos escuros/fotográficos com contraste suficiente |
-| APROXIMADO | `assets/logo/logo-selo.svg` | selo circular colorido | `Selo-MarianaZunino.png` | social, assinatura secundária, composição editorial |
-| APROXIMADO | `assets/logo/logo-selo-escala-cinza.svg` | selo cinza | PNG homônimo | uso neutro |
-| APROXIMADO | `assets/logo/logo-selo-negativa.svg` | selo escuro | PNG homônimo | fundos claros |
-| APROXIMADO | `assets/logo/logo-selo-positiva.svg` | selo branco | PNG homônimo | fundos escuros |
+| APROXIMADO | `_originais/logos-nao-usadas/logo-principal.svg` | principal colorida horizontal | `logotipo-mariana-zunino.png` | header claro, hero claro, assinatura institucional |
+| APROXIMADO | `_originais/logos-nao-usadas/logo-simbolo.svg` | símbolo MZ | recorte do símbolo de `logotipo-mariana-zunino.png` | favicon grande, detalhes, avatar quando necessário |
+| APROXIMADO | `site/assets/logo/favicon.svg` | símbolo MZ | mesma origem do símbolo | favicon |
+| APROXIMADO | `_originais/logos-nao-usadas/logo-escala-cinza.svg` | escala de cinza | PNG homônimo | impressão/uso neutro |
+| APROXIMADO | `_originais/logos-nao-usadas/logo-negativa.svg` | monocromática escura | PNG homônimo | fundos claros |
+| APROXIMADO | `_originais/logos-nao-usadas/logo-positiva.svg` | monocromática branca | PNG homônimo | fundos escuros/fotográficos com contraste suficiente |
+| APROXIMADO | `_originais/logos-nao-usadas/logo-selo.svg` | selo circular colorido | `Selo-MarianaZunino.png` | social, assinatura secundária, composição editorial |
+| APROXIMADO | `_originais/logos-nao-usadas/logo-selo-escala-cinza.svg` | selo cinza | PNG homônimo | uso neutro |
+| APROXIMADO | `_originais/logos-nao-usadas/logo-selo-negativa.svg` | selo escuro | PNG homônimo | fundos claros |
+| APROXIMADO | `_originais/logos-nao-usadas/logo-selo-positiva.svg` | selo branco | PNG homônimo | fundos escuros |
 
 ### Validação visual
 Todos os SVGs foram renderizados novamente para PNG e inspecionados visualmente. A composição, proporção geral, símbolo, nome e descriptor foram preservados. O `viewBox` foi recortado ao conteúdo opaco para eliminar margens transparentes externas.
@@ -104,12 +104,12 @@ Fontes **EXTRAÍDAS** da p. 19 do PDF.
 |---|---|---|---|---|
 | EXTRAÍDO | SALVAGER | nome/títulos serifados/display | Não identificada como Google Fonts no material. Arquivo e licença: Ausente no material. | Não embarcar até receber licença/webfont |
 | EXTRAÍDO | Collection New Style | assinatura/script | Não é Google Fonts. Evidência externa indica uso pessoal gratuito e licença comercial necessária. | Reservar para acentos curtos após licenciamento |
-| EXTRAÍDO | Poppins | sans serif | Google Fonts | corpo, UI, botões, labels |
+| EXTRAÍDO | Poppins | sans serif | Google Fonts (OFL), hospedada no site | corpo, UI, botões, labels |
 
-Importação usada no site (só os pesos em uso, com preconnect e `display=swap`, via `<link>` no `index.html`): `https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Poppins:wght@400;500&display=swap`.
+Fontes no site: todas hospedadas em `site/assets/fonts/` e declaradas em `site/css/base.css` (Cormorant Garamond 500, 600 e itálico 500; Poppins 400 e 500), sem Google Fonts em tempo de execução. A Cormorant hospedada é cópia modificada (acentos recentralizados), ver `assets.md`.
 
 ### Regra de fontes enquanto não houver licença webfont confirmada
-- **Display: Cormorant Garamond, SUBSTITUTA da SALVAGER** (**SUGESTÃO, decisão da equipe**, não consta no material). Google Fonts.
+- **Display: Cormorant Garamond, SUBSTITUTA da SALVAGER** (**SUGESTÃO, decisão da equipe**, não consta no material). Licença OFL, hospedada no site.
   - Use só a partir de 24px. Abaixo disso (eyebrow, labels, botões, credenciais, links do menu) use Poppins.
   - Peso 500 na headline e 600 nos títulos em caixa alta. Nunca 300.
   - Caixa alta com letter-spacing de 0.08em a 0.12em. Headline em caixa normal, com letter-spacing 0.
@@ -210,10 +210,12 @@ Todos os valores abaixo são **SUGESTÃO (não consta no material)**, pois o PDF
 - Link textual: `#762d2d`, underline no hover/focus; nunca depender só de cor para estado.
 
 ### Cards
-Fundo branco ou off-white, border 1px com grafite a 12% de opacidade, radius 8px, sem sombra por padrão. Cards de "Tratamentos" levam apenas o título da lista oficial. Texto de apoio, se necessário, no máximo uma linha neutra marcada como SUGESTÃO para aprovação. "Procedimentos" ficam em lista compacta, sem cards.
+- **Tratamentos (carrossel):** o card é a foto inteira em 3:4, sem borda, sombra nem radius. Número, linha de 1px em `#a0815c` (40px, cresce a 80px no hover) e nome ficam numa faixa de vidro fosco na base: `#e9e6e1` a 70% com `backdrop-filter: blur(12px)` (fallback sólido `#e9e6e1`), texto `#414042`. Contraste medido: 7,0:1 sobre o placeholder, 8,9:1 sobre foto clara e 4,4:1 sobre foto muito escura (revisar com as fotos reais). No desktop a altura do card vem da altura da tela; a largura sai da proporção 3:4, limitada pela largura do container.
+- **Avaliações:** cards brancos com borda de 1px em grafite a 18%, sem sombra. Em telas baixas (até 860px de altura útil) viram uma faixa com rolagem lateral e setas, contador e barra de progresso, no mesmo padrão dos Tratamentos.
+- "Procedimentos" ficam em lista com divisores de 1px. Texto de apoio nos cards, se um dia existir, no máximo uma linha neutra marcada como SUGESTÃO.
 
 ### Formulário de contato
-Campos 48-52px, label persistente, border 1px `#414042` a 35%, focus 2px `#762d2d`, mensagens de erro textuais. Campos sugeridos: nome, telefone/e-mail, mensagem e consentimento. Destino e política de privacidade: Ausente no material.
+Campos 48-52px, label persistente, border 1px `#414042` a 35%, focus 2px `#762d2d`, mensagens de erro textuais. Campos sugeridos: nome, telefone/e-mail, mensagem e consentimento. O site não tem formulário. A política de privacidade é `site/privacidade.html` (texto SUGESTÃO, aguardando revisão da cliente).
 
 ### Header/Footer
 Header desktop 80-88px, sticky apenas se não cobrir conteúdo; logo 180-220px. Mobile 64-72px, símbolo ou logo completa conforme legibilidade. Footer em `#414042` com logo positiva e textos brancos, contendo CRM/RQE e contatos reais quando fornecidos.
@@ -228,6 +230,8 @@ Header desktop 80-88px, sticky apenas se não cobrir conteúdo; logo 180-220px. 
 
 ## 9. Observações de implementação
 - Priorizar HTML semântico, navegação por teclado, foco visível e `prefers-reduced-motion`.
-- Não usar texto sobre fotografia sem overlay que preserve contraste.
+- Não usar texto sobre fotografia sem overlay que preserve contraste (nos cards de Tratamentos, faixa de vidro fosco).
+- Desktop (1024px+ de largura e 600px+ de altura): cada seção ocupa 100svh menos a altura do header, com conteúdo centralizado e medidas por altura (vh). Ver `site/css/sections.css`.
+- Alvos de toque de pelo menos 44 x 44 px; `text-wrap: balance` em títulos e `pretty` em parágrafos.
 - Não usar script font para corpo, navegação ou botão.
 - Não usar bronze/areia como texto pequeno sobre branco.

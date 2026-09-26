@@ -76,20 +76,6 @@
         });
       },
 
-      /* 5. Frase de destaque: palavras de opacity 0.15 para 1 conforme o scroll (scrub) */
-      quote: function (el) {
-        SplitText.create(el, {
-          type: 'words', wordsClass: 'sw', autoSplit: true,
-          onSplit: function (self) {
-            gsap.set(el, { autoAlpha: 1 });
-            return gsap.fromTo(self.words, { opacity: 0.15 }, {
-              opacity: 1, ease: 'none', stagger: 0.1,
-              scrollTrigger: { trigger: el, start: 'clamp(top 80%)', end: 'clamp(bottom 55%)', scrub: true }
-            });
-          }
-        });
-      },
-
       /* 6. Credencial: linhas de bronze crescem das pontas para o centro, o texto aparece depois */
       cred: function (el) {
         var halves = $$('.rule i', el), text = el.querySelector('.cred__text');
@@ -233,15 +219,6 @@
           autoAlpha: 1, y: 0, duration: 0.9 * k, ease: EASE,
           scrollTrigger: { trigger: el, start: 'top 92%', once: true }
         });
-      },
-
-      /* 14. Linha fina isolada: scaleX 0 para 1, transform-origin left */
-      line: function (el) {
-        gsap.fromTo(el, { scaleX: 0 }, {
-          scaleX: 1, duration: 1 * k, ease: EASE,
-          scrollTrigger: { trigger: el, start: 'top 92%', once: true }
-        });
-        gsap.set(el, { autoAlpha: 1 });
       }
     };
 
