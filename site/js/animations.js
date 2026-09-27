@@ -202,7 +202,7 @@
         });
         tl.to(clip, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.3 * k, ease: 'power3.inOut' }, 0);
         tl.to(inner, { scale: 1, duration: 1.8 * k, ease: EASE }, 0);
-        tl.call(function () { fig._pronta = true; }, null, 1.8 * k);   // hover só depois da entrada
+        tl.call(function () { fig._pronta = true; if (fig._onPronto) fig._onPronto(); }, null, 1.8 * k);   // hover só depois da entrada; avisa se o mouse já estiver em cima
 
         if (top) {
           // Moldura de bronze desenhada depois da foto, no sentido horário
@@ -292,7 +292,7 @@
           tl.to(pClip, { clipPath: 'inset(0% 0% 0% 0%)', duration: pd, ease: 'expo.out' }, p0);
           tl.to(pInner, { scale: 1, duration: pd, ease: 'expo.out' }, p0);
           if (pFrame) tl.to(pFrame, { x: 0, y: 0, opacity: 1, duration: fd, ease: 'expo.out' }, p0 + 0.6 * pd);
-          tl.call(function () { photo._pronta = true; }, null, p0 + 0.6 * pd + fd);   // hover só depois da entrada
+          tl.call(function () { photo._pronta = true; if (photo._onPronto) photo._onPronto(); }, null, p0 + 0.6 * pd + fd);   // hover só depois da entrada; avisa se o mouse já estiver em cima
         }
       }
 
@@ -301,40 +301,56 @@
       window.setTimeout(start, 900);
     }
 
-    /* 19. Hover das fotos (hero e sobre), só com mouse e só depois da entrada: zoom leve, moldura se aproxima e parallax da imagem pelo cursor */
+    /* 19. Hover das fotos (hero e sobre), só com mouse e só depois da entrada: zoom leve, moldura se aproxima e parallax da imagem pelo cursor
+       "over" (mouse em cima) e "ativo" (tweens ligados) são independentes: se o mouse entra antes da entrada terminar
+       (fig._pronta ainda false), o hover fica registrado como "over" e liga sozinho assim que a entrada chama fig._onPronto,
+       sem precisar que o mouse saia e volte a entrar. */
     function photoHover(fig) {
       var inner = fig.querySelector('.photo__inner'), frame = fig.querySelector('.photo__frame');
-      var qx, qy, dentro = false;
-      function entra() {
-        if (!fig._pronta) return;
-        dentro = true;
+      var qx, qy, over = false, ativo = false;
+      function ativar() {
+        if (ativo) return;
+        ativo = true;
         gsap.killTweensOf(inner, 'x,y,scale');
         qx = gsap.quickTo(inner, 'x', { duration: 0.6, ease: 'power3.out' });
         qy = gsap.quickTo(inner, 'y', { duration: 0.6, ease: 'power3.out' });
         gsap.to(inner, { scale: 1.04, duration: 0.8, ease: 'power2.out', overwrite: 'auto' });
         if (frame) gsap.to(frame, { x: -8, y: -8, duration: 0.6, ease: 'power2.out', overwrite: 'auto' });
       }
+      function desativar() {
+        if (!ativo) return;
+        ativo = false; qx = qy = null;
+        gsap.killTweensOf(inner, 'x,y');
+        gsap.to(inner, { x: 0, y: 0, scale: 1, duration: 0.8, ease: 'power3.out', overwrite: 'auto' });
+        if (frame) gsap.to(frame, { x: 0, y: 0, duration: 0.8, ease: 'power3.out', overwrite: 'auto' });
+      }
+      function entra() {
+        over = true;
+        if (fig._pronta) ativar();
+      }
       function move(e) {
-        if (!dentro || !qx) return;
+        if (!over || !ativo) return;
         var r = fig.getBoundingClientRect();
         var nx = Math.max(-1, Math.min(1, (e.clientX - r.left - r.width / 2) / (r.width / 2)));
         var ny = Math.max(-1, Math.min(1, (e.clientY - r.top - r.height / 2) / (r.height / 2)));
         qx(-nx * 10); qy(-ny * 10);   // até 10px, na direção oposta ao mouse
       }
       function sai() {
-        if (!dentro) return;
-        dentro = false; qx = qy = null;
-        gsap.killTweensOf(inner, 'x,y');
-        gsap.to(inner, { x: 0, y: 0, scale: 1, duration: 0.8, ease: 'power3.out', overwrite: 'auto' });
-        if (frame) gsap.to(frame, { x: 0, y: 0, duration: 0.8, ease: 'power3.out', overwrite: 'auto' });
+        over = false;
+        desativar();
       }
       fig.addEventListener('mouseenter', entra);
       fig.addEventListener('mousemove', move);
       fig.addEventListener('mouseleave', sai);
+      // Avisada pela entrada (fig._pronta = true): liga na hora se o mouse já estiver parado em cima
+      fig._onPronto = function () { if (over) ativar(); };
+      // Mouse já pode estar parado sobre a foto quando o script inicializa (ex.: cursor não se moveu desde o carregamento)
+      try { if (fig.matches(':hover')) { over = true; if (fig._pronta) ativar(); } } catch (e) {}
       return function () {
         fig.removeEventListener('mouseenter', entra);
         fig.removeEventListener('mousemove', move);
         fig.removeEventListener('mouseleave', sai);
+        fig._onPronto = null;
       };
     }
 
