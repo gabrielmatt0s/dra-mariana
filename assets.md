@@ -46,18 +46,32 @@ As fotografias vistas dentro do PDF não foram exportadas como assets separados.
 Recebidos dois JPEGs (metadados já ausentes, sRGB), guardados sem alteração em `_originais/fotos/` (fora do git). O site nunca usa o original.
 | Original | Resolução | Uso | Recorte |
 |---|---|---|---|
-| dra1.jpeg (sentada no banco, com a revista "VOGUE BELEZA" à mostra) | 1112 x 1600, 90,5 KB | Hero, 3:4 | 990 x 1320, x=110 e y=30, com a Dra. centrada no quadro e mais ar ao redor. Sem retoque |
+| dra1.jpeg (sentada no banco, com a revista "VOGUE BELEZA" à mostra) | 1112 x 1600, 90,5 KB | Hero, 3:4 (ver edição abaixo) | 990 x 1320, x=110 e y=30, com a Dra. centrada no quadro e mais ar ao redor. Sem retoque |
 | dra2.jpeg (retrato de busto, luz lateral) | 1066 x 1600, 102,8 KB | Sobre, 2:3 | Foto inteira, 1066 x 1600, sem recorte (a foto termina na altura do quadril). Sem retoque |
 
-Versões em `site/assets/img/` (`dra-mariana-zunino-hero-{480,800,1200}` e `dra-mariana-zunino-sobre-{480,800,1200}`), geradas com sharp (Lanczos3), sem metadados, com perfil sRGB embutido. Só recorte, redimensionamento e compressão: AVIF q50, WebP q75, JPEG q80 progressivo (mozjpeg).
+Versões em `site/assets/img/` (`dra-mariana-zunino-sobre-{480,800,1200}`), geradas com sharp (Lanczos3), sem metadados, com perfil sRGB embutido. Só recorte, redimensionamento e compressão: AVIF q50, WebP q75, JPEG q80 progressivo (mozjpeg). (Os arquivos `dra-mariana-zunino-hero-*` seguem outra receita, ver "Foto do hero editada" abaixo.)
 | Arquivo | 480 | 800 | 1200 |
 |---|---|---|---|
-| hero AVIF / WebP / JPEG (KB) | 8,9 / 11,4 / 20,4 | 17,2 / 21,8 / 42,1 | 28,0 / 34,9 / 72,4 |
 | sobre AVIF / WebP / JPEG (KB) | 10,3 / 12,7 / 23,3 | 21,3 / 27,1 / 50,9 | 37,4 / 46,5 / 94,2 |
 
-Atenção: como o recorte do hero usa só 990 px de largura e a foto do Sobre tem 1066 px, as versões de 1200 px são ampliações de cerca de 21% (hero) e 13% (Sobre); as de 800 px não são ampliadas. Se a cliente enviar as fotos em resolução maior, refazer os recortes.
+Atenção: como a foto do Sobre tem 1066 px, a versão de 1200 px é uma ampliação de cerca de 13%; a de 800 px não é ampliada. Se a cliente enviar a foto em resolução maior, refazer o recorte.
 A foto do Sobre (`.photo--inteira`, `data-parallax-off`) não tem folga vertical nem parallax, para o cabelo, que começa a 1,6% da borda de cima, não ser cortado. Para a Dra. aparecer inteira e centrada no hero, a folga vertical das fotos passou de 10% para 4% (`.photo__inner` em `components.css`) e o parallax de ±8% para ±3,5% (`animations.js`).
-Pendente com a cliente: a capa da revista "VOGUE" na foto do hero pode sugerir matéria ou parceria; confirmar o respaldo antes de publicar.
+
+### Foto do hero editada: logotipo VOGUE removido (27/09/2026)
+A pendência acima ("a capa da revista VOGUE na foto do hero pode sugerir matéria ou parceria") foi resolvida removendo o logotipo, sem mexer em mais nada da foto: **foto do hero editada, logotipo de terceiro removido por inpainting; original preservado em `_originais/fotos/dra1.jpeg`.**
+
+- **Máscara:** só as 5 letras de "VOGUE" (440 pixels, dentro de um retângulo de 34 x 35 px), localizadas por brilho e isoladas por componentes conectados (excluindo o brilho dos anéis e a lombada branca da revista, que ficam bem perto). "BE LEZA" e o resto da capa não foram tocados.
+- **Reconstrução:** OpenCV `INPAINT_TELEA` (raio 5px), com uma checagem posterior confirmando 0 pixels alterados fora da máscara.
+- **Grão:** a reconstrução inicial ficava mais lisa que o grão da foto ao redor (desvio padrão de luminância 5,0 contra 7,6 da vizinhança). Foi somado ruído gaussiano (sigma 5,88, calibrado por busca binária) só dentro da máscara, igual nos 3 canais de cor: resultado final 7,65 contra 7,60 da vizinhança.
+- **Arquivo de trabalho:** `_originais/fotos/dra1-sem-logo.png` (1112 x 1600, sem perdas, mesma resolução do original; guardado fora do git como o restante de `_originais/`).
+- **Recorte para 3:4:** o original tem só 1112 px de largura (menor que os 1200 px usados antes, que eram uma extensão sintética de canvas). Sem ampliar a largura, a altura para fechar 3:4 a 1112 px é 1483 px; os 117 px cortados saem do chão vazio abaixo do banco (nem o banco, nem a Dra. Mariana são tocados). O enquadramento da cabeça aos pés fica idêntico ao original.
+- **Exportação** (`site/assets/img/dra-mariana-zunino-hero-{480,800,1112}.{avif,webp,jpg}`): larguras 480, 800 e 1112 (sem 1200 nem 1600, para não ampliar além do original), todas na proporção exata 1112:1483 (altura 640, 1067 e 1483). AVIF qualidade 60, WebP qualidade 85, JPEG qualidade 90 progressivo, sem EXIF nem perfil ICC embutido (sRGB implícito, igual ao original).
+| Arquivo | 480 | 800 | 1112 |
+|---|---|---|---|
+| hero AVIF / WebP / JPEG (KB), antes (480/800/1200) | 8,9 / 11,4 / 20,4 | 17,2 / 21,8 / 42,1 | 28,0 / 34,9 / 72,4 (era 1200px) |
+| hero AVIF / WebP / JPEG (KB), depois (480/800/1112) | 11,5 / 16,3 / 36,5 | 23,2 / 32,6 / 79,9 | 37,6 / 53,1 / 92,2 |
+
+Os arquivos ficaram maiores (+125,8 KB no total dos 9 arquivos: 257,1 KB antes, 382,9 KB depois), porque a qualidade pedida desta vez é mais alta (AVIF 60 contra 50, WebP 85 contra 75, JPEG 90 contra 80). Lighthouse mobile depois da troca: 92, 98 e 98 em 3 medições (mediana 98); desktop: 100. Sem esse item cair abaixo de 90.
 
 ### og-image (26/09/2026, recorte refeito em 27/09/2026)
 `site/assets/og-image.jpg`, 1200 x 630: fundo #e9e6e1, logo horizontal (`site/assets/logo/logo-horizontal-header.svg`) à esquerda e recorte da foto do hero à direita. Recorte refeito em 27/09/2026 (AUDITORIA-CFM.md, item 2.3): a versão anterior mostrava a foto inteira, com a revista "Vogue" nas mãos da Dra. Mariana; a versão atual usa só a parte de cima da mesma foto (topo até 900 px de 1600, antes da revista aparecer), então nenhuma marca de terceiro sai na og-image. **A foto usada na própria seção do hero (`index.html`) continua com a revista à mostra**, porque a pendência é sobre aquela foto, não sobre o recorte da og-image; ver a nota logo acima sobre a capa da Vogue.
