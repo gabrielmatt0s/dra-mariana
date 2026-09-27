@@ -2,6 +2,8 @@
 
 Tudo o que falta antes de o site ir ao ar em **https://dermatomarianazunino.com** (hospedagem: Locaweb, plano Linux, ainda a contratar). Só a pasta `site/` é publicada.
 
+- [ ] **Não levar o `site/vercel.json` nem o cabeçalho `X-Robots-Tag: noindex, nofollow` para a Locaweb.** Esse arquivo existe só para a versão de apresentação na Vercel (deploy à parte, fora do domínio definitivo), para o Google não indexar essa cópia enquanto o site tem placeholders. O `.htaccess` da Locaweb não tem e não deve ganhar esse cabeçalho.
+
 ## Depende da cliente
 
 - [ ] **Fotos aprovadas**, com autorização de uso web e no formato indicado nos comentários do `index.html`:
