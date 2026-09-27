@@ -48,7 +48,7 @@
 
   <!-- Dados estruturados (SEO local). NAP igual ao texto visível do site.
        NÃO incluir aggregateRating nem review: o Google trata avaliações do próprio site como autopromoção.
-       "image" usa a og-image (logo e retrato).
+       "image" usa a og-image (logo e retrato do hero, sem a revista). "identifier" traz CRM/PR e RQE (art. 4º e 6º da Resolução CFM 2.336/2023); "jobTitle" (Médica dermatologista) é aceito pelo Google mas o schema.org só define essa propriedade para o tipo Person, não para Physician/MedicalBusiness: é extra, não invalida o restante.
        NOME ALTERNATIVO (desativado, confirmar com a cliente): para ativar, acrescentar ao bloco Physician, depois de "name":
          "alternateName": "Mariana Martins Bardou Zunino", -->
   <script type="application/ld+json">
@@ -65,6 +65,19 @@
   "image": "https://dermatomarianazunino.com/assets/og-image.jpg",
   "logo": "https://dermatomarianazunino.com/assets/logo/logo-horizontal-header.svg",
   "telephone": "+55-41-99178-0320",
+  "jobTitle": "Médica dermatologista",
+  "identifier": [
+    {
+      "@type": "PropertyValue",
+      "propertyID": "CRM/PR",
+      "value": "26153"
+    },
+    {
+      "@type": "PropertyValue",
+      "propertyID": "RQE",
+      "value": "19939"
+    }
+  ],
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Av. Sete de Setembro, 4214 - Sl 1304 - Batel",
@@ -159,7 +172,7 @@
           <p class="eyebrow" data-hero="eyebrow"><span class="eyebrow__line" aria-hidden="true"></span><span class="eyebrow__text">Dermatologista em Curitiba</span></p>
           <h1 class="hero__title" id="hero-titulo" data-hero="title">Cuido da sua pele honrando a sua essência.</h1>
           <p class="hero__subtitle" data-hero="subtitle">Sua pele, sua história.</p>
-          <p class="hero__creds" data-hero="creds">CRM/PR 26153 <span aria-hidden="true">|</span> RQE 19939</p>
+          <p class="hero__creds" data-hero="creds">Médica, CRM/PR 26153 <span aria-hidden="true">|</span> Dermatologista, RQE 19939</p>
           <div class="hero__actions">
             <a class="btn btn--primary btn--lg" data-hero="cta" href="https://wa.me/5541991780320?text=Ol%C3%A1%2C%20Dra.%20Mariana!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener noreferrer">Agende a sua consulta<span class="visually-hidden"> (abre o WhatsApp em nova aba)</span></a>
             <p class="hero__note" data-hero="note">Atendimento particular. Segunda a sexta, das 9h às 12h e das 13h às 18h.</p>
@@ -187,7 +200,7 @@
           <h2 class="title-section" id="sobre-titulo" data-anim="title">Sobre a Dra. Mariana</h2>
           <p class="sobre__cred display-lg" data-anim="cred">
             <span class="rule rule--top" aria-hidden="true"><i></i><i></i></span>
-            <span class="cred__text">Dermatologista, CRM/PR 26153, RQE 19939</span>
+            <span class="cred__text">Médica, CRM/PR 26153, Dermatologista, RQE 19939</span>
             <span class="rule rule--bottom" aria-hidden="true"><i></i><i></i></span>
           </p>
           <!-- SOBRE: substituir pelo texto enviado pela cliente (ideal: 3 parágrafos curtos, até ~90 palavras no total) -->
@@ -234,7 +247,7 @@
             <div class="swiper-slide card card--trat" role="group" aria-roledescription="slide" aria-label="Tratamento 1 de 6">
               <figure class="card__media">
                 <!-- FOTO: Rejuvenescimento. Proporção 3:4 (vertical), 900x1200 px, WebP, até 150 KB. Tons quentes e neutros, luz natural.
-                     Sem lesões, acne visível, pele doente, antes e depois, agulhas, seringas ou procedimento em execução (regras do CFM).
+                     Sem lesões, acne visível, pele doente, antes e depois, agulhas, seringas ou procedimento em execução; nenhuma foto de paciente com rosto identificável sem autorização por escrito (regras do CFM, ver AUDITORIA-CFM.md).
                      Trocar o <div class="photo-placeholder"> por: <img src="assets/img/tratamento-01.webp" alt="" width="900" height="1200" loading="lazy"> -->
                 <div class="photo-placeholder" role="img" aria-label="Espaço reservado para a foto do tratamento Rejuvenescimento">
                   <span class="photo-placeholder__label">FOTO: Rejuvenescimento</span>
@@ -249,7 +262,7 @@
             <div class="swiper-slide card card--trat" role="group" aria-roledescription="slide" aria-label="Tratamento 2 de 6">
               <figure class="card__media">
                 <!-- FOTO: Melasma. Proporção 3:4 (vertical), 900x1200 px, WebP, até 150 KB. Tons quentes e neutros, luz natural.
-                     Sem lesões, acne visível, pele doente, antes e depois, agulhas, seringas ou procedimento em execução (regras do CFM).
+                     Sem lesões, acne visível, pele doente, antes e depois, agulhas, seringas ou procedimento em execução; nenhuma foto de paciente com rosto identificável sem autorização por escrito (regras do CFM, ver AUDITORIA-CFM.md).
                      Trocar o <div class="photo-placeholder"> por: <img src="assets/img/tratamento-02.webp" alt="" width="900" height="1200" loading="lazy"> -->
                 <div class="photo-placeholder" role="img" aria-label="Espaço reservado para a foto do tratamento Melasma">
                   <span class="photo-placeholder__label">FOTO: Melasma</span>
@@ -264,7 +277,7 @@
             <div class="swiper-slide card card--trat" role="group" aria-roledescription="slide" aria-label="Tratamento 3 de 6">
               <figure class="card__media">
                 <!-- FOTO: Acne. Proporção 3:4 (vertical), 900x1200 px, WebP, até 150 KB. Tons quentes e neutros, luz natural.
-                     Sem lesões, acne visível, pele doente, antes e depois, agulhas, seringas ou procedimento em execução (regras do CFM).
+                     Sem lesões, acne visível, pele doente, antes e depois, agulhas, seringas ou procedimento em execução; nenhuma foto de paciente com rosto identificável sem autorização por escrito (regras do CFM, ver AUDITORIA-CFM.md).
                      Trocar o <div class="photo-placeholder"> por: <img src="assets/img/tratamento-03.webp" alt="" width="900" height="1200" loading="lazy"> -->
                 <div class="photo-placeholder" role="img" aria-label="Espaço reservado para a foto do tratamento Acne">
                   <span class="photo-placeholder__label">FOTO: Acne</span>
@@ -279,7 +292,7 @@
             <div class="swiper-slide card card--trat" role="group" aria-roledescription="slide" aria-label="Tratamento 4 de 6">
               <figure class="card__media">
                 <!-- FOTO: Rosácea. Proporção 3:4 (vertical), 900x1200 px, WebP, até 150 KB. Tons quentes e neutros, luz natural.
-                     Sem lesões, acne visível, pele doente, antes e depois, agulhas, seringas ou procedimento em execução (regras do CFM).
+                     Sem lesões, acne visível, pele doente, antes e depois, agulhas, seringas ou procedimento em execução; nenhuma foto de paciente com rosto identificável sem autorização por escrito (regras do CFM, ver AUDITORIA-CFM.md).
                      Trocar o <div class="photo-placeholder"> por: <img src="assets/img/tratamento-04.webp" alt="" width="900" height="1200" loading="lazy"> -->
                 <div class="photo-placeholder" role="img" aria-label="Espaço reservado para a foto do tratamento Rosácea">
                   <span class="photo-placeholder__label">FOTO: Rosácea</span>
@@ -294,7 +307,7 @@
             <div class="swiper-slide card card--trat" role="group" aria-roledescription="slide" aria-label="Tratamento 5 de 6">
               <figure class="card__media">
                 <!-- FOTO: Queda de cabelo. Proporção 3:4 (vertical), 900x1200 px, WebP, até 150 KB. Tons quentes e neutros, luz natural.
-                     Sem lesões, acne visível, pele doente, antes e depois, agulhas, seringas ou procedimento em execução (regras do CFM).
+                     Sem lesões, acne visível, pele doente, antes e depois, agulhas, seringas ou procedimento em execução; nenhuma foto de paciente com rosto identificável sem autorização por escrito (regras do CFM, ver AUDITORIA-CFM.md).
                      Trocar o <div class="photo-placeholder"> por: <img src="assets/img/tratamento-05.webp" alt="" width="900" height="1200" loading="lazy"> -->
                 <div class="photo-placeholder" role="img" aria-label="Espaço reservado para a foto do tratamento Queda de cabelo">
                   <span class="photo-placeholder__label">FOTO: Queda de cabelo</span>
@@ -309,7 +322,7 @@
             <div class="swiper-slide card card--trat" role="group" aria-roledescription="slide" aria-label="Tratamento 6 de 6">
               <figure class="card__media">
                 <!-- FOTO: Outras doenças de pele. Proporção 3:4 (vertical), 900x1200 px, WebP, até 150 KB. Tons quentes e neutros, luz natural.
-                     Sem lesões, acne visível, pele doente, antes e depois, agulhas, seringas ou procedimento em execução (regras do CFM).
+                     Sem lesões, acne visível, pele doente, antes e depois, agulhas, seringas ou procedimento em execução; nenhuma foto de paciente com rosto identificável sem autorização por escrito (regras do CFM, ver AUDITORIA-CFM.md).
                      Trocar o <div class="photo-placeholder"> por: <img src="assets/img/tratamento-06.webp" alt="" width="900" height="1200" loading="lazy"> -->
                 <div class="photo-placeholder" role="img" aria-label="Espaço reservado para a foto do tratamento Outras doenças de pele">
                   <span class="photo-placeholder__label">FOTO: Outras doenças de pele</span>
@@ -444,7 +457,7 @@
             <a class="review" href="https://share.google/SD7QJqkNnq5ACpZ09" target="_blank" rel="noopener">
               <span class="review__aspas" aria-hidden="true">&ldquo;</span>
               <svg class="review__estrelas" viewBox="0 0 98 18" role="img" aria-label="5 de 5 estrelas" focusable="false"><g transform="translate(0 0)"><polygon points="9,1 11.2,6.4 17,6.9 12.6,10.7 14,16.5 9,13.5 4,16.5 5.4,10.7 1,6.9 6.8,6.4"/></g><g transform="translate(20 0)"><polygon points="9,1 11.2,6.4 17,6.9 12.6,10.7 14,16.5 9,13.5 4,16.5 5.4,10.7 1,6.9 6.8,6.4"/></g><g transform="translate(40 0)"><polygon points="9,1 11.2,6.4 17,6.9 12.6,10.7 14,16.5 9,13.5 4,16.5 5.4,10.7 1,6.9 6.8,6.4"/></g><g transform="translate(60 0)"><polygon points="9,1 11.2,6.4 17,6.9 12.6,10.7 14,16.5 9,13.5 4,16.5 5.4,10.7 1,6.9 6.8,6.4"/></g><g transform="translate(80 0)"><polygon points="9,1 11.2,6.4 17,6.9 12.6,10.7 14,16.5 9,13.5 4,16.5 5.4,10.7 1,6.9 6.8,6.4"/></g></svg>
-              <q class="review__texto">Atendimento muito bom da dra Mariana, super atenciosa, instruções extremamente claras sobre o diagnóstico durante a consulta, além de ser muito simpatica e ter boa conversa. Recomendo muito a visita.</q>
+              <q class="review__texto">Atendimento muito bom da dra Mariana, super atenciosa, instruções extremamente claras sobre o diagnóstico durante a consulta, além de ser muito simpatica e ter boa conversa…</q>
               <span class="line review__linha" aria-hidden="true"></span>
               <span class="review__rodape">
                 <span class="review__autor"><span class="review__nome">Alisson R.</span></span>
@@ -594,7 +607,7 @@
         <a class="site-footer__logo" href="#topo" aria-label="Voltar ao início">
           <img src="assets/logo/logo-horizontal-original-claro.svg" alt="Logotipo da Dra. Mariana Zunino, dermatologista" width="3092" height="413" loading="lazy">
         </a>
-        <p class="site-footer__id">Dra. Mariana Zunino, Dermatologista, CRM/PR 26153, RQE 19939</p>
+        <p class="site-footer__id">Dra. Mariana Zunino, Médica, CRM/PR 26153, Dermatologista, RQE 19939</p>
       </div>
 
       <div class="site-footer__cols" data-anim="fade">

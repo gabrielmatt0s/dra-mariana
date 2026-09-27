@@ -59,8 +59,8 @@ Atenção: como o recorte do hero usa só 990 px de largura e a foto do Sobre te
 A foto do Sobre (`.photo--inteira`, `data-parallax-off`) não tem folga vertical nem parallax, para o cabelo, que começa a 1,6% da borda de cima, não ser cortado. Para a Dra. aparecer inteira e centrada no hero, a folga vertical das fotos passou de 10% para 4% (`.photo__inner` em `components.css`) e o parallax de ±8% para ±3,5% (`animations.js`).
 Pendente com a cliente: a capa da revista "VOGUE" na foto do hero pode sugerir matéria ou parceria; confirmar o respaldo antes de publicar.
 
-### og-image (26/09/2026)
-`site/assets/og-image.jpg`, 1200 x 630: fundo #e9e6e1, logo principal (`_originais/logos-nao-usadas/logo-principal.svg`, versão escura) à esquerda e recorte da foto do hero à direita (880 x 924 do original, reduzido a 600 x 630). JPEG q85, 40 KB.
+### og-image (26/09/2026, recorte refeito em 27/09/2026)
+`site/assets/og-image.jpg`, 1200 x 630: fundo #e9e6e1, logo horizontal (`site/assets/logo/logo-horizontal-header.svg`) à esquerda e recorte da foto do hero à direita. Recorte refeito em 27/09/2026 (AUDITORIA-CFM.md, item 2.3): a versão anterior mostrava a foto inteira, com a revista "Vogue" nas mãos da Dra. Mariana; a versão atual usa só a parte de cima da mesma foto (topo até 900 px de 1600, antes da revista aparecer), então nenhuma marca de terceiro sai na og-image. **A foto usada na própria seção do hero (`index.html`) continua com a revista à mostra**, porque a pendência é sobre aquela foto, não sobre o recorte da og-image; ver a nota logo acima sobre a capa da Vogue.
 
 ## Verificação
 Cada SVG gerado foi renderizado para PNG após a conversão e comparado visualmente com o respectivo original. Não foram adicionados fundo, efeitos, texto novo ou redesenho intencional. O `viewBox` foi ajustado ao bounding box do conteúdo.
