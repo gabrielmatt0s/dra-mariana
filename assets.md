@@ -43,7 +43,7 @@ Estas cores são **APROXIMADAS, extraídas de imagem**, e não substituem a pale
 As fotografias vistas dentro do PDF não foram exportadas como assets separados. Para os 6 cards de tratamento, ainda é preciso solicitar as fotos com autorização de uso web.
 
 ### Retratos da Dra. Mariana (26/09/2026)
-Recebidos dois JPEGs (metadados já ausentes, sRGB), guardados sem alteração em `_originais/fotos/` (fora do git). O site nunca usa o original.
+Recebidos dois JPEGs (metadados já ausentes, sRGB, ver verificação de perfil de cor abaixo), guardados sem alteração em `_originais/fotos/` (fora do git). O site nunca usa o original.
 | Original | Resolução | Uso | Recorte |
 |---|---|---|---|
 | dra1.jpeg (sentada no banco, com a revista "VOGUE BELEZA" à mostra) | 1112 x 1600, 90,5 KB | Hero, 3:4 (ver edição abaixo) | 990 x 1320, x=110 e y=30, com a Dra. centrada no quadro e mais ar ao redor. Sem retoque |
@@ -56,6 +56,13 @@ Versões em `site/assets/img/` (`dra-mariana-zunino-sobre-{480,800,1200}`), gera
 
 Atenção: como a foto do Sobre tem 1066 px, a versão de 1200 px é uma ampliação de cerca de 13%; a de 800 px não é ampliada. Se a cliente enviar a foto em resolução maior, refazer o recorte.
 A foto do Sobre (`.photo--inteira`, `data-parallax-off`) não tem folga vertical nem parallax, para o cabelo, que começa a 1,6% da borda de cima, não ser cortado. Para a Dra. aparecer inteira e centrada no hero, a folga vertical das fotos passou de 10% para 4% (`.photo__inner` em `components.css`) e o parallax de ±8% para ±3,5% (`animations.js`).
+
+### Verificação de perfil de cor (27/09/2026)
+Conferido se `dra1.jpeg` e `dra2.jpeg` tinham perfil de cor diferente de sRGB (Adobe RGB, Display P3 ou outro). Não fiei na leitura do Pillow: fiz uma varredura byte a byte de todos os marcadores JPEG dos dois arquivos.
+
+**Resultado: nenhum perfil de cor embutido em nenhuma das duas fotos.** Nenhum segmento `APP2 "ICC_PROFILE"`, nenhum marcador `APP14 "Adobe"` (sinal comum de edição em Adobe RGB) e nenhum EXIF (logo, também sem a tag `ColorSpace`). Só o cabeçalho JFIF padrão. Sem perfil embutido, a convenção universal é tratar o arquivo como sRGB; não havia Adobe RGB, Display P3 nem qualquer outro perfil para converter, então **nenhuma correção foi necessária e nenhum arquivo de imagem foi alterado por esta verificação.**
+
+Comparação lado a lado (original x exportada, hero e Sobre) sem diferença de cor visível. Confirmado também que as exportações da foto do Sobre (`dra-mariana-zunino-sobre-*.jpg`, geradas com sharp numa sessão anterior) têm um perfil sRGB de verdade embutido (nome e descrição do perfil: "sRGB"), enquanto as do hero (geradas com Pillow, ver abaixo) não embutem nenhum perfil, do mesmo jeito que o original. As duas formas são equivalentes; nenhuma representa erro ou perda de cor.
 
 ### Foto do hero editada: logotipo VOGUE removido (27/09/2026)
 A pendência acima ("a capa da revista VOGUE na foto do hero pode sugerir matéria ou parceria") foi resolvida removendo o logotipo, sem mexer em mais nada da foto: **foto do hero editada, logotipo de terceiro removido por inpainting; original preservado em `_originais/fotos/dra1.jpeg`.**
