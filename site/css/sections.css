@@ -1,4 +1,4 @@
-/* Seções da página, na ordem do documento: hero, sobre, tratamentos, procedimentos, abordagem, avaliações, CTA, contato, rodapé, política de privacidade.
+/* Seções da página, na ordem do documento: hero, sobre, procedimentos, tratamentos, abordagem, avaliações, CTA, contato, rodapé, política de privacidade.
    Cada seção traz as regras base (mobile primeiro) e, logo depois, os ajustes de "seção na altura da tela" do desktop. */
 
 /* ---- Desktop, seção na altura da tela (1024px+ de largura e 600px+ de altura) ----
@@ -65,11 +65,7 @@
 .sobre__text .title-section { margin-bottom: var(--space-2); }
 .sobre__cred { margin-block: var(--space-2); }
 .sobre__photo { width: min(100%, 26rem); margin-inline: auto; }
-/* Reserva do texto do Sobre: altura de ~3 parágrafos, para o layout não mudar quando o texto entrar */
-.sobre__reserva { display: grid; place-items: center; min-height: 22rem; padding: var(--space-6); border: 1px dashed rgb(160 129 92 / 50%); border-radius: 0; text-align: center; }
-.sobre__reserva-label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: rgb(65 64 66 / 60%); }
-@media (min-width: 64rem) { .sobre__reserva { min-height: 15.5rem; } }
-/* Bloco de formação (ativar quando a cliente enviar): já estilizado para não quebrar o layout */
+.sobre__paragrafo { margin: 0; }
 .sobre__formacao { margin-top: var(--space-6); padding-top: var(--space-6); border-top: 1px solid var(--color-border); }
 .sobre__lista { display: grid; gap: var(--space-2); padding-left: 1.1rem; list-style: disc; }
 @media (min-width: 64rem) {
@@ -83,6 +79,49 @@
   .sobre__text { gap: var(--gap-y); }
 }
 
+/* Procedimentos: lista compacta com divisores de 1px */
+.procedimentos__head { margin-bottom: var(--space-8); }
+.procedimentos__head .eyebrow { margin-bottom: var(--space-2); }
+.procedimentos__head .title-section { margin-bottom: 0; }
+.lista { list-style: none; display: grid; grid-template-columns: 1fr; padding: 0; column-gap: var(--space-16); }
+.lista li { position: relative; padding-block: var(--space-4); }
+.lista .line { position: absolute; left: 0; right: 0; background: rgb(65 64 66 / 25%); }
+.lista .line--top { top: 0; }
+.lista .line--bottom { bottom: 0; }
+/* Divisor final: 9º item só no desktop (2 colunas), 10º sempre */
+.li--end-desktop .line--bottom { display: none; }
+
+/* Cada procedimento abre (details/summary nativo) e mostra uma frase de indicação terapêutica */
+.proc-item { margin: 0; }
+.proc-item summary {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-4);
+  cursor: pointer; list-style: none;
+}
+.proc-item summary::-webkit-details-marker { display: none; }
+.proc-item__label { display: inline-block; transition: transform 0.4s ease, color 0.3s ease; }
+.proc-item__chevron { flex: none; width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 1.5; transition: transform 0.25s ease; }
+.proc-item[open] .proc-item__chevron { transform: rotate(180deg); }
+.proc-item__desc { margin: 0; padding-top: var(--space-2); max-width: 42rem; font-size: var(--fs-small); line-height: 1.6; color: var(--color-text); }
+/* Hover com mouse é animado via GSAP (animations.js, currentColor tingindo o SVG junto); isto cobre teclado (:focus-visible) e dispositivos sem hover fino */
+.proc-item summary:focus-visible { color: var(--color-brand-burgundy); }
+.proc-item summary:focus-visible .proc-item__label { transform: translateX(0.4rem); }
+@media (prefers-reduced-motion: reduce) {
+  .proc-item__chevron, .proc-item__label { transition: none; }
+}
+
+.procedimentos__cta { margin-top: var(--space-8); }
+@media (min-width: 48rem) {
+  .lista { grid-template-columns: repeat(2, 1fr); }
+  .li--end-desktop .line--bottom { display: block; }
+}
+
+@media (min-width: 64rem) and (min-height: 600px) {
+  /* Procedimentos */
+  .procedimentos__head { margin-bottom: var(--gap-y); }
+  .lista li { padding-block: clamp(0.5rem, 1.5vh, 1rem); }
+  .procedimentos__cta { margin-top: var(--gap-y); }
+}
+
 /* Tratamentos: carrossel Swiper (sem JS os 6 cards aparecem em grade) */
 .trat__wrap { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "titulo" "carrossel" "dica" "controles"; }
 .trat__cabeca { grid-area: titulo; margin-bottom: var(--space-8); }
@@ -93,23 +132,14 @@
 .trat .swiper-slide { height: auto; display: flex; flex-direction: column; width: 85%; }
 .trat .swiper-wrapper { align-items: stretch; }
 
-/* Card de tratamento: a foto é o card inteiro (3:4). Número, linha e nome ficam numa faixa de vidro fosco na base (opção D):
-   #e9e6e1 a 70% com blur de 12px, texto #414042 (7,0:1 sobre o placeholder e 8,9:1 sobre foto clara). Sem suporte a backdrop-filter, a faixa é sólida #e9e6e1 (8,3:1).
-   Com foto muito escura o contraste cai (4,4:1 medido sobre #1e1e1e): revisar quando as fotos reais chegarem. */
-.card--trat { position: relative; aspect-ratio: 3 / 4; background: transparent; border: 0; border-radius: 0; box-shadow: none; overflow: hidden; }
-.card--trat .card__media { position: absolute; inset: 0; margin: 0; aspect-ratio: auto; overflow: hidden; }
-.card--trat .card__media > *, .card--trat .card__media img { transition: transform 0.6s ease; }
-.card--trat .card__media img { width: 100%; height: 100%; object-fit: cover; }
-/* Placeholder enquanto não há foto aprovada: areia #d0baa0 com leve degradê */
-.card--trat .photo-placeholder { position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; border: 0; background: linear-gradient(165deg, #d0baa0 0%, #c4a887 100%); }
-.card--trat .photo-placeholder__label { position: absolute; top: var(--space-6); left: var(--space-6); right: var(--space-6); text-align: left; color: var(--color-text); }
-.card--trat .card__body {
-  position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; min-height: 96px; box-sizing: border-box;
-  display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 0.5rem;
-  padding: 0.75rem 1.25rem; background: #e9e6e1; color: var(--color-brand-graphite);
+/* Card de tratamento: sem foto, só número, divisor de 1px e nome, num cartão com borda (mesmo padrão dos cards de Avaliações). */
+.card--trat {
+  position: relative; height: 100%; box-sizing: border-box; background: var(--color-white); border: 1px solid var(--color-border); border-radius: 0; box-shadow: none;
+  transition: border-color 0.35s ease;
 }
-@supports ((backdrop-filter: blur(12px)) or (-webkit-backdrop-filter: blur(12px))) {
-  .card--trat .card__body { background: rgb(233 230 225 / 70%); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+.card--trat .card__body {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 0.75rem;
+  height: 100%; box-sizing: border-box; padding: var(--space-6); color: var(--color-brand-graphite);
 }
 .card--trat .card__num { font-family: var(--font-body); font-size: 0.8125rem; font-weight: 500; line-height: 1.2; letter-spacing: 0.12em; color: var(--color-brand-graphite); }
 /* Linha de 1px: o elemento tem 80px e a parte desenhada (::before) ocupa metade (40px); no hover ocupa tudo (80px) */
@@ -117,7 +147,7 @@
 .card--trat .card__line::before { content: ""; position: absolute; inset: 0; background: var(--color-brand-bronze); transform: scaleX(0.5); transform-origin: left center; transition: transform 0.5s ease; }
 .card--trat .card__title { margin: 0; font-size: clamp(1.375rem, 1.1rem + 0.5vw, 1.625rem); line-height: 1.15; color: var(--color-brand-graphite); overflow-wrap: break-word; hyphens: manual; }
 @media (hover: hover) {
-  .card--trat:hover .card__media > * { transform: scale(1.05); }
+  .card--trat:hover { border-color: var(--color-brand-bronze); }
   .card--trat:hover .card__line::before { transform: scaleX(1); }
 }
 
@@ -160,34 +190,8 @@
 }
 
 @media (min-width: 64rem) and (min-height: 600px) {
-  /* Tratamentos: o card é 3:4 e a altura vem da altura da tela. Título, setas, gaps e paddings descontados: --trat-h.
-     A largura (3:4) é limitada pela largura do container; os 3 cards ficam centralizados. */
-  .tratamentos { --trat-h: calc(var(--sec-h) - 2 * var(--pad-y) - 5.25rem - var(--gap-y)); --trat-w: calc(var(--trat-h) * 3 / 4); }
-  .trat { margin-top: var(--gap-y); width: min(100%, calc(3 * var(--trat-w) + 2 * var(--space-6))); justify-self: center; }
-}
-
-/* Procedimentos: lista compacta com divisores de 1px */
-.procedimentos__head { margin-bottom: var(--space-8); }
-.procedimentos__head .eyebrow { margin-bottom: var(--space-2); }
-.procedimentos__head .title-section { margin-bottom: 0; }
-.lista { list-style: none; display: grid; grid-template-columns: 1fr; padding: 0; column-gap: var(--space-16); }
-.lista li { position: relative; padding-block: var(--space-4); }
-.lista .line { position: absolute; left: 0; right: 0; background: rgb(65 64 66 / 25%); }
-.lista .line--top { top: 0; }
-.lista .line--bottom { bottom: 0; }
-/* Divisor final: 9º item só no desktop (2 colunas), 10º sempre */
-.li--end-desktop .line--bottom { display: none; }
-.procedimentos__cta { margin-top: var(--space-8); }
-@media (min-width: 48rem) {
-  .lista { grid-template-columns: repeat(2, 1fr); }
-  .li--end-desktop .line--bottom { display: block; }
-}
-
-@media (min-width: 64rem) and (min-height: 600px) {
-  /* Procedimentos */
-  .procedimentos__head { margin-bottom: var(--gap-y); }
-  .lista li { padding-block: clamp(0.5rem, 1.5vh, 1rem); }
-  .procedimentos__cta { margin-top: var(--gap-y); }
+  /* Tratamentos: sem foto, o card cresce com o conteúdo; só repõe a margem perdida no breakpoint anterior. */
+  .trat { margin-top: var(--gap-y); }
 }
 
 /* Minha abordagem: dois layouts com o mesmo HTML. Desktop (768px+): tudo centralizado (título, frase, subtítulo, valores em linha, parágrafo).

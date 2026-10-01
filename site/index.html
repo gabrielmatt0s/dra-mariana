@@ -153,8 +153,8 @@
       <nav class="site-nav" id="menu-principal" aria-label="Principal">
         <ul class="site-nav__list">
           <li><a href="#sobre">Sobre</a></li>
-          <li><a href="#tratamentos">Tratamentos</a></li>
           <li><a href="#procedimentos">Procedimentos</a></li>
+          <li><a href="#tratamentos">Tratamentos</a></li>
           <li><a href="#abordagem">Minha abordagem</a></li>
           <li><a href="#avaliacoes">Avaliações</a></li>
           <li><a href="#contato">Contato</a></li>
@@ -203,21 +203,18 @@
             <span class="cred__text">Médica, CRM/PR 26153, Dermatologista, RQE 19939</span>
             <span class="rule rule--bottom" aria-hidden="true"><i></i><i></i></span>
           </p>
-          <!-- SOBRE: substituir pelo texto enviado pela cliente (ideal: 3 parágrafos curtos, até ~90 palavras no total) -->
-          <div class="sobre__reserva" data-anim="fade"><span class="sobre__reserva-label">TEXTO: aguardando a Dra. Mariana</span></div>
+          <p class="sobre__paragrafo" data-anim="text">Prazer, sou Mariana Zunino. Sou gaúcha, natural de Pelotas, e fui criada pela minha mãe ao lado das minhas duas irmãs. Passei no vestibular com 17 anos e fui morar em outra cidade, onde foram 6 anos de estudo ao lado de uma turma incrível que me acompanha até hoje.</p>
+          <p class="sobre__paragrafo" data-anim="text">Há mais de 15 anos eu me dedico à Dermatologia, unindo ciência, experiência e um olhar atento para cada pessoa. Acredito em um cuidado individualizado, que vai além da pele: acolhe histórias, compreende desejos e valoriza a saúde, o bem-estar e a autoestima.</p>
+          <p class="sobre__paragrafo" data-anim="text">Na dermatologia estética, meu propósito é realçar a beleza com naturalidade e segurança, respeitando a individualidade e preservando a essência de cada paciente. Porque, para mim, cuidar da pele é, acima de tudo, cuidar de pessoas.</p>
 
-          <!-- FORMAÇÃO: ativar quando a cliente enviar
-          Remover as marcas de comentário e trocar os itens pelos dados reais. O bloco já está estilizado
-          (.sobre__formacao) e entra abaixo do texto sem quebrar o layout. Não inventar instituições, anos ou títulos.
-          Para animar, manter data-anim="fade" no bloco.
           <div class="sobre__formacao" data-anim="fade">
             <h3 class="title-sub">Formação</h3>
             <ul class="sobre__lista">
-              <li>Item da formação</li>
-              <li>Item da formação</li>
+              <li>Residência em Clínica Médica</li>
+              <li>Especialização em Dermatologia</li>
+              <li>Título de Especialista em Dermatologia pela Sociedade Brasileira de Dermatologia, 2011</li>
             </ul>
           </div>
-          -->
         </div>
 
         <figure class="photo photo--inteira sobre__photo" data-anim="photo" data-parallax-off style="--ratio: 2 / 3">
@@ -234,25 +231,107 @@
       </div>
     </section>
 
-    <section class="section section--soft tratamentos" id="tratamentos" aria-labelledby="tratamentos-titulo">
+    <section class="section section--soft procedimentos" id="procedimentos" aria-labelledby="procedimentos-titulo">
+      <div class="container">
+        <header class="procedimentos__head">
+          <p class="eyebrow" data-anim="eyebrow"><span class="eyebrow__line" aria-hidden="true"></span><span class="eyebrow__text">Procedimentos</span></p>
+          <h2 class="title-section" id="procedimentos-titulo" data-anim="title">Dermatologia estética e clínica</h2>
+        </header>
+
+        <!-- Cada item abre com uma frase curta de indicação terapêutica (CRM/PR, Resolução CFM 2.336/2023, art. 14, I). Sem descrição de mecanismo de ação ou de resultado esperado: textos assim exigiriam também fatores que influenciam o resultado e complicações descritas na literatura. Ver AUDITORIA-CFM.md, item 9.2.
+             name="procedimentos" nos <details>: só um item aberto por vez (nativo do HTML, reforçado em animations.js para navegadores sem suporte). -->
+        <ul class="lista" data-anim="list">
+          <li>
+            <span class="line line--top" aria-hidden="true"></span>
+            <details class="proc-item" name="procedimentos">
+              <summary class="li__text"><span class="proc-item__label">Toxina botulínica</span><svg class="proc-item__chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
+              <p class="proc-item__desc">Indicada para linhas de expressão, contorno do rosto e região do pescoço.</p>
+            </details>
+          </li>
+          <li>
+            <span class="line line--top" aria-hidden="true"></span>
+            <details class="proc-item" name="procedimentos">
+              <summary class="li__text"><span class="proc-item__label">Preenchimento com ácido hialurônico</span><svg class="proc-item__chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
+              <p class="proc-item__desc">Indicado para sustentação e contorno facial, incluindo sulcos como o bigode chinês, olheiras, mandíbula, queixo e lábios.</p>
+            </details>
+          </li>
+          <li>
+            <span class="line line--top" aria-hidden="true"></span>
+            <details class="proc-item" name="procedimentos">
+              <summary class="li__text"><span class="proc-item__label">Bioestimulador de colágeno</span><svg class="proc-item__chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
+              <p class="proc-item__desc">Indicado para flacidez facial e corporal, em áreas como rosto, pescoço, colo, abdome, coxas, glúteos, mãos e joelhos.</p>
+            </details>
+          </li>
+          <li>
+            <span class="line line--top" aria-hidden="true"></span>
+            <details class="proc-item" name="procedimentos">
+              <summary class="li__text"><span class="proc-item__label">Hidratação injetável com ácido hialurônico</span><svg class="proc-item__chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
+              <p class="proc-item__desc">Indicada para hidratação da pele, linhas finas, poros dilatados e cicatrizes de acne.</p>
+            </details>
+          </li>
+          <li>
+            <span class="line line--top" aria-hidden="true"></span>
+            <details class="proc-item" name="procedimentos">
+              <summary class="li__text"><span class="proc-item__label">Biorremodelador tecidual</span><svg class="proc-item__chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
+              <p class="proc-item__desc">Indicado para hidratação, linhas finas e poros dilatados, no rosto e em áreas do corpo como o pescoço.</p>
+            </details>
+          </li>
+          <li>
+            <span class="line line--top" aria-hidden="true"></span>
+            <details class="proc-item" name="procedimentos">
+              <summary class="li__text"><span class="proc-item__label">Ultrassom microfocado</span><svg class="proc-item__chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
+              <p class="proc-item__desc">Indicado para flacidez facial e corporal e estímulo de colágeno.</p>
+            </details>
+          </li>
+          <li>
+            <span class="line line--top" aria-hidden="true"></span>
+            <details class="proc-item" name="procedimentos">
+              <summary class="li__text"><span class="proc-item__label">Peeling químico</span><svg class="proc-item__chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
+              <p class="proc-item__desc">Indicado para manchas, poros dilatados e linhas finas.</p>
+            </details>
+          </li>
+          <li>
+            <span class="line line--top" aria-hidden="true"></span>
+            <details class="proc-item" name="procedimentos">
+              <summary class="li__text"><span class="proc-item__label">Microagulhamento IPCA (indução percutânea de colágeno por agulhas)</span><svg class="proc-item__chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
+              <p class="proc-item__desc">Indicado para melasma, poros dilatados e linhas finas.</p>
+            </details>
+          </li>
+          <li class="li--end-desktop">
+            <span class="line line--top" aria-hidden="true"></span>
+            <details class="proc-item" name="procedimentos">
+              <summary class="li__text"><span class="proc-item__label">Luz intensa pulsada</span><svg class="proc-item__chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
+              <p class="proc-item__desc">Indicada para manchas, vasos sanguíneos superficiais e rosácea.</p>
+            </details>
+            <span class="line line--bottom" aria-hidden="true"></span>
+          </li>
+          <li class="li--end">
+            <span class="line line--top" aria-hidden="true"></span>
+            <details class="proc-item" name="procedimentos">
+              <summary class="li__text"><span class="proc-item__label">Laser</span><svg class="proc-item__chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
+              <p class="proc-item__desc">Indicado para cicatrizes de acne, rejuvenescimento e estrias.</p>
+            </details>
+            <span class="line line--bottom" aria-hidden="true"></span>
+          </li>
+        </ul>
+
+        <p class="procedimentos__cta" data-anim="fade">
+          <a class="link-cta" href="https://wa.me/5541991780320?text=Ol%C3%A1%2C%20Dra.%20Mariana!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener noreferrer">Tire suas dúvidas pelo WhatsApp<span class="visually-hidden"> (abre em nova aba)</span></a>
+        </p>
+      </div>
+    </section>
+
+    <section class="section tratamentos" id="tratamentos" aria-labelledby="tratamentos-titulo">
       <div class="container trat__wrap">
         <div class="trat__cabeca">
           <p class="eyebrow" data-anim="eyebrow"><span class="eyebrow__line" aria-hidden="true"></span><span class="eyebrow__text">Tratamentos dermatológicos</span></p>
           <h2 class="title-section trat__titulo" id="tratamentos-titulo" data-anim="title">Tratamentos</h2>
         </div>
 
-        <!-- Sem JavaScript (ou sem a CDN do Swiper) os 6 cards aparecem em grade normal; os controles ficam ocultos. -->
+        <!-- Sem JavaScript (ou sem a CDN do Swiper) os 6 cards aparecem em grade normal; os controles ficam ocultos. Cards só com número, divisor e nome (sem foto). -->
         <div class="swiper trat" role="region" aria-roledescription="carrossel" aria-label="Tratamentos" tabindex="0" data-anim="cards">
           <div class="swiper-wrapper">
             <div class="swiper-slide card card--trat" role="group" aria-roledescription="slide" aria-label="Tratamento 1 de 6">
-              <figure class="card__media">
-                <!-- FOTO: Rejuvenescimento. Proporção 3:4 (vertical), 900x1200 px, WebP, até 150 KB. Tons quentes e neutros, luz natural.
-                     Sem lesões, acne visível, pele doente, antes e depois, agulhas, seringas ou procedimento em execução; nenhuma foto de paciente com rosto identificável sem autorização por escrito (regras do CFM, ver AUDITORIA-CFM.md).
-                     Trocar o <div class="photo-placeholder"> por: <img src="assets/img/tratamento-01.webp" alt="" width="900" height="1200" loading="lazy"> -->
-                <div class="photo-placeholder" role="img" aria-label="Espaço reservado para a foto do tratamento Rejuvenescimento">
-                  <span class="photo-placeholder__label">FOTO: Rejuvenescimento</span>
-                </div>
-              </figure>
               <div class="card__body">
                 <span class="card__num">01</span>
                 <span class="card__line line" aria-hidden="true"></span>
@@ -260,14 +339,6 @@
               </div>
             </div>
             <div class="swiper-slide card card--trat" role="group" aria-roledescription="slide" aria-label="Tratamento 2 de 6">
-              <figure class="card__media">
-                <!-- FOTO: Melasma. Proporção 3:4 (vertical), 900x1200 px, WebP, até 150 KB. Tons quentes e neutros, luz natural.
-                     Sem lesões, acne visível, pele doente, antes e depois, agulhas, seringas ou procedimento em execução; nenhuma foto de paciente com rosto identificável sem autorização por escrito (regras do CFM, ver AUDITORIA-CFM.md).
-                     Trocar o <div class="photo-placeholder"> por: <img src="assets/img/tratamento-02.webp" alt="" width="900" height="1200" loading="lazy"> -->
-                <div class="photo-placeholder" role="img" aria-label="Espaço reservado para a foto do tratamento Melasma">
-                  <span class="photo-placeholder__label">FOTO: Melasma</span>
-                </div>
-              </figure>
               <div class="card__body">
                 <span class="card__num">02</span>
                 <span class="card__line line" aria-hidden="true"></span>
@@ -275,14 +346,6 @@
               </div>
             </div>
             <div class="swiper-slide card card--trat" role="group" aria-roledescription="slide" aria-label="Tratamento 3 de 6">
-              <figure class="card__media">
-                <!-- FOTO: Acne. Proporção 3:4 (vertical), 900x1200 px, WebP, até 150 KB. Tons quentes e neutros, luz natural.
-                     Sem lesões, acne visível, pele doente, antes e depois, agulhas, seringas ou procedimento em execução; nenhuma foto de paciente com rosto identificável sem autorização por escrito (regras do CFM, ver AUDITORIA-CFM.md).
-                     Trocar o <div class="photo-placeholder"> por: <img src="assets/img/tratamento-03.webp" alt="" width="900" height="1200" loading="lazy"> -->
-                <div class="photo-placeholder" role="img" aria-label="Espaço reservado para a foto do tratamento Acne">
-                  <span class="photo-placeholder__label">FOTO: Acne</span>
-                </div>
-              </figure>
               <div class="card__body">
                 <span class="card__num">03</span>
                 <span class="card__line line" aria-hidden="true"></span>
@@ -290,14 +353,6 @@
               </div>
             </div>
             <div class="swiper-slide card card--trat" role="group" aria-roledescription="slide" aria-label="Tratamento 4 de 6">
-              <figure class="card__media">
-                <!-- FOTO: Rosácea. Proporção 3:4 (vertical), 900x1200 px, WebP, até 150 KB. Tons quentes e neutros, luz natural.
-                     Sem lesões, acne visível, pele doente, antes e depois, agulhas, seringas ou procedimento em execução; nenhuma foto de paciente com rosto identificável sem autorização por escrito (regras do CFM, ver AUDITORIA-CFM.md).
-                     Trocar o <div class="photo-placeholder"> por: <img src="assets/img/tratamento-04.webp" alt="" width="900" height="1200" loading="lazy"> -->
-                <div class="photo-placeholder" role="img" aria-label="Espaço reservado para a foto do tratamento Rosácea">
-                  <span class="photo-placeholder__label">FOTO: Rosácea</span>
-                </div>
-              </figure>
               <div class="card__body">
                 <span class="card__num">04</span>
                 <span class="card__line line" aria-hidden="true"></span>
@@ -305,14 +360,6 @@
               </div>
             </div>
             <div class="swiper-slide card card--trat" role="group" aria-roledescription="slide" aria-label="Tratamento 5 de 6">
-              <figure class="card__media">
-                <!-- FOTO: Queda de cabelo. Proporção 3:4 (vertical), 900x1200 px, WebP, até 150 KB. Tons quentes e neutros, luz natural.
-                     Sem lesões, acne visível, pele doente, antes e depois, agulhas, seringas ou procedimento em execução; nenhuma foto de paciente com rosto identificável sem autorização por escrito (regras do CFM, ver AUDITORIA-CFM.md).
-                     Trocar o <div class="photo-placeholder"> por: <img src="assets/img/tratamento-05.webp" alt="" width="900" height="1200" loading="lazy"> -->
-                <div class="photo-placeholder" role="img" aria-label="Espaço reservado para a foto do tratamento Queda de cabelo">
-                  <span class="photo-placeholder__label">FOTO: Queda de cabelo</span>
-                </div>
-              </figure>
               <div class="card__body">
                 <span class="card__num">05</span>
                 <span class="card__line line" aria-hidden="true"></span>
@@ -320,14 +367,6 @@
               </div>
             </div>
             <div class="swiper-slide card card--trat" role="group" aria-roledescription="slide" aria-label="Tratamento 6 de 6">
-              <figure class="card__media">
-                <!-- FOTO: Outras doenças de pele. Proporção 3:4 (vertical), 900x1200 px, WebP, até 150 KB. Tons quentes e neutros, luz natural.
-                     Sem lesões, acne visível, pele doente, antes e depois, agulhas, seringas ou procedimento em execução; nenhuma foto de paciente com rosto identificável sem autorização por escrito (regras do CFM, ver AUDITORIA-CFM.md).
-                     Trocar o <div class="photo-placeholder"> por: <img src="assets/img/tratamento-06.webp" alt="" width="900" height="1200" loading="lazy"> -->
-                <div class="photo-placeholder" role="img" aria-label="Espaço reservado para a foto do tratamento Outras doenças de pele">
-                  <span class="photo-placeholder__label">FOTO: Outras doenças de pele</span>
-                </div>
-              </figure>
               <div class="card__body">
                 <span class="card__num">06</span>
                 <span class="card__line line" aria-hidden="true"></span>
@@ -347,32 +386,6 @@
             <button class="trat__seta trat__seta--prox" type="button" aria-label="Próximo tratamento"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg></button>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section class="section procedimentos" id="procedimentos" aria-labelledby="procedimentos-titulo">
-      <div class="container">
-        <header class="procedimentos__head">
-          <p class="eyebrow" data-anim="eyebrow"><span class="eyebrow__line" aria-hidden="true"></span><span class="eyebrow__text">Procedimentos</span></p>
-          <h2 class="title-section" id="procedimentos-titulo" data-anim="title">Dermatologia estética e clínica</h2>
-        </header>
-
-        <ul class="lista" data-anim="list">
-          <li><span class="line line--top" aria-hidden="true"></span><span class="li__text">Toxina botulínica</span></li>
-          <li><span class="line line--top" aria-hidden="true"></span><span class="li__text">Preenchimento com ácido hialurônico</span></li>
-          <li><span class="line line--top" aria-hidden="true"></span><span class="li__text">Bioestimulador de colágeno</span></li>
-          <li><span class="line line--top" aria-hidden="true"></span><span class="li__text">Hidratação injetável com ácido hialurônico</span></li>
-          <li><span class="line line--top" aria-hidden="true"></span><span class="li__text">Biorremodelador tecidual</span></li>
-          <li><span class="line line--top" aria-hidden="true"></span><span class="li__text">Ultrassom microfocado</span></li>
-          <li><span class="line line--top" aria-hidden="true"></span><span class="li__text">Peeling químico</span></li>
-          <li><span class="line line--top" aria-hidden="true"></span><span class="li__text">Microagulhamento IPCA (indução percutânea de colágeno por agulhas)</span></li>
-          <li class="li--end-desktop"><span class="line line--top" aria-hidden="true"></span><span class="li__text">Luz intensa pulsada</span><span class="line line--bottom" aria-hidden="true"></span></li>
-          <li class="li--end"><span class="line line--top" aria-hidden="true"></span><span class="li__text">Laser</span><span class="line line--bottom" aria-hidden="true"></span></li>
-        </ul>
-
-        <p class="procedimentos__cta" data-anim="fade">
-          <a class="link-cta" href="https://wa.me/5541991780320?text=Ol%C3%A1%2C%20Dra.%20Mariana!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener noreferrer">Tire suas dúvidas pelo WhatsApp<span class="visually-hidden"> (abre em nova aba)</span></a>
-        </p>
       </div>
     </section>
 
@@ -620,8 +633,8 @@
         <nav class="site-footer__nav" aria-label="Rodapé">
           <ul>
             <li><a class="hover-underline" href="#sobre">Sobre</a></li>
-            <li><a class="hover-underline" href="#tratamentos">Tratamentos</a></li>
             <li><a class="hover-underline" href="#procedimentos">Procedimentos</a></li>
+            <li><a class="hover-underline" href="#tratamentos">Tratamentos</a></li>
             <li><a class="hover-underline" href="#abordagem">Minha abordagem</a></li>
             <li><a class="hover-underline" href="#avaliacoes">Avaliações</a></li>
             <li><a class="hover-underline" href="#contato">Contato</a></li>

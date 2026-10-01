@@ -405,17 +405,56 @@
       });
     }
 
+    /* 12. Procedimentos: só um aberto por vez (reforça o name="procedimentos" do HTML, para navegadores sem o agrupamento nativo);
+       ao abrir, a frase de indicação entra com fade + y (o <details> nativo já cuida de mostrar/esconder, sem animar altura). */
+    function procedimentos(restore) {
+      var items = $$('.proc-item');
+      items.forEach(function (details) {
+        var desc = details.querySelector('.proc-item__desc');
+        function onToggle() {
+          if (!details.open) return;
+          items.forEach(function (other) { if (other !== details) other.open = false; });
+          if (desc) gsap.fromTo(desc, { autoAlpha: 0, y: dy }, { autoAlpha: 1, y: 0, duration: 0.6 * k, ease: EASE });
+        }
+        details.addEventListener('toggle', onToggle);
+        restore.push(function () { details.removeEventListener('toggle', onToggle); });
+      });
+    }
+
+    /* 13. Hover do nome de cada procedimento: o texto desliza para a direita e o nome + seta tingem de bordô (currentColor) */
+    function procedimentosHover() {
+      var burgundy = getComputedStyle(html).getPropertyValue('--color-brand-burgundy').trim();
+      var graphite = getComputedStyle(html).getPropertyValue('--color-text').trim();
+      var limpar = $$('.proc-item summary').map(function (summary) {
+        var label = summary.querySelector('.proc-item__label');
+        if (!label) return function () {};
+        var qx = gsap.quickTo(label, 'x', { duration: 0.4, ease: 'power3.out' });
+        function entra() { qx(6); gsap.to(summary, { color: burgundy, duration: 0.3, overwrite: 'auto' }); }
+        function sai() { qx(0); gsap.to(summary, { color: graphite, duration: 0.3, overwrite: 'auto' }); }
+        summary.addEventListener('mouseenter', entra);
+        summary.addEventListener('mouseleave', sai);
+        return function () {
+          summary.removeEventListener('mouseenter', entra);
+          summary.removeEventListener('mouseleave', sai);
+          gsap.killTweensOf([label, summary]);
+        };
+      });
+      return function () { limpar.forEach(function (fn) { fn(); }); };
+    }
+
     function run() {
       html.classList.add('js-anim');
       rollButtons(undo);
       header();
       hero();
+      procedimentos(undo);
 
-      // Hover das fotos: só em dispositivo com mouse (hover e ponteiro fino). Sem movimento reduzido, porque init() nem roda nesse caso.
+      // Hover das fotos e dos procedimentos: só em dispositivo com mouse (hover e ponteiro fino). Sem movimento reduzido, porque init() nem roda nesse caso.
       var hoverMM = gsap.matchMedia();
       hoverMM.add('(hover: hover) and (pointer: fine)', function () {
-        var limpar = $$('[data-anim="photo"]').map(photoHover);
-        return function () { limpar.forEach(function (fn) { fn(); }); };
+        var limparFotos = $$('[data-anim="photo"]').map(photoHover);
+        var limparProc = procedimentosHover();
+        return function () { limparFotos.forEach(function (fn) { fn(); }); limparProc(); };
       });
       undo.push(function () { hoverMM.revert(); });
 

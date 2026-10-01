@@ -40,7 +40,8 @@ Estas cores são **APROXIMADAS, extraídas de imagem**, e não substituem a pale
 - A paleta oficial escrita no manual continua sendo a fonte de verdade para UI: `#a0815c`, `#d0baa0`, `#e9e6e1`, `#ffffff`, `#762d2d`, `#414042`.
 
 ## Fotografias
-As fotografias vistas dentro do PDF não foram exportadas como assets separados. Para os 6 cards de tratamento, ainda é preciso solicitar as fotos com autorização de uso web.
+As fotografias vistas dentro do PDF não foram exportadas como assets separados.
+Os 6 cards de "Tratamentos" (`site/index.html`) foram decididos sem foto (só número, divisor e nome), então não é mais necessário solicitar fotos para eles.
 
 ### Retratos da Dra. Mariana (26/09/2026)
 Recebidos dois JPEGs (metadados já ausentes, sRGB, ver verificação de perfil de cor abaixo), guardados sem alteração em `_originais/fotos/` (fora do git). O site nunca usa o original.

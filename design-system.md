@@ -210,7 +210,7 @@ Todos os valores abaixo são **SUGESTÃO (não consta no material)**, pois o PDF
 - Link textual: `#762d2d`, underline no hover/focus; nunca depender só de cor para estado.
 
 ### Cards
-- **Tratamentos (carrossel):** o card é a foto inteira em 3:4, sem borda, sombra nem radius. Número, linha de 1px em `#a0815c` (40px, cresce a 80px no hover) e nome ficam numa faixa de vidro fosco na base: `#e9e6e1` a 70% com `backdrop-filter: blur(12px)` (fallback sólido `#e9e6e1`), texto `#414042`. Contraste medido: 7,0:1 sobre o placeholder, 8,9:1 sobre foto clara e 4,4:1 sobre foto muito escura (revisar com as fotos reais). No desktop a altura do card vem da altura da tela; a largura sai da proporção 3:4, limitada pela largura do container.
+- **Tratamentos (carrossel):** sem foto (decisão do projeto). Card branco com borda de 1px em grafite a 18%, sem sombra nem radius, borda vira bronze no hover. Número, linha de 1px em `#a0815c` (40px, cresce a 80px no hover) e nome ficam empilhados dentro do card, com padding. A altura do card acompanha o conteúdo (a mais alta do grupo de 3, por `align-items: stretch` no carrossel).
 - **Avaliações:** cards brancos com borda de 1px em grafite a 18%, sem sombra. Em telas baixas (até 860px de altura útil) viram uma faixa com rolagem lateral e setas, contador e barra de progresso, no mesmo padrão dos Tratamentos.
 - "Procedimentos" ficam em lista com divisores de 1px. Texto de apoio nos cards, se um dia existir, no máximo uma linha neutra marcada como SUGESTÃO.
 
@@ -230,7 +230,7 @@ Header desktop 80-88px, sticky apenas se não cobrir conteúdo; logo 180-220px. 
 
 ## 9. Observações de implementação
 - Priorizar HTML semântico, navegação por teclado, foco visível e `prefers-reduced-motion`.
-- Não usar texto sobre fotografia sem overlay que preserve contraste (nos cards de Tratamentos, faixa de vidro fosco).
+- Não usar texto sobre fotografia sem overlay que preserve contraste.
 - Desktop (1024px+ de largura e 600px+ de altura): cada seção ocupa 100svh menos a altura do header, com conteúdo centralizado e medidas por altura (vh). Ver `site/css/sections.css`.
 - Alvos de toque de pelo menos 44 x 44 px; `text-wrap: balance` em títulos e `pretty` em parágrafos.
 - Não usar script font para corpo, navegação ou botão.

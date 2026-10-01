@@ -8,7 +8,7 @@
 - **Cidade:** Curitiba. Fonte: p. 8.
 - **CRM/PR:** 26153. Fonte: p. 8.
 - **RQE:** 19939. Fonte: p. 8.
-- Formação acadêmica detalhada: **AGUARDANDO CLIENTE** (ver seção "Formação"). Não consta no PDF.
+- Formação acadêmica detalhada: recebida da cliente em 2026-10-01 (ver seção "Formação"). Não consta no PDF.
 - Especialidades/subespecialidades além de Dermatologia: **Ausente no material**.
 - Lista de procedimentos e tratamentos: confirmada pela cliente (ver seção "Dermatologia / Serviços").
 - Depoimentos reais: **Ausente no material**.
@@ -41,15 +41,23 @@ Fonte: mensagem da cliente (2026-09-25), fora do PDF.
 
 
 ## Sobre
-**Status: AGUARDANDO TEXTO DA CLIENTE.** A Dra. Mariana vai enviar o texto da seção. No site há um bloco reservado (borda tracejada, "TEXTO: aguardando a Dra. Mariana") com a altura de ~3 parágrafos. Quando o texto chegar: 3 parágrafos curtos, até ~90 palavras no total (comentário `SOBRE` em `index.html`).
+**Status: recebido.** Fonte: texto enviado pela cliente em primeira pessoa, recebido por Gabriel em 2026-10-01, fora do PDF. Veio como um único relato (9 parágrafos curtos); por decisão do Gabriel: as três frases sobre formação foram deslocadas para a seção "Formação" (ver abaixo), que já estava reservada para isso; o parênteses sobre o grupo de WhatsApp foi removido a pedido do Gabriel (dado pessoal sem relevância para o site); e os parágrafos restantes foram agrupados em 3 blocos maiores (o texto original vinha fragmentado em frases soltas). A única palavra acrescentada foi "onde", para costurar duas frases que ficaram no mesmo parágrafo; fora isso, nenhuma palavra do texto da cliente foi alterada.
+
+**Texto usado no site (`index.html`, seção `#sobre`):**
+
+> Prazer, sou Mariana Zunino. Sou gaúcha, natural de Pelotas, e fui criada pela minha mãe ao lado das minhas duas irmãs. Passei no vestibular com 17 anos e fui morar em outra cidade, onde foram 6 anos de estudo ao lado de uma turma incrível que me acompanha até hoje.
+>
+> Há mais de 15 anos eu me dedico à Dermatologia, unindo ciência, experiência e um olhar atento para cada pessoa. Acredito em um cuidado individualizado, que vai além da pele: acolhe histórias, compreende desejos e valoriza a saúde, o bem-estar e a autoestima.
+>
+> Na dermatologia estética, meu propósito é realçar a beleza com naturalidade e segurança, respeitando a individualidade e preservando a essência de cada paciente. Porque, para mim, cuidar da pele é, acima de tudo, cuidar de pessoas.
+
+**Trecho removido (pedido do Gabriel, 2026-10-01):** "(mesmo que através de um grupo no WhatsApp)", que no original da cliente vinha com o parênteses aberto, sem fechar.
 
 **Título sugerido de seção:** Sobre a Dra. Mariana
 
 **Foto:** retrato de busto da Dra. Mariana (dra2.jpeg, recebido em 26/09/2026), foto inteira em 2:3, sem recorte. Alt: "Dra. Mariana Zunino em retrato, com blusa preta e brincos dourados".
 
 **Credencial em destaque (dado confirmado, p. 8):** Dermatologista, CRM/PR 26153, RQE 19939.
-
-**Espaço reservado para Formação:** ver seção "Formação". No HTML, deixar bloco comentado (`<!-- FORMAÇÃO: ativar quando a cliente enviar -->`) que encaixe no layout sem quebrar nada quando ativado.
 
 ### Sobre, versão anterior (descartada)
 Texto sugerido que estava no site e foi removido a pedido. Não usar.
@@ -131,7 +139,11 @@ Texto sugerido que estava no site e foi removido a pedido. Não usar.
 **Nota editorial:** manter o sentido e revisar ortografia final com a cliente antes de publicar, especialmente "Re-significamos", que aparece assim no material.
 
 ## Formação
-**Status: AGUARDANDO CLIENTE.** A formação acadêmica não consta no `MarianaZunino.pdf`. A cliente vai enviar depois. Até lá, a landing é construída sem ela: não inventar instituições, residência, anos, títulos ou sociedades.
+**Status: recebida.** Não consta no `MarianaZunino.pdf`. Fonte: trecho do texto da cliente recebido em 2026-10-01 (ver "Sobre"), deslocado para cá por decisão do Gabriel. Usada em `index.html` no bloco `.sobre__formacao`, como lista:
+
+- Residência em Clínica Médica
+- Especialização em Dermatologia
+- Título de Especialista em Dermatologia pela Sociedade Brasileira de Dermatologia, 2011
 
 ## Dermatologia / Serviços
 **Fonte:** lista oficial enviada pela cliente. Texto transcrito sem reescrita.
@@ -144,14 +156,33 @@ Texto sugerido que estava no site e foi removido a pedido. Não usar.
 
 **Uso na landing:**
 - "Tratamentos": cards (6 itens da lista acima).
-- "Procedimentos": lista compacta (10 itens da lista acima).
-- Não inventar descrições médicas. Se um card precisar de texto de apoio, usar no máximo uma linha neutra, marcada como SUGESTÃO para aprovação. Nenhum texto de apoio foi proposto até agora.
+- "Procedimentos": lista compacta (10 itens da lista acima), cada item em `<details>/<summary>` clicável, abrindo uma frase curta de indicação (ver "Textos de indicação" abaixo).
 - Citação das marcas comerciais (Sculptra, Radiesse, Skinbooster, Profhilo): **aguardando confirmação da cliente** (ver "Lacunas e Pendências"). Enquanto isso, o site usa só os termos genéricos.
 
 **Versões com marca (AGUARDANDO CONFIRMAÇÃO DA CLIENTE, não estão no site):**
 - Bioestimulador de colágeno (Sculptra e Radiesse)
 - Hidratação injetável com ácido hialurônico (Skinbooster)
 - Biorremodelador tecidual (Profhilo)
+
+### Textos de indicação (Procedimentos, clicável)
+**Fonte do texto original:** a cliente enviou, em 2026-10-01, um parágrafo por procedimento descrevendo indicação, mecanismo de ação e resultado esperado (texto bruto arquivado fora do site, ver histórico da conversa). Publicar esse texto como enviado aciona o art. 14, I da Resolução CFM 2.336/2023: qualquer parágrafo que descreva como um tratamento funciona ou o que esperar precisa trazer também os fatores que influenciam o resultado e as complicações descritas na literatura, nenhum dos quais veio no material. Várias frases também afirmavam resultado ("aumenta", "diminui", "excelentes resultados"), o que esbarra no art. 11, XII (sem promessa de resultado) e XVI (sem superlativo).
+
+Por decisão do Gabriel (2026-10-01), o site publica em vez disso uma versão resumida de cada texto, só com a indicação terapêutica (a condição/área, sem mecanismo de ação nem resultado esperado), o que não aciona a exigência de fatores/complicações:
+
+| Procedimento | Texto publicado |
+|---|---|
+| Toxina botulínica | Indicada para linhas de expressão, contorno do rosto e região do pescoço. |
+| Preenchimento com ácido hialurônico | Indicado para sustentação e contorno facial, incluindo sulcos como o bigode chinês, olheiras, mandíbula, queixo e lábios. |
+| Bioestimulador de colágeno | Indicado para flacidez facial e corporal, em áreas como rosto, pescoço, colo, abdome, coxas, glúteos, mãos e joelhos. |
+| Hidratação injetável com ácido hialurônico | Indicada para hidratação da pele, linhas finas, poros dilatados e cicatrizes de acne. |
+| Biorremodelador tecidual | Indicado para hidratação, linhas finas e poros dilatados, no rosto e em áreas do corpo como o pescoço. |
+| Ultrassom microfocado | Indicado para flacidez facial e corporal e estímulo de colágeno. |
+| Peeling químico | Indicado para manchas, poros dilatados e linhas finas. |
+| Microagulhamento IPCA | Indicado para melasma, poros dilatados e linhas finas. |
+| Luz intensa pulsada | Indicada para manchas, vasos sanguíneos superficiais e rosácea. |
+| Laser | Indicado para cicatrizes de acne, rejuvenescimento e estrias. |
+
+**Se a cliente quiser o texto completo (mecanismo + resultado) no futuro:** pedir também, para cada procedimento, os fatores que influenciam o resultado e as complicações descritas na literatura, e revisar qualquer frase de resultado para tom de indicação, antes de publicar. Ver `AUDITORIA-CFM.md`, item 9.2.
 
 **Versões em uso no site:** "Bioestimulador de colágeno", "Hidratação injetável com ácido hialurônico", "Biorremodelador tecidual".
 
@@ -220,10 +251,12 @@ WhatsApp, mesmo link do CTA do hero (ver "Contato").
 - [resolvida] Convênios: atendimento particular.
 - [resolvida] Lista de procedimentos e tratamentos.
 
+**Resolvidas (informadas pela cliente em 2026-10-01):**
+- [resolvida] Texto da seção Sobre.
+- [resolvida] Formação acadêmica.
+
 **Em aberto:**
-- Texto da seção Sobre (cliente vai enviar).
 - Publicação: aguardando contratação da Locaweb (plano Linux). Domínio definitivo: https://dermatomarianazunino.com (ver `CHECKLIST-PUBLICACAO.md`).
-- Formação acadêmica: AGUARDANDO CLIENTE (a landing é construída sem ela).
 - Fotos dos 6 tratamentos, com autorização de uso web (hero e Sobre já recebidos).
 - Licença webfont de SALVAGER e Collection New Style.
 - Confirmação da cliente sobre citar marcas comerciais (Sculptra, Radiesse, Skinbooster, Profhilo). Site sem marcas por enquanto.

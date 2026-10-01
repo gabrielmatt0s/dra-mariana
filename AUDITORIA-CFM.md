@@ -121,8 +121,8 @@ Este bloco resume o que foi feito depois da auditoria (commit "conformidade cfm"
 | # | Trecho | Onde | Situação | Correção proposta |
 |---|---|---|---|---|
 | 9.1 | Os 6 cards de "Tratamentos" mostram só o nome da condição (ex.: "Melasma"), sem nenhum texto descrevendo o tratamento | Seção Tratamentos | Conforme | Como não há descrição do tratamento (nem como funciona, nem benefício, nem duração), a exigência de indicações/fatores/complicações do art. 14, I não chega a se aplicar: não descrever nada evita o problema, mas também não informa a paciente |
-| 9.2 | A lista de "Procedimentos" mostra só o nome técnico de cada procedimento (ex.: "Toxina botulínica"), sem nenhuma descrição | Seção Procedimentos | Conforme | Mesma situação do item 9.1: nomear sem descrever não viola o art. 14, I, mas também não cumpre a função educativa que ele incentiva |
-| 9.3 | Se algum dia entrar texto descritivo em qualquer card ou item (o que a "Tratamentos"/"Procedimentos" hoje não têm) | (geral) | Atenção (regra a aplicar no futuro) | Registro para quando isso for escrito: qualquer parágrafo que descreva um tratamento específico vai precisar trazer, no mínimo, indicações, fatores que influenciam o resultado e possíveis complicações, conforme o art. 14, I. Nenhum texto assim existe hoje, então não há nada incompleto para corrigir agora |
+| 9.2 | Cada item de "Procedimentos" agora abre (details/summary) e mostra uma frase curta de indicação terapêutica (ex.: "Indicada para linhas de expressão, contorno do rosto e região do pescoço") | Seção Procedimentos | Conforme | A cliente enviou em 2026-10-01 um texto completo por procedimento (mecanismo de ação + resultado esperado), que acionaria a exigência de fatores/complicações do art. 14, I e continha afirmações de resultado. Por decisão do Gabriel, o texto publicado foi resumido para só a indicação (a condição/área atendida), sem descrever mecanismo de ação nem resultado esperado, o que mantém fora do gatilho do art. 14, I. Ver `content.md`, "Textos de indicação (Procedimentos, clicável)" |
+| 9.3 | Se a cliente pedir o texto completo (mecanismo + resultado) nos itens de "Procedimentos" ou nos cards de "Tratamentos" | (geral) | Atenção (regra a aplicar no futuro) | Antes de publicar esse texto completo: pedir também, para cada item, os fatores que influenciam o resultado e as complicações descritas na literatura (art. 14, I), e revisar frase por frase para tom de indicação em vez de afirmação de resultado (art. 11, XII e XVI) |
 
 ## Resumo final
 
@@ -134,7 +134,7 @@ Este bloco resume o que foi feito depois da auditoria (commit "conformidade cfm"
 - 5 das 6 avaliações são sóbrias, sobre atendimento e não sobre resultado; nenhuma revela condição de saúde da paciente.
 - As fotos publicadas (hero, Sobre, og-image) são retratos profissionais da médica, sem antes/depois nem paciente.
 - O site se apresenta como página de uma médica individual, não como estabelecimento com nome próprio: o cenário do art. 5º (diretor técnico) não parece se aplicar.
-- Como os cards de Tratamentos e a lista de Procedimentos não descrevem os tratamentos, a exigência de conteúdo educativo completo (indicações, fatores, complicações) ainda não é acionada.
+- Os cards de Tratamentos não descrevem os tratamentos; os itens de Procedimentos agora abrem com uma frase de indicação (sem mecanismo de ação nem resultado esperado), então a exigência de conteúdo educativo completo (indicações, fatores, complicações) ainda não é acionada em nenhum dos dois.
 - O critério para as futuras fotos de tratamento (sem lesão, sem antes/depois, sem procedimento em execução) já está escrito nos comentários do HTML.
 
 ### Precisa corrigir antes de publicar
