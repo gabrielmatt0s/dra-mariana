@@ -79,11 +79,15 @@
   .sobre__text { gap: var(--gap-y); }
 }
 
-/* Procedimentos: lista compacta com divisores de 1px */
-.procedimentos__head { margin-bottom: var(--space-8); }
-.procedimentos__head .eyebrow { margin-bottom: var(--space-2); }
-.procedimentos__head .title-section { margin-bottom: 0; }
-.lista { list-style: none; display: grid; grid-template-columns: 1fr; padding: 0; column-gap: var(--space-16); }
+/* Procedimentos: lista compacta com divisores de 1px. Movida de uma seção própria para dentro do card
+   Rejuvenescimento (.card__texto, ver index.html e js/trat-expand.js) em 2026-10-09; classes e JS do
+   accordion (animations.js) são os mesmos de antes, só o lugar no DOM mudou. */
+/* .lista-grid vira grade de 2 colunas só a partir de 48rem; cada <ul class="lista"> dentro dela é um fluxo de bloco independente,
+   então abrir um <details> de um lado nunca estica a altura da linha do outro lado (o que aconteceria numa única grade CSS,
+   já que linhas de grid sempre compartilham altura entre colunas). Dentro do card (coluna de texto, mais estreita que a
+   seção inteira que havia antes) fica sempre 1 coluna, em qualquer largura — ver override no fim do bloco @media abaixo. */
+.lista-grid { display: block; }
+.lista { list-style: none; padding: 0; margin: 0; }
 .lista li { position: relative; padding-block: var(--space-4); }
 .lista .line { position: absolute; left: 0; right: 0; background: rgb(65 64 66 / 25%); }
 .lista .line--top { top: 0; }
@@ -111,18 +115,25 @@
 
 .procedimentos__cta { margin-top: var(--space-8); }
 @media (min-width: 48rem) {
-  .lista { grid-template-columns: repeat(2, 1fr); }
+  .lista-grid { display: grid; grid-template-columns: repeat(2, 1fr); column-gap: var(--space-16); align-items: start; }
   .li--end-desktop .line--bottom { display: block; }
+  /* Dentro do card (ver comentário acima do .lista-grid), força de volta pra 1 coluna e esconde o
+     divisor do "9º item" que só faz sentido separando as duas colunas lado a lado. */
+  .card__texto .lista-grid { display: block; }
+  .card__texto .li--end-desktop .line--bottom { display: none; }
 }
 
 @media (min-width: 64rem) and (min-height: 600px) {
   /* Procedimentos */
-  .procedimentos__head { margin-bottom: var(--gap-y); }
   .lista li { padding-block: clamp(0.5rem, 1.5vh, 1rem); }
   .procedimentos__cta { margin-top: var(--gap-y); }
 }
 
-/* Tratamentos: carrossel Swiper (sem JS os 6 cards aparecem em grade) */
+/* Tratamentos: carrossel Swiper (sem JS os 6 cards aparecem em grade). Fundo igual ao da hero (--color-bg-soft,
+   mesma variável, não um valor solto repetido) a pedido da cliente em 2026-10-09. --color-border sobe de 18%
+   para 25% só aqui (mesma opacidade já usada em .trat__progresso/.lista .line como "linha visível") porque os
+   cards brancos quase se confundem com esse fundo bem claro -- a borda vira o principal jeito de notar a borda do card. */
+.tratamentos { background: var(--color-bg-soft); --color-border: rgb(65 64 66 / 25%); }
 .trat__wrap { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "titulo" "carrossel" "dica" "controles"; }
 .trat__cabeca { grid-area: titulo; margin-bottom: var(--space-8); }
 .trat__cabeca .eyebrow { margin-bottom: var(--space-2); }
@@ -131,24 +142,144 @@
 .trat:focus-visible { outline-offset: -3px; }
 .trat .swiper-slide { height: auto; display: flex; flex-direction: column; width: 85%; }
 .trat .swiper-wrapper { align-items: stretch; }
+@media (max-width: 47.99rem) {
+  /* Abaixo de 48rem os cards abrem em acordeão (altura variável, ver js/trat-expand.js) com
+     autoHeight:true no Swiper (js/carrossel.js), que mede a altura de cada slide e ajusta só o
+     .swiper-wrapper pela altura do slide ativo. Com align-items:stretch (acima), TODO slide fica
+     esticado pela altura do mais alto (o card aberto), inclusive os fechados, então o Swiper sempre
+     mediria a mesma altura não importa qual card está ativo. flex-start deixa cada slide com a
+     própria altura natural, que é o que o autoHeight precisa pra funcionar por slide. De 48rem pra
+     cima nada muda — os cards abrem pros lados com altura fixa, então stretch continua como estava. */
+  .trat .swiper-wrapper { align-items: flex-start; }
+}
 
-/* Card de tratamento: sem foto, só número, divisor de 1px e nome, num cartão com borda (mesmo padrão dos cards de Avaliações). */
+/* Card de tratamento: número, divisor de 1px e nome, num cartão com borda (mesmo padrão dos cards de Avaliações); 4 dos 6 têm foto ilustrativa no topo. */
 .card--trat {
-  position: relative; height: 100%; box-sizing: border-box; background: var(--color-white); border: 1px solid var(--color-border); border-radius: 0; box-shadow: none;
-  transition: border-color 0.35s ease;
+  position: relative; height: 100%; box-sizing: border-box; display: flex; flex-direction: column;
+  background: var(--color-white); border: 1px solid var(--color-border); border-radius: 0; box-shadow: none;
+  transition: border-color 0.35s ease; cursor: pointer;
+}
+/* Botão que cobre a foto e o corpo do card (ver js/trat-expand.js). Repete o flex column do .card--trat
+   para .card__media/.card__body ficarem exatamente como antes (sem herdar estilo de <button>).
+   display:contents chegou a ser cogitado aqui (zero CSS duplicado), mas no Chrome atual ele tira o
+   botão da árvore de foco (focus() some para o <body>), quebrando o foco pedido ao fechar o card. */
+.card__hit {
+  display: flex; flex-direction: column; width: 100%; height: 100%;
+  background: none; border: 0; margin: 0; padding: 0; font: inherit; color: inherit; text-align: inherit; cursor: pointer;
+  touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+}
+/* offset negativo (desenha por dentro da borda) como em .trat:focus-visible acima: positivo (por fora)
+   fica cortado pelo overflow:hidden de .trat sempre que o card toca a borda do trilho visível --- no
+   topo/base em todos os cards (a altura do trilho é igual à do card) e também na direita de quem for
+   o último card visível da página, sobrando só um traço vertical do anel na esquerda. */
+.card--trat:has(.card__hit:focus-visible) { outline: 2px solid var(--color-brand-bronze); outline-offset: -3px; }
+/* Expandido: .card__media/.card__body precisam virar itens diretos da grade do .card--trat (ver
+   .is-expanded mais abaixo), então o botão perde a própria caixa só nesse estado — já não precisa
+   ficar focável, o foco vai para o botão de fechar. */
+.card--trat.is-expanded .card__hit { display: contents; }
+/* Foto menor e recuada (não de ponta a ponta do card), com moldura de proporção fixa (4:5) igual em
+   todos os cards, para o carrossel ter sempre a mesma altura. --fit no style escolhe cover (recorta,
+   padrão) ou contain (mostra a foto inteira, com faixas da cor da moldura nas laterais) por card;
+   --pos ajusta o foco do recorte; --zoom aproxima além do mínimo do cover, para recentralizar o
+   assunto quando ele fica preso numa borda. */
+.card--trat .card__media { position: relative; width: 100%; box-sizing: border-box; padding: var(--space-6) var(--space-6) 0; flex-shrink: 0; }
+.card--trat .card__media__frame { position: relative; width: 100%; aspect-ratio: 4 / 5; overflow: hidden; background: var(--color-brand-offwhite); border: 1px solid var(--color-border); }
+.card--trat .card__media img {
+  width: 100%; height: 100%; display: block;
+  object-fit: var(--fit, cover); object-position: var(--pos, center);
+  transform: scale(var(--zoom, 1)) translate(var(--tx, 0%), var(--ty, 0%));
 }
 .card--trat .card__body {
   display: flex; flex-direction: column; align-items: flex-start; gap: 0.75rem;
-  height: 100%; box-sizing: border-box; padding: var(--space-6); color: var(--color-brand-graphite);
+  flex: 1 1 auto; box-sizing: border-box; padding: var(--space-6); color: var(--color-brand-graphite);
 }
 .card--trat .card__num { font-family: var(--font-body); font-size: 0.8125rem; font-weight: 500; line-height: 1.2; letter-spacing: 0.12em; color: var(--color-brand-graphite); }
 /* Linha de 1px: o elemento tem 80px e a parte desenhada (::before) ocupa metade (40px); no hover ocupa tudo (80px) */
 .card--trat .card__line { position: relative; width: 80px; height: 1px; background: transparent; }
 .card--trat .card__line::before { content: ""; position: absolute; inset: 0; background: var(--color-brand-bronze); transform: scaleX(0.5); transform-origin: left center; transition: transform 0.5s ease; }
 .card--trat .card__title { margin: 0; font-size: clamp(1.375rem, 1.1rem + 0.5vw, 1.625rem); line-height: 1.15; color: var(--color-brand-graphite); overflow-wrap: break-word; hyphens: manual; }
+/* CTA "Saiba mais" abaixo do título: mesma tipografia do eyebrow (fonte do corpo, caixa alta, tracking
+   largo), mas em bronze (cor da borda ativa) em vez do bordô do eyebrow. Decorativo (aria-hidden): quem
+   descreve a ação é o aria-label do .card__hit. */
+.card--trat .card__cta {
+  display: flex; align-items: center; gap: var(--space-2);
+  font-size: var(--fs-small); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--color-brand-bronze); transition: transform 0.3s ease;
+}
+/* .card__cta-icone é um <span> (não o <svg>) que troca de ícone por display none/inline entre os dois
+   SVGs dentro dele — nos testes, o transform:scaleY em cantos de um <line> aninhado (pra virar + em −)
+   não funcionava de forma confiável aqui dentro do carrossel; trocar de SVG é mais simples e robusto. */
+.card--trat .card__cta-icone { display: inline-flex; width: 0.875rem; height: 0.875rem; flex: none; }
+.card--trat .card__cta-svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; }
+.card--trat .card__cta-svg--menos { display: none; }
+.card--trat .card__cta-fechar { display: none; }
 @media (hover: hover) {
   .card--trat:hover { border-color: var(--color-brand-bronze); }
   .card--trat:hover .card__line::before { transform: scaleX(1); }
+  .card--trat:hover .card__cta { transform: translateX(4px); }
+  .card--trat:hover .card__cta-icone { transform: rotate(90deg); transition: transform 0.3s ease; }
+}
+
+/* Estado expandido do card de tratamento (clique, ver js/trat-expand.js). Dois comportamentos bem
+   diferentes por tamanho de tela (gsap.matchMedia no JS): no desktop (48rem+) o card cresce na horizontal
+   e empurra os vizinhos para fora do carrossel; no mobile é um acordeão vertical simples (ver mais abaixo),
+   então as regras de grade/empurrar só existem a partir de 48rem. */
+@media (min-width: 48rem) {
+  .trat.has-expanded { touch-action: none; }
+  .card--trat.is-expanded {
+    position: absolute; inset: 0; z-index: 5; width: 100%; height: 100%;
+    display: grid; grid-template-columns: var(--trat-foto-w, 40%) 1fr; grid-template-rows: auto auto;
+    grid-template-areas: "media texto" "body texto"; column-gap: var(--space-6);
+    border-color: var(--color-brand-bronze); cursor: default;
+  }
+  /* --trat-foto-w (definida em js/trat-expand.js antes do Flip, com o tamanho exato que a foto já tinha
+     fechada) trava a 1ª coluna nessa largura — a foto não cresce ao expandir, só o texto ganha o espaço
+     extra. Com a largura igual à de antes, aspect-ratio:4/5 (regra geral, não repetida aqui) já dá a
+     mesma altura de sempre, sem risco de estourar a altura do card. */
+  .card--trat.is-expanded .card__media { grid-area: media; padding: var(--space-6) 0 0 var(--space-6); }
+  .card--trat.is-expanded .card__body { grid-area: body; }
+  /* No fechado o título corre a largura inteira do card; no expandido .card__body fica preso na coluna
+     da foto (--trat-foto-w), 1 var(--space-6) mais estreita — "Rejuvenescimento" deixa de caber numa
+     linha só e quebra no hífen invisível que o texto já tem embutido (ver index.html) para esse caso.
+     hyphens:none tira esse hífen e white-space:nowrap impede a quebra; o letter-spacing negativo (só
+     aqui, não mexe no fechado) fecha a diferença de largura pra não estourar a coluna. */
+  .card--trat.is-expanded .card__title {
+    hyphens: none; -webkit-hyphens: none; white-space: nowrap; letter-spacing: -0.03em;
+  }
+  /* position/top/left/width/height ficam só como marcador de estado aqui: js/trat-expand.js já define
+     os quatro via style inline (abrirDesktop/fecharDesktop), "alfinetando" a posição exata de cada
+     vizinho antes de animar só transform/opacity sobre ela — evita disputa entre o inline e esta regra. */
+  .card--trat.is-pushed-esquerda, .card--trat.is-pushed-direita { z-index: 4; pointer-events: none; }
+}
+/* Acordeão do mobile (abaixo de 48rem): o card não muda de largura nem de posição, só cresce em altura;
+   .card__texto começa com height:0 (via JS/GSAP) e os outros cards não são tocados. */
+.card--trat.is-expanded-mobile { border-color: var(--color-brand-bronze); }
+/* No mobile o CTA fica sempre visível (não há o fade do desktop); só o texto e o ícone trocam. */
+.card--trat.is-expanded-mobile .card__cta-abrir { display: none; }
+.card--trat.is-expanded-mobile .card__cta-fechar { display: inline; }
+.card--trat.is-expanded-mobile .card__cta-svg--mais { display: none; }
+.card--trat.is-expanded-mobile .card__cta-svg--menos { display: block; }
+.card__fechar {
+  display: none; place-items: center; position: absolute; top: var(--space-4); right: var(--space-4); z-index: 6;
+  width: 2.5rem; height: 2.5rem; padding: 0; background: var(--color-white); color: var(--color-text);
+  border: 1px solid var(--color-text); border-radius: 0; cursor: pointer;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+.card__fechar:not([hidden]) { display: grid; }
+.card__fechar svg { width: 1.125rem; height: 1.125rem; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; }
+.card__fechar:hover, .card__fechar:focus-visible { color: var(--color-brand-burgundy); border-color: var(--color-brand-burgundy); }
+/* Base (mobile, acordeão): bloco comum, abaixo do corpo do card, altura controlada via JS/GSAP. */
+.card__texto {
+  display: none; min-width: 0; box-sizing: border-box; overflow: hidden;
+  padding: 0 var(--space-6) var(--space-6); font-size: var(--fs-body); line-height: var(--lh-body); color: var(--color-text);
+}
+.card__texto:not([hidden]) { display: block; }
+.card__texto p { margin: 0 0 var(--space-4); }
+.card__texto p:last-child { margin-bottom: 0; }
+
+@media (min-width: 48rem) {
+  /* Desktop: vira a coluna direita da grade do .is-expanded; se o texto for maior que o card, rola por dentro. */
+  .card__texto { grid-area: texto; min-height: 0; overflow-y: auto; padding: var(--space-6) var(--space-6) var(--space-6) 0; }
 }
 
 /* Antes de o Swiper iniciar (sem JS, sem CDN): grade normal */
@@ -171,6 +302,8 @@
 .trat__seta svg { width: 1.25rem; height: 1.25rem; fill: none; stroke: currentColor; stroke-width: 1; }
 .trat__seta:not(.swiper-button-disabled):hover { color: var(--color-brand-burgundy); border-color: var(--color-brand-burgundy); }
 .trat__seta.swiper-button-disabled { opacity: 0.35; cursor: default; }
+/* Setas e barra de progresso somem visualmente enquanto um card está expandido (ver js/trat-expand.js, que também marca [inert]) */
+.trat__controles[inert] { opacity: 0.35; }
 .trat-ready .trat__dica { grid-area: dica; display: flex; align-items: center; gap: var(--space-2); margin-top: var(--space-4); font-size: var(--fs-small); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; transition: opacity 0.4s ease; }
 .trat__dica svg { width: 1.25rem; height: 1.25rem; fill: none; stroke: currentColor; stroke-width: 1; }
 .trat__dica.is-hidden { opacity: 0; }
@@ -190,23 +323,26 @@
 }
 
 @media (min-width: 64rem) and (min-height: 600px) {
-  /* Tratamentos: sem foto, o card cresce com o conteúdo; só repõe a margem perdida no breakpoint anterior. */
+  /* Tratamentos: o card cresce com o conteúdo (foto ou não); só repõe a margem perdida no breakpoint anterior. */
   .trat { margin-top: var(--gap-y); }
 }
 
 /* Minha abordagem: dois layouts com o mesmo HTML. Desktop (768px+): tudo centralizado (título, frase, subtítulo, valores em linha, parágrafo).
-   Mobile (até 767px): citação (eyebrow, aspas, frase, parágrafo, valores em células). Fundo off-white; texto #414042 sobre #e9e6e1 = 8,3:1. */
+   Mobile (até 767px): citação (eyebrow, aspas, frase, parágrafo, valores em células). Fundo branco, igual ao de "Sobre"
+   (sem classe --soft, reusa a regra padrão de .section) a pedido da cliente em 2026-10-09; texto #414042 sobre branco = 10,3:1. */
 .abordagem { --col: 44rem; --lados: 1.5rem; position: relative; overflow: hidden; border-block: 1px solid var(--color-brand-bronze); }
 @media (min-width: 64rem) { .abordagem { --col: 64rem; } }
 
 /* Grafismo lateral (só desktop): ocupa a folga entre a coluna de texto (--col) e a borda da seção, com 1,5rem de respiro.
-   A parte visível é metade da largura do SVG (a outra metade vaza pela borda), então nunca invade o texto. */
+   A parte visível é metade da largura do SVG (a outra metade vaza pela borda), então nunca invade o texto.
+   Opacidade subiu de 0.75 para 0.85 em 2026-10-09: sobre fundo branco o traço bronze (meio-tom) perde um
+   pouco de presença comparado ao antigo fundo off-white, 0.85 recupera a visibilidade sem virar um traço cheio. */
 .abordagem__losangos {
   display: none;
   position: absolute; top: 30%; height: auto; transform: translateY(-50%);
   width: max(0px, calc(100% - var(--col) - 2 * var(--lados)));
   right: calc((100% - var(--col) - 2 * var(--lados)) / -2);
-  fill: none; stroke: var(--color-brand-bronze); stroke-width: 1; opacity: 0.75; pointer-events: none;
+  fill: none; stroke: var(--color-brand-bronze); stroke-width: 1; opacity: 0.85; pointer-events: none;
 }
 .abordagem__losangos--left { right: auto; left: calc((100% - var(--col) - 2 * var(--lados)) / -2); }
 .abordagem__losangos path { vector-effect: non-scaling-stroke; }
@@ -267,7 +403,10 @@
   .valores__titulo { margin-bottom: var(--gap-y); }
 }
 
-/* Avaliações do Google: 3 cards por linha no desktop; carrossel com scroll-snap nativo no mobile */
+/* Avaliações do Google: carrossel de 3 cards por vez no desktop (64rem+), grade de 2 colunas no tablet, carrossel de 1 card com scroll-snap nativo no mobile.
+   Fundo igual ao da hero/Tratamentos (--color-bg-soft, mesma variável) a pedido da cliente em 2026-10-09. Os cards (.review)
+   já eram brancos; --color-border sobe de 18% para 25% só aqui, mesmo ajuste e mesmo motivo já aplicado em .tratamentos. */
+.avaliacoes { background: var(--color-bg-soft); --color-border: rgb(65 64 66 / 25%); }
 .avaliacoes__resumo { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-3); margin-bottom: var(--space-8); }
 .avaliacoes__estrelas, .review__estrelas { width: 6.5rem; height: 1.2rem; fill: var(--color-brand-bronze); flex: none; }
 .avaliacoes__nota { font-variant-numeric: lining-nums; font-family: var(--font-display); font-size: 2.25rem; font-weight: var(--fw-headline); line-height: 1; }
@@ -299,47 +438,32 @@
 .review:hover, .review:focus-visible { border-color: var(--color-brand-bronze); }
 .review:hover .review__seta, .review:focus-visible .review__seta { transform: translate(2px, -2px); }
 @media (hover: hover) { .review:hover { transform: translateY(-4px); } }
-.avaliacoes__link { margin-top: var(--space-4); }
 @media (min-width: 48rem) {
   .avaliacoes__dica { display: none; }
   .avaliacoes__lista { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6); margin-inline: 0; padding: 4px 0 var(--space-4); overflow: visible; scroll-snap-type: none; }
   .avaliacoes__lista > li { flex: none; }
 }
-@media (min-width: 64rem) {
-  .avaliacoes__lista { grid-template-columns: repeat(3, 1fr); }
-}
 
-/* Controles da faixa de avaliações (desktop baixo): mesmo padrão dos controles de Tratamentos */
+/* Controles da faixa de avaliações (desktop): mesmo padrão dos controles de Tratamentos */
 .avaliacoes__controles { display: none; }
 .trat__seta:disabled { opacity: 0.35; cursor: default; }
 .trat__seta:not(:disabled):hover { color: var(--color-brand-burgundy); border-color: var(--color-brand-burgundy); }
 
+/* Desktop (64rem+): carrossel sempre com exatamente 3 cards por vez (setas abaixo), em vez de grade, para nunca sobrar uma linha pela metade. */
 @media (min-width: 64rem) and (min-height: 600px) {
-  /* Avaliações: título, nota e link na mesma linha; 3 cards por linha, mais baixos */
-  .avaliacoes > .container { display: grid; grid-template-columns: auto 1fr auto; grid-template-areas: "titulo resumo link" "lista lista lista"; align-items: end; column-gap: var(--space-8); }
+  .avaliacoes > .container { display: grid; grid-template-columns: auto 1fr; grid-template-areas: "titulo resumo" "lista lista" "controles controles"; align-items: end; column-gap: var(--space-8); }
   .avaliacoes .title-section { grid-area: titulo; margin-bottom: 0; }
   .avaliacoes__resumo { grid-area: resumo; margin-bottom: 0.35rem; }
-  .avaliacoes__link { grid-area: link; margin: 0 0 0.35rem; }
-  .avaliacoes__lista { grid-area: lista; margin-top: var(--gap-y); gap: var(--gap-y) var(--space-6); padding: 4px 0 0; }
+  .avaliacoes__lista {
+    grid-area: lista; display: flex; gap: var(--space-4); margin-top: var(--gap-y); margin-inline: 0;
+    padding: 4px 0 var(--space-3); overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scroll-padding-inline: 0;
+  }
+  .avaliacoes__lista > li { flex: 0 0 calc((100% - 2 * var(--space-4)) / 3); scroll-snap-align: start; }
   .review { padding: clamp(1rem, 2.2vh, 1.5rem); }
   .review__aspas { height: 1.6rem; font-size: 3.5rem; }
   .review__estrelas { margin-block: 0.25rem clamp(0.5rem, 1.4vh, 1rem); }
   .review__linha { margin-top: clamp(0.75rem, 2vh, 1.5rem); }
   .review__rodape { margin-top: clamp(0.5rem, 1.4vh, 1rem); }
-}
-
-/* Telas baixas (até 860px de altura útil, como um notebook 1366x768 ou 1440x900): as 6 avaliações não cabem em 2 linhas com o texto inteiro.
-   Ficam em uma linha só, em faixa com rolagem lateral (scroll-snap), mostrando 3 cards e a ponta do quarto. Texto completo, sem corte. */
-@media (min-width: 64rem) and (min-height: 600px) and (max-height: 860px) {
-  .avaliacoes__lista {
-    display: flex; gap: var(--space-4); margin-inline: 0; padding: 4px 0 var(--space-3);
-    overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scroll-padding-inline: 0;
-  }
-  .avaliacoes__lista > li { flex: 0 0 calc((100% - 3 * var(--space-4)) / 3.25); scroll-snap-align: start; }
-}
-
-@media (min-width: 64rem) and (min-height: 600px) and (max-height: 860px) {
-  .avaliacoes > .container { grid-template-areas: "titulo resumo link" "lista lista lista" "controles controles controles"; }
   .avaliacoes__controles { grid-area: controles; display: grid; grid-template-columns: 8rem auto auto; align-items: center; justify-content: end; gap: var(--space-6); margin-top: var(--gap-y); }
   .avaliacoes__progresso { position: relative; height: 1px; background: rgb(65 64 66 / 25%); overflow: hidden; }
   .avaliacoes__progresso-fill { position: absolute; inset: 0; background: var(--color-brand-bronze); transform: scaleX(0); transform-origin: left center; }
@@ -410,6 +534,7 @@
 .site-footer__logo img { width: 100%; height: auto; }
 .site-footer__id { font-size: var(--fs-small); letter-spacing: 0.06em; }
 .site-footer__cols { display: grid; gap: var(--space-8); padding-top: var(--space-8); border-top: 1px solid rgb(233 230 225 / 25%); }
+.site-footer__label { margin: 0 0 var(--space-3); font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-brand-sand); }
 .site-footer__contato { list-style: none; padding: 0; display: grid; gap: var(--space-3); font-size: var(--fs-small); }
 .site-footer__nav ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-6); font-size: var(--fs-small); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; }
 .site-footer a { color: inherit; }
@@ -422,7 +547,8 @@
   .site-footer { padding-block: var(--space-20) 5rem; }
   .site-footer__top { flex-direction: row; align-items: center; justify-content: space-between; }
   .site-footer__logo { width: 20rem; }
-  .site-footer__cols { grid-template-columns: 1fr auto; align-items: start; }
+  .site-footer__cols { grid-template-columns: auto auto; justify-content: start; column-gap: var(--space-16); align-items: start; }
+  .site-footer__nav ul { display: grid; grid-template-columns: repeat(3, auto); column-gap: var(--space-8); }
 }
 
 /* Página de política de privacidade (privacidade.html) */

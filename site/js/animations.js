@@ -442,6 +442,25 @@
       return function () { limpar.forEach(function (fn) { fn(); }); };
     }
 
+    /* 14. Hover do crédito do rodapé: o nome desliza e clareia para o off-white (currentColor) */
+    function creditHover() {
+      var sand = getComputedStyle(html).getPropertyValue('--color-brand-sand').trim();
+      var offwhite = getComputedStyle(html).getPropertyValue('--color-brand-offwhite').trim();
+      var limpar = $$('.site-footer__credit-link').map(function (link) {
+        var qx = gsap.quickTo(link, 'x', { duration: 0.4, ease: 'power3.out' });
+        function entra() { qx(4); gsap.to(link, { color: offwhite, duration: 0.3, overwrite: 'auto' }); }
+        function sai() { qx(0); gsap.to(link, { color: sand, duration: 0.3, overwrite: 'auto' }); }
+        link.addEventListener('mouseenter', entra);
+        link.addEventListener('mouseleave', sai);
+        return function () {
+          link.removeEventListener('mouseenter', entra);
+          link.removeEventListener('mouseleave', sai);
+          gsap.killTweensOf(link);
+        };
+      });
+      return function () { limpar.forEach(function (fn) { fn(); }); };
+    }
+
     function run() {
       html.classList.add('js-anim');
       rollButtons(undo);
@@ -454,7 +473,8 @@
       hoverMM.add('(hover: hover) and (pointer: fine)', function () {
         var limparFotos = $$('[data-anim="photo"]').map(photoHover);
         var limparProc = procedimentosHover();
-        return function () { limparFotos.forEach(function (fn) { fn(); }); limparProc(); };
+        var limparCredit = creditHover();
+        return function () { limparFotos.forEach(function (fn) { fn(); }); limparProc(); limparCredit(); };
       });
       undo.push(function () { hoverMM.revert(); });
 

@@ -19,7 +19,7 @@ Fonte: mensagem da cliente (2026-09-25), fora do PDF.
 - **Endereço (NAP oficial, como está no perfil do Google, conferido por Gabriel em 26/09/2026):** Av. Sete de Setembro, 4214 - Sl 1304 - Batel, Curitiba - PR, 80250-085
 - **Linha de apoio (só na seção Contato, não entra no NAP, no rodapé nem no JSON-LD):** Edifício Business Offices.
 - **WhatsApp / telefone (exibição):** (41) 99178-0320.
-- **Link WhatsApp (CTA do hero, botão flutuante e contato):** `https://wa.me/5541991780320?text=Ol%C3%A1%2C%20Dra.%20Mariana!%20Gostaria%20de%20agendar%20uma%20consulta.`
+- **Link WhatsApp (CTA do hero, botão flutuante e contato):** `https://wa.me/5541991780320?text=Ol%C3%A1!%20Eu%20gostaria%20de%20agendar%20uma%20consulta%20com%20a%20Dra.%20Mariana%20Zunino%2C%20m%C3%A9dica%20dermatologista.`
 - **Link telefone:** `tel:+5541991780320`
 - **Instagram:** @marianazunino.dermato, `https://www.instagram.com/marianazunino.dermato/` (perfil confirmado por Gabriel em 26/09/2026)
 - **Horário:** segunda a sexta, das 9h às 12h e das 13h às 18h.
@@ -55,7 +55,7 @@ Fonte: mensagem da cliente (2026-09-25), fora do PDF.
 
 **Título sugerido de seção:** Sobre a Dra. Mariana
 
-**Foto:** retrato de busto da Dra. Mariana (dra2.jpeg, recebido em 26/09/2026), foto inteira em 2:3, sem recorte. Alt: "Dra. Mariana Zunino em retrato, com blusa preta e brincos dourados".
+**Foto:** retrato de busto da Dra. Mariana de blazer branco, recebido por Gabriel em 2026-10-05 (substituiu dra2.jpeg). Original 953x1280; recortado centralizado para 852x1278 (2:3 exato, 50px cortados de cada lado, 1px de cada topo/base), sem tocar ombros, mãos ou cabelo (ver comparação em `assets.md`). Alt: "Dra. Mariana Zunino em retrato, com blazer branco e brincos dourados".
 
 **Credencial em destaque (dado confirmado, p. 8):** Dermatologista, CRM/PR 26153, RQE 19939.
 
@@ -139,10 +139,11 @@ Texto sugerido que estava no site e foi removido a pedido. Não usar.
 **Nota editorial:** manter o sentido e revisar ortografia final com a cliente antes de publicar, especialmente "Re-significamos", que aparece assim no material.
 
 ## Formação
-**Status: recebida.** Não consta no `MarianaZunino.pdf`. Fonte: trecho do texto da cliente recebido em 2026-10-01 (ver "Sobre"), deslocado para cá por decisão do Gabriel. Usada em `index.html` no bloco `.sobre__formacao`, como lista:
+**Status: recebida.** Não consta no `MarianaZunino.pdf`. Fonte: trecho do texto da cliente recebido em 2026-10-01 (ver "Sobre"), formação detalhada (instituições) recebida da cliente em 2026-10-07. Usada em `index.html` no bloco `.sobre__formacao`, como lista:
 
-- Residência em Clínica Médica
-- Especialização em Dermatologia
+- Faculdade de Medicina, Fundação Universidade Federal do Rio Grande
+- Residência de Clínica Médica, Universidade Católica de Pelotas
+- Especialização em Dermatologia, Irmandade da Santa Casa de Misericórdia de Curitiba
 - Título de Especialista em Dermatologia pela Sociedade Brasileira de Dermatologia, 2011
 
 ## Dermatologia / Serviços
@@ -167,24 +168,29 @@ Texto sugerido que estava no site e foi removido a pedido. Não usar.
 ### Textos de indicação (Procedimentos, clicável)
 **Fonte do texto original:** a cliente enviou, em 2026-10-01, um parágrafo por procedimento descrevendo indicação, mecanismo de ação e resultado esperado (texto bruto arquivado fora do site, ver histórico da conversa). Publicar esse texto como enviado aciona o art. 14, I da Resolução CFM 2.336/2023: qualquer parágrafo que descreva como um tratamento funciona ou o que esperar precisa trazer também os fatores que influenciam o resultado e as complicações descritas na literatura, nenhum dos quais veio no material. Várias frases também afirmavam resultado ("aumenta", "diminui", "excelentes resultados"), o que esbarra no art. 11, XII (sem promessa de resultado) e XVI (sem superlativo).
 
-Por decisão do Gabriel (2026-10-01), o site publica em vez disso uma versão resumida de cada texto, só com a indicação terapêutica (a condição/área, sem mecanismo de ação nem resultado esperado), o que não aciona a exigência de fatores/complicações:
+Por decisão do Gabriel (2026-10-01), o site publicou nesse momento uma versão resumida de cada texto, só com a indicação terapêutica (a condição/área, sem mecanismo de ação nem resultado esperado), o que não acionava a exigência de fatores/complicações. Essa versão resumida continua em uso para Toxina botulínica, Microagulhamento IPCA, Luz intensa pulsada e Laser:
 
 | Procedimento | Texto publicado |
 |---|---|
 | Toxina botulínica | Indicada para linhas de expressão, contorno do rosto e região do pescoço. |
-| Preenchimento com ácido hialurônico | Indicado para sustentação e contorno facial, incluindo sulcos como o bigode chinês, olheiras, mandíbula, queixo e lábios. |
-| Bioestimulador de colágeno | Indicado para flacidez facial e corporal, em áreas como rosto, pescoço, colo, abdome, coxas, glúteos, mãos e joelhos. |
-| Hidratação injetável com ácido hialurônico | Indicada para hidratação da pele, linhas finas, poros dilatados e cicatrizes de acne. |
-| Biorremodelador tecidual | Indicado para hidratação, linhas finas e poros dilatados, no rosto e em áreas do corpo como o pescoço. |
-| Ultrassom microfocado | Indicado para flacidez facial e corporal e estímulo de colágeno. |
-| Peeling químico | Indicado para manchas, poros dilatados e linhas finas. |
-| Microagulhamento IPCA | Indicado para melasma, poros dilatados e linhas finas. |
-| Luz intensa pulsada | Indicada para manchas, vasos sanguíneos superficiais e rosácea. |
-| Laser | Indicado para cicatrizes de acne, rejuvenescimento e estrias. |
+| Microagulhamento IPCA | Indicado para melasma, textura da pele, poros dilatados e linhas finas. |
+| Luz intensa pulsada | Indicada para alguns tipos de manchas, vasinhos na pele, rosácea e estímulo de colágeno. |
+| Laser | Indicado principalmente para cicatrizes de acne, rejuvenescimento e estrias. |
 
-**Se a cliente quiser o texto completo (mecanismo + resultado) no futuro:** pedir também, para cada procedimento, os fatores que influenciam o resultado e as complicações descritas na literatura, e revisar qualquer frase de resultado para tom de indicação, antes de publicar. Ver `AUDITORIA-CFM.md`, item 9.2.
+**Atualização de 2026-10-05:** a cliente revisou o texto bruto original (o mesmo arquivado fora do site) e pediu, por mensagem, para publicar a versão completa (indicação + mecanismo de ação) de 6 procedimentos, com frases de resultado específicas reescritas em tom de indicação. Por decisão do Gabriel, essas 6 versões substituem a versão resumida no site, mantendo o restante do texto da cliente como enviado (só as frases apontadas por ela foram reescritas):
 
-**Versões em uso no site:** "Bioestimulador de colágeno", "Hidratação injetável com ácido hialurônico", "Biorremodelador tecidual".
+| Procedimento | Texto publicado | Ajuste feito a pedido da cliente |
+|---|---|---|
+| Preenchimento com ácido hialurônico | Indicado para sustentar e reestruturar o rosto, repondo as perdas ósseas e de gordura. Também indicado para sulcos, como bigode chinês e olheiras profundas. Pode ser também indicado para definir melhor o contorno da mandíbula, queixo e lábios. | "Corrige sulcos, como bigode chinês e olheiras profundas." → "Também indicado para sulcos, como bigode chinês e olheiras profundas." |
+| Bioestimulador de colágeno | Indicado para aumentar a espessura da pele, prevenir e amenizar a flacidez e melhorar a aparência geral da pele. Indicado também para a sustentação do rosto, amenizando bigode chinês e linhas de marionete, além de melhorar a definição do contorno facial. Pode ser usado para a flacidez corporal, como em pescoço, colo, abdome, coxas, glúteos, mãos e joelhos, além de amenizar a celulite e melhorar a definição dos glúteos. | Frases de resultado reescritas em tom de indicação; removida a afirmação de aumento do tamanho dos glúteos. |
+| Hidratação injetável com ácido hialurônico | Indicada para hidratar a pele de dentro para fora, aumentar o viço, amenizar linhas finas e melhorar a aparência de rugas, como ao redor da boca, além de diminuir poros e cicatrizes de acne. | Frases de resultado reescritas em tom de indicação. |
+| Biorremodelador tecidual | Ácido hialurônico puro que, injetado sob a pele, é indicado para melhorar a hidratação, o viço e as linhas finas, e amenizar poros dilatados. Pode ser usado em rosto e áreas corporais, como o pescoço. | Removida a frase "excelentes resultados no pescoço, por exemplo" (superlativo + promessa de resultado). |
+| Ultrassom microfocado | Indicado para efeito lifting e estímulo de colágeno, para a sustentação do rosto e para amenizar a flacidez facial, além de diminuir linhas. Pode também ser indicado para diminuir o volume do rosto e amenizar a flacidez e a gordura corporal. | Frases de resultado reescritas em tom de indicação. |
+| Peeling químico superficial | Indicado para manchas, estímulo de colágeno, poros dilatados e linhas finas. | Versão alternativa sugerida pela própria cliente (texto original era "melhorando poros dilatados e linhas finas", considerado aceitável por ela, mas trocado pela versão sem o verbo de resultado). |
+
+**Pendência de conformidade (decisão do Gabriel, 2026-10-05):** publicar essas 6 versões completas aciona o art. 14, I da Resolução CFM 2.336/2023, que exige também os fatores que influenciam o resultado e as complicações descritas na literatura para cada procedimento. Esse conteúdo ainda não foi fornecido pela cliente. Decidiu-se publicar mesmo assim, aceitando esse gap de conformidade por ora; ver `AUDITORIA-CFM.md`, itens 9.3 e 9.4 (pendência a resolver quando a cliente fornecer esse conteúdo).
+
+**Versões em uso no site:** "Preenchimento com ácido hialurônico", "Bioestimulador de colágeno", "Hidratação injetável com ácido hialurônico", "Biorremodelador tecidual", "Ultrassom microfocado" e "Peeling químico superficial" usam a versão completa (tabela acima). Os demais usam a versão resumida.
 
 ## Diferenciais
 **Título:** Conhecimento, cuidado e atenção plena
@@ -272,22 +278,24 @@ WhatsApp, mesmo link do CTA do hero (ver "Contato").
 ## Avaliações do Google
 **Fonte:** perfil "Dra. Mariana Zunino - dermatologista Curitiba" no Google (`https://share.google/SD7QJqkNnq5ACpZ09`). **Data de coleta: 25/09/2026.**
 - **Nota média exibida:** 5,0.
-- **Total exibido:** 61 avaliações.
+- Total de avaliações e link para o perfil **retirados do site a pedido da cliente em 2026-10-07** (cards e resumo não linkam mais para o Google; "Avaliação no Google" ficou como texto, não como link).
 - Todas as avaliações lidas são de 5 estrelas.
 
 **Título da seção:** Avaliações (neutro, porque há pacientes homens). Fica entre "Minha abordagem" e a faixa CTA.
 
-**Curadoria aprovada (6 textos, sem alterar nenhuma palavra, inclusive erros de digitação; cortes só com reticências):**
-1. Céline B.: "A Dra. é uma querida, calma e possui um consultório bem organizado para receber os clientes... Foi uma indicação e estou gostando bastante do atendimento."
-2. Marcia F.: "A Dra Mariana, é realmente muito atenciosa, explica tudo com muita calma e esclarecendo as dúvidas!!"
-3. Alisson R.: "Atendimento muito bom da dra Mariana, super atenciosa, instruções extremamente claras sobre o diagnóstico durante a consulta, além de ser muito simpatica e ter boa conversa…". **Corte aplicado em 27/09/2026** (aprovado por Gabriel, ver AUDITORIA-CFM.md item 6.3): a frase final "Recomendo muito a visita." foi cortada com reticências, porque funcionava como recomendação/endosso direto, o que a Resolução CFM 2.336/2023 trata com cautela quando a avaliação é publicada pela própria médica (art. 8º, § 3º). Texto original completo, para referência: "Atendimento muito bom da dra Mariana, super atenciosa, instruções extremamente claras sobre o diagnóstico durante a consulta, além de ser muito simpatica e ter boa conversa. Recomendo muito a visita."
-4. Vanessa U.: "Sou paciente da Dra Mariana há alguns anos… Ela é sempre pontual, atenciosa e toda a equipe me recebe com muito carinho"
-5. Ana Claudia B.: "…Desde o agendamento, o atendimento na recepção e a consulta. Fui tratada com muita atenção e cuidado."
-6. Mirian G.: "A dra Mariana é sempre muito pontual e atenciosa… É minha dermatologista há muito tempo."
+**Curadoria aprovada (8 textos, trocada em 2026-10-07 a pedido da cliente; fonte: página completa do perfil colada pela cliente no chat. Sem alterar nenhuma palavra, inclusive erros de digitação; cortes só com reticências, no máximo um corte por texto):**
+1. Valéria F. (Valéria França): "Dra. Mariana é uma profissional extremamente dedicada e gentil. Seu trabalho inspira confiança, atributo que, para mim, é fundamental…". **Corte:** a frase final "Ela contribui desde 2017 para manter minha autoestima de forma natural." foi cortada, por descrever resultado/benefício do acompanhamento (art. 11, XII da Resolução CFM 2.336/2023).
+2. Mirian G. (Mirian Gil): "A dra Mariana é sempre muito pontual e atenciosa… É minha dermatologista há muito tempo." **Corte (já aplicado antes):** "Acho que ela tem mãos leves para os procedimentos...rsrsrs." foi cortado, por ser elogio à técnica (art. 11, XVI).
+3. Vanessa U. (Vanessa Ulhoa): "Sou paciente da Dra Mariana há alguns anos… Ela é sempre pontual, atenciosa e toda a equipe me recebe com muito carinho". **Corte (já aplicado antes):** "e indico para todos devido à excelente qualidade do atendimento." foi cortado, por superlativo ("excelente") e recomendação direta.
+4. Ana B. (Ana Bordignon): "…Tirou todas as minhas dúvidas e do meu marido!". **Corte:** "Atendimento espetacular! Desde a recepção até a própria consulta! Adorei e com certeza indico para qualquer um!" foi cortado, por superlativo ("espetacular") e recomendação direta ("indico para qualquer um").
+5. Antonio: "…Desde a recepção fui muito bem acolhido. A assessora foi extremamente educada, atenciosa e organizada, demonstrando profissionalismo e simpatia no atendimento.". **Corte:** a frase inicial "Gostaria de deixar meu agradecimento pelo excelente atendimento." foi cortada, por superlativo ("excelente"). O restante do texto no perfil do Google continua depois de "... Mais" (truncado pelo próprio Google) e não foi usado por não estar disponível. Observação: o texto elogia a recepção/assessora, não fala da médica diretamente.
+6. Sandra C. (Sandra Carrilho): "O atendimento é muito bom…". **Corte:** "a dra é experiente e atenciosa na execução do procedimento, fiquei satisfeita com o resultado" foi cortado, por elogiar técnica e resultado de procedimento (art. 11, XII e XVI). Corte extenso porque o restante do texto original é majoritariamente sobre isso; avisar a cliente se preferir trocar esta avaliação por outra.
+7. Letícia V. (Letícia Viveiros): "…Ela faz a indicação de produtos e tira todas as dúvidas.". **Corte:** "Dra Mariana é sempre muito atenciosa e cuidadosa. Faço procedimento de bioestimulador de colágeno, o procedimento vem sempre em conjunto com a qualidade da pele." foi cortado, por nomear um procedimento específico e elogiar seu resultado (art. 11, XII; manter esse trecho exigiria o conteúdo completo do art. 14, I). O restante do texto no perfil do Google continua depois de "... Mais" (truncado pelo próprio Google) e não foi usado por não estar disponível.
+8. Sandra N. (Sandra de Napoli): "…Ela cuida da minha saúde, da minha beleza e da minha auto estima.". **Corte:** "A Dra Mariana é a dermatologista que todos deveriam ter. Ela é atenciosa, acolhedora e uma profissional impecável." foi cortado, por superlativo ("impecável") e por insinuar superioridade comparativa ("que todos deveriam ter").
 
-**Links individuais:** os 6 cards usam o link do perfil (`https://share.google/SD7QJqkNnq5ACpZ09`) como reserva, porque o link direto de cada avaliação ("Compartilhar" na avaliação) não pôde ser obtido (ver "Lacunas e Pendências"). Trocar o `href` de cada card quando os links chegarem.
+**Substituídas/removidas desta curadoria em 2026-10-07:** Céline B. (Céline Bernard), Marcia F. (Marcia Farias), Alisson R. (Alisson Rodrigues), Ana Claudia B. (Ana Claudia Bubniak, pessoa diferente de Ana Bordignon). Textos originais ficam no histórico da conversa caso sejam necessários de novo.
 
-**Reserva (não entra agora):** Val F.: "Dra. Mariana é uma profissional extremamente dedicada e gentil. Seu trabalho inspira confiança, atributo que, para mim, é fundamental!"
+**Links:** a pedido da cliente em 2026-10-07, os cards e o resumo da seção deixaram de linkar para o perfil do Google ("Avaliação no Google" agora é texto, não link) e o total de avaliações ("61 avaliações") saiu do resumo. Os botões "Como chegar" e "Ver avaliações no Google" na seção de Contato não foram alterados, por serem CTAs separados, fora da seção de Avaliações; avisar se a cliente quiser que também sejam revistos.
 
 **Regras de uso:** sem data no card; nome no formato primeiro nome e inicial; menção "Avaliação no Google"; ver a regra de avaliações no `CLAUDE.md`.
 

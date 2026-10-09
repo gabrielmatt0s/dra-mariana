@@ -28,9 +28,18 @@
     speed: reduce ? 0 : 500,
     grabCursor: true,
     watchOverflow: true,
+    // autoHeight só no mobile (abaixo de 768px, onde os cards de Tratamentos abrem em acordeão vertical
+    // com altura variável — ver js/trat-expand.js): Swiper passa a controlar a altura do .swiper-wrapper
+    // pela altura real do slide ativo (com transição suave própria dele), em vez do flex-stretch esticar
+    // todo slide pela altura do mais alto. De 768px pra cima os cards abrem para os lados (altura fixa),
+    // então isso volta a ficar desligado, igual ao comportamento de sempre. Precisa repetir autoHeight:false
+    // nos dois breakpoints (768 e 1024): o Swiper não acumula propriedade de um breakpoint menor no maior,
+    // cada um só aplica as que o próprio objeto declara por cima dos parâmetros-base — sem repetir aqui,
+    // o 1024 (desktop de verdade) herdaria o autoHeight:true do base e quebraria o layout de lá.
+    autoHeight: true,
     breakpoints: {
-      768: { spaceBetween: 24, slidesOffsetBefore: 24, slidesOffsetAfter: 24 },
-      1024: { slidesPerView: 3, slidesPerGroup: 3, spaceBetween: 24, slidesOffsetBefore: 0, slidesOffsetAfter: 0 }
+      768: { spaceBetween: 24, slidesOffsetBefore: 24, slidesOffsetAfter: 24, autoHeight: false },
+      1024: { slidesPerView: 3, slidesPerGroup: 3, spaceBetween: 24, slidesOffsetBefore: 0, slidesOffsetAfter: 0, autoHeight: false }
     },
     navigation: { prevEl: '.trat__seta--ant', nextEl: '.trat__seta--prox' },
     pagination: { el: '.trat__progresso', type: 'progressbar' },
